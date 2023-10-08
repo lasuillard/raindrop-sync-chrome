@@ -33,7 +33,7 @@
 		"concurrently": "^8.2.0",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^9.0.0",
-		"eslint-plugin-jsdoc": "^46.5.0",
+		"eslint-plugin-jsdoc": "^46.8.2",
 		"eslint-plugin-svelte": "^2.26.0",
 		"flowbite": "^1.7.0",
 		"flowbite-svelte": "^0.40.1",

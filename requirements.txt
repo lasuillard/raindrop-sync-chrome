@@ -1,0 +1,4 @@
+# Dev tools
+pre-commit
+dotenv-cli
+checkov

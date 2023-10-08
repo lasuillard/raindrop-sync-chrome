@@ -1,0 +1,29 @@
+{
+	"files.eol": "\n",
+	"files.associations": {
+		".devcontainer/override.yml": "dockercompose",
+		"**/*.css": "tailwindcss"
+	},
+	"files.insertFinalNewline": true,
+	"files.trimFinalNewlines": true,
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true,
+		"source.organizeImports": true
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"prettier.enable": true,
+	"prettier.prettierPath": "./node_modules/prettier/index.cjs", // Error on "./node_modules/.bin/prettier"
+	"eslint.enable": true,
+	"eslint.format.enable": true,
+	"json.format.enable": false,
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[yaml]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"cSpell.words": ["cobertura", "jsonschema"],
+	"svelte.enable-ts-plugin": true,
+	"conventionalCommits.scopes": ["deps-dev", "deps", "raindrop", "vscode", "chrome", "view"]
+}

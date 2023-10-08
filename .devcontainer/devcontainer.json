@@ -1,0 +1,33 @@
+{
+	"name": "lasuillard/raindrop-sync-chrome",
+	"dockerComposeFile": ["../docker-compose.yml", "./docker-compose.override.yaml"],
+	"runServices": ["workspace", "display", "novnc"],
+	"service": "workspace",
+	"overrideCommand": true,
+	"initializeCommand": "./.devcontainer/initializeCommand.sh",
+	"onCreateCommand": "./.devcontainer/onCreateCommand.sh",
+	"updateContentCommand": "./.devcontainer/updateContentCommand.sh",
+	"postCreateCommand": "./.devcontainer/postCreateCommand.sh",
+	"postStartCommand": "./.devcontainer/postStartCommand.sh",
+	"postAttachCommand": "./.devcontainer/postAttachCommand.sh",
+	"shutdownAction": "stopCompose",
+	"workspaceFolder": "/workspaces/raindrop-sync-chrome",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"ldez.ignore-files",
+				"gruntfuggly.todo-tree",
+				"redhat.vscode-yaml",
+				"streetsidesoftware.code-spell-checker",
+				"editorconfig.editorconfig",
+				"GraphQL.vscode-graphql-syntax",
+				"svelte.svelte-vscode",
+				"bradlc.vscode-tailwindcss",
+				"ZixuanChen.vitest-explorer",
+				"vivaxy.vscode-conventional-commits"
+			]
+		}
+	}
+}

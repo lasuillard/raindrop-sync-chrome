@@ -1,0 +1,16 @@
+{
+	"recommendations": [
+		"dbaeumer.vscode-eslint",
+		"esbenp.prettier-vscode",
+		"ldez.ignore-files",
+		"gruntfuggly.todo-tree",
+		"redhat.vscode-yaml",
+		"streetsidesoftware.code-spell-checker",
+		"editorconfig.editorconfig",
+		"graphql.vscode-graphql-syntax",
+		"svelte.svelte-vscode",
+		"bradlc.vscode-tailwindcss",
+		"zixuanchen.vitest-explorer",
+		"vivaxy.vscode-conventional-commits"
+	]
+}

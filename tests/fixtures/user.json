@@ -1,0 +1,60 @@
+{
+	"result": true,
+	"user": {
+		"tfa": {
+			"enabled": false
+		},
+		"files": {
+			"used": 0,
+			"size": 100000000,
+			"lastCheckPoint": "2023-04-03T05:13:42.007Z"
+		},
+		"_id": 1215940,
+		"avatar": "",
+		"pro": false,
+		"fullName": "<REDACTED>",
+		"email": "<REDACTED>",
+		"provider": "google",
+		"google": {
+			"enabled": true
+		},
+		"groups": [
+			{
+				"title": "Private",
+				"hidden": false,
+				"sort": 0,
+				"collections": [33302214, 35947369]
+			},
+			{
+				"title": "Development",
+				"hidden": false,
+				"sort": 1,
+				"collections": [32203872]
+			}
+		],
+		"lastAction": "2023-07-19T13:16:12.633Z",
+		"lastVisit": "2023-07-21T04:37:09.693Z",
+		"name": "<REDACTED>",
+		"registered": "2023-02-02T11:22:45.462Z",
+		"lastUpdate": "2023-07-21T04:37:09.694Z",
+		"config": {
+			"raindrops_view": "list",
+			"raindrops_hide": ["simple_excerpt"],
+			"raindrops_buttons": ["select", "new_tab", "preview", "edit", "remove"],
+			"raindrops_search_by_score": true,
+			"raindrops_search_incollection": false,
+			"broken_level": "default",
+			"font_size": 0,
+			"add_default_collection": -1,
+			"acknowledge": [],
+			"lang": "en",
+			"filters_hide": false,
+			"raindrops_list_cover_right": false,
+			"tags_hide": false,
+			"raindrops_sort": "-created",
+			"tags_sort": "_id",
+			"default_collection_view": "list",
+			"last_collection": -1
+		}
+	}
+}

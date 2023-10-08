@@ -1,0 +1,23 @@
+**
+
+# Allowed things
+!scripts/**
+!src/**
+!static/**
+!.npmrc
+!package-lock.json
+!package.json
+!postcss.config.js
+!requirements.txt
+!svelte.config.js
+!tailwind.config.js
+!tsconfig.json
+!vite.config.ts
+
+# Extra exclude from allowed things
+**/*~
+**/*.log
+**/.DS_Store
+**/Thumbs.db
+**/*.test.*
+**/*.md

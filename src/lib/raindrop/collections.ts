@@ -20,6 +20,10 @@ export class Collection extends Resource<RawData> {
 		return this.rawData._id;
 	}
 
+	get title(): string {
+		return this.rawData.title;
+	}
+
 	/**
 	 * Helper method loading raindrops of this collection.
 	 * @returns Array of raindrops in this collection.

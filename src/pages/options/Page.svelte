@@ -3,8 +3,8 @@
 	import Hr from 'flowbite-svelte/Hr.svelte';
 	import P from 'flowbite-svelte/P.svelte';
 	import '~/app.css';
+	import Bookmarks from './Bookmarks.svelte';
 	import Config from './Config.svelte';
-	import ResourceView from './ResourceView.svelte';
 	import TryIt from './TryIt.svelte';
 
 	let version = '';
@@ -25,7 +25,7 @@
 	<Hr />
 	<TryIt />
 	<Hr />
-	<ResourceView />
+	<Bookmarks />
 </main>
 
 <style lang="postcss">

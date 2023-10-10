@@ -22,6 +22,14 @@ export class Raindrop extends Resource<RawData> {
 		// NOTE: Duplicate field in `_data`: `$.items.collection.$id` and `$.items.collectionId`
 		return this.rawData.collectionId;
 	}
+
+	get title(): string {
+		return this.rawData.title;
+	}
+
+	get link(): string {
+		return this.rawData.link;
+	}
 }
 
 export interface GetAllRaindropsParams {

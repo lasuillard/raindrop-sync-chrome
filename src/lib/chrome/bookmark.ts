@@ -8,7 +8,7 @@ import type { TreeNode } from '~/lib/tree';
  */
 export async function createBookmarks(parentId: string, tree: TreeNode<Collection>) {
 	// Create all bookmarks
-	const raindrops = (await tree.data?.getRaindrops()) ?? [];
+	const raindrops = (await tree.data?.getBookmarks()) ?? [];
 	await Promise.all(
 		raindrops.map((rd) =>
 			chrome.bookmarks.create({

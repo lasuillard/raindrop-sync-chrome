@@ -14,7 +14,7 @@
 
 	/** Send query to fetch raindrops. */
 	async function sendQuery() {
-		const result = await raindrop.raindrops.fetchRaindrops({
+		const result = await raindrop.bookmarks.fetchBookmarks({
 			collection: 0,
 			search: query,
 			page: 0,

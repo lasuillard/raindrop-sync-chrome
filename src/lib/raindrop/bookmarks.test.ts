@@ -3,7 +3,7 @@ import axios, { HttpStatusCode } from 'axios';
 import { describe, expect, it, test, vi } from 'vitest';
 import raindrop from '~/lib/raindrop';
 
-describe(raindrop.raindrops.getAllRaindrops.name, () => {
+describe(raindrop.bookmarks.getAllBookmarks.name, () => {
 	it('fetch full pagination results', async () => {
 		const data = { ...raindrops, count: 20 };
 		vi.mocked(axios.get).mockImplementation(async () => ({
@@ -11,7 +11,7 @@ describe(raindrop.raindrops.getAllRaindrops.name, () => {
 			data: JSON.parse(JSON.stringify(data)) // Need deep copy due to property changes
 		}));
 
-		const result = await raindrop.raindrops.getAllRaindrops({ pageSize: 5 });
+		const result = await raindrop.bookmarks.getAllBookmarks({ pageSize: 5 });
 
 		expect(axios.get).toHaveBeenCalledTimes(4);
 		const calledWith = [
@@ -30,14 +30,14 @@ describe(raindrop.raindrops.getAllRaindrops.name, () => {
 	test.todo('selectively include `"Trash"` system collection');
 });
 
-describe(raindrop.raindrops.fetchRaindrops.name, () => {
+describe(raindrop.bookmarks.fetchBookmarks.name, () => {
 	it('retrieve data from Raindrop API', async () => {
 		vi.mocked(axios.get).mockResolvedValue({
 			status: HttpStatusCode.Ok,
 			data: raindrops
 		});
 
-		const result = await raindrop.raindrops.fetchRaindrops({
+		const result = await raindrop.bookmarks.fetchBookmarks({
 			page: 0,
 			perpage: 5
 		});
@@ -55,7 +55,7 @@ describe(raindrop.raindrops.fetchRaindrops.name, () => {
 
 	it('`sort` option `"score"` needs `search` not empty', () => {
 		expect(
-			raindrop.raindrops.fetchRaindrops({
+			raindrop.bookmarks.fetchBookmarks({
 				sort: 'score',
 				page: 0,
 				perpage: 5

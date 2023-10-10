@@ -1,7 +1,7 @@
 import { TreeNode, makeTree, type TreeSource } from '~/lib/tree';
 import type { Integer, NonNegativeInteger } from '~/lib/types';
+import type { Bookmark } from './bookmarks';
 import { Manager } from './manager';
-import type { Raindrop } from './raindrops';
 import { Resource } from './resource';
 import type { CollectionID, DateStr, EmailStr, ID, RGBStr, URLStr, UserID } from './types';
 
@@ -17,8 +17,8 @@ export class CollectionManager extends Manager {
 			title: 'All',
 			slug: 'all',
 
-			async getRaindrops(): Promise<Raindrop[]> {
-				return await raindrop.raindrops.getAllRaindrops({
+			async getBookmarks(): Promise<Bookmark[]> {
+				return await raindrop.bookmarks.getAllBookmarks({
 					collection: this.id
 				});
 			}
@@ -70,7 +70,7 @@ export interface Collection {
 	 * Helper method loading raindrops of this collection.
 	 * @returns Array of raindrops in this collection.
 	 */
-	getRaindrops(): Promise<Raindrop[]>;
+	getBookmarks(): Promise<Bookmark[]>;
 }
 
 export class UserCollection extends Resource<RawData> implements Collection {
@@ -86,8 +86,8 @@ export class UserCollection extends Resource<RawData> implements Collection {
 		return this.rawData.slug;
 	}
 
-	async getRaindrops(): Promise<Raindrop[]> {
-		return await this.raindrop.raindrops.getAllRaindrops({
+	async getBookmarks(): Promise<Bookmark[]> {
+		return await this.raindrop.bookmarks.getAllBookmarks({
 			collection: this.id
 		});
 	}

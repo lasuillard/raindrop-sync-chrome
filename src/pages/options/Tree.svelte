@@ -2,15 +2,15 @@
 	import Li from 'flowbite-svelte/Li.svelte';
 	import List from 'flowbite-svelte/List.svelte';
 	import { onMount } from 'svelte';
+	import type { Bookmark } from '~/lib/raindrop/bookmarks';
 	import type { Collection } from '~/lib/raindrop/collections';
-	import type { Raindrop } from '~/lib/raindrop/raindrops';
 	import type { TreeNode } from '~/lib/tree';
 
 	export let treeNode: TreeNode<Collection>;
-	let raindrops: Raindrop[];
+	let raindrops: Bookmark[];
 
 	onMount(async () => {
-		raindrops = (await treeNode.data?.getRaindrops()) ?? [];
+		raindrops = (await treeNode.data?.getBookmarks()) ?? [];
 	});
 </script>
 

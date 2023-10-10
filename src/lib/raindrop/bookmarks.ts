@@ -2,19 +2,19 @@ import type { Integer, NonNegativeInteger, PositiveInteger } from '~/lib/types';
 import { ValidationError } from './errors';
 import { Manager } from './manager';
 import { Resource } from './resource';
-import type { CollectionID, DateStr, EmailStr, ID, RaindropID, URLStr, UserID } from './types';
+import type { BookmarkID, CollectionID, DateStr, EmailStr, ID, URLStr, UserID } from './types';
 import { SystemCollection } from './types';
 
-export class RaindropManager extends Manager {
-	public getAllRaindrops = getAllRaindrops;
-	public fetchRaindrops = fetchRaindrops;
+export class BookmarkManager extends Manager {
+	public getAllBookmarks = getAllBookmarks;
+	public fetchBookmarks = fetchBookmarks;
 }
 
-type RawRaindropData = FetchRaindropsResponse['items'][0];
-type RawData = RawRaindropData;
+type RawBookmarkData = FetchBookmarksResponse['items'][0];
+type RawData = RawBookmarkData;
 
-export class Raindrop extends Resource<RawData> {
-	get id(): RaindropID {
+export class Bookmark extends Resource<RawData> {
+	get id(): BookmarkID {
 		return this.rawData._id;
 	}
 
@@ -32,7 +32,7 @@ export class Raindrop extends Resource<RawData> {
 	}
 }
 
-export interface GetAllRaindropsParams {
+export interface GetAllBookmarksParams {
 	/** ID of collection. */
 	collection?: CollectionID;
 
@@ -48,13 +48,13 @@ export interface GetAllRaindropsParams {
 
 /**
  * Fetch all raindrops of all collections.
- * @param params Extra options; {@link GetAllRaindropsParams}.
+ * @param params Extra options; {@link GetAllBookmarksParams}.
  * @returns Response body.
  */
-export async function getAllRaindrops(
-	this: RaindropManager,
-	params?: GetAllRaindropsParams
-): Promise<Raindrop[]> {
+export async function getAllBookmarks(
+	this: BookmarkManager,
+	params?: GetAllBookmarksParams
+): Promise<Bookmark[]> {
 	const collection = params?.collection ?? SystemCollection.All;
 	const pageSize = params?.pageSize ?? 50;
 
@@ -64,7 +64,7 @@ export async function getAllRaindrops(
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const trash = params?.trash ?? false;
 
-	const head = await this.fetchRaindrops({
+	const head = await this.fetchBookmarks({
 		collection,
 		page: 0,
 		perpage: pageSize
@@ -79,7 +79,7 @@ export async function getAllRaindrops(
 	arr.shift(); // 0 is head request already done
 
 	const results = await Promise.all(
-		arr.map((page) => this.fetchRaindrops({ collection: 0, page, perpage: pageSize }))
+		arr.map((page) => this.fetchBookmarks({ collection: 0, page, perpage: pageSize }))
 	);
 
 	// TODO: Extra fetch for collection "Unsorted" and "Trash"
@@ -89,10 +89,10 @@ export async function getAllRaindrops(
 		head.items.push(...result.items);
 	}
 
-	return head.items.map((data) => new Raindrop(this.raindrop, data));
+	return head.items.map((data) => new Bookmark(this.raindrop, data));
 }
 
-export interface FetchRaindropsParams {
+export interface FetchBookmarksParams {
 	collection?: CollectionID;
 	search?: string;
 	sort?: 'created' | '-created' | 'score' | '-sort' | 'title' | '-title' | 'domain' | '-domain'; // NOTE: Not known well
@@ -100,10 +100,10 @@ export interface FetchRaindropsParams {
 	perpage: PositiveInteger;
 }
 
-export type FetchRaindropsResponse = {
+export type FetchBookmarksResponse = {
 	result: true;
 	items: {
-		_id: RaindropID;
+		_id: BookmarkID;
 		link: string;
 		title: string;
 		excerpt: string;
@@ -156,10 +156,10 @@ export type FetchRaindropsResponse = {
  * @param params API query parameters.
  * @returns Response body.
  */
-export async function fetchRaindrops(
-	this: RaindropManager,
-	params: FetchRaindropsParams
-): Promise<FetchRaindropsResponse> {
+export async function fetchBookmarks(
+	this: BookmarkManager,
+	params: FetchBookmarksParams
+): Promise<FetchBookmarksResponse> {
 	const collection = params.collection ?? 0;
 	const search = params.search ?? '';
 	const sort = params.sort ?? '';

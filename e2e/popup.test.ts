@@ -37,6 +37,6 @@ describe('basic', async () => {
 
 	it('popup should have some content', async () => {
 		await page.waitForSelector('body');
-		expect(await page.content()).toContain('Welcome to SvelteKit (popup)');
+		expect(await page.content()).toContain('Raindrop Sync for Chrome');
 	}, 60_000);
 });

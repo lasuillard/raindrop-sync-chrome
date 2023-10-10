@@ -19,39 +19,12 @@ help: Makefile  ## Show help
 		@grep -E '(^[a-zA-Z_-]+:.*?##.*$$)|(^##)' "$${makefile}" | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}' | sed -e 's/\[32m##/[33m/'
 	done
 
-# Detect current environment is whether inside Docker container or not
-CONTAINER := $(shell grep docker /proc/1/cgroup &>/dev/null && echo "1" || echo "$${CONTAINER:-}")
-
-LOCBIN := ${PWD}/.bin
-ifeq ($(CONTAINER), )
-	PATH := ${LOCBIN}:${PATH}
-endif
-
 
 # =============================================================================
 # Common
 # =============================================================================
-
 install:  ## Install the app locally
-	if [ ! -z "${CONTAINER}" ]
-	then
-		echo 'Current environment is inside container thus install step is not necessary. Skipping it.'
-		exit
-	fi
-
-	mkdir -p "${LOCBIN}"
-	echo 'Some tools will be downloaded at "${LOCBIN}" unless already exists in system.'
-
-	if command -v nodenv > /dev/null
-	then
-		echo '`nodenv` is found, downloading matching version.'
-		nodenv install --skip-existing "$$(nodenv local)"
-	else
-		echo '`nodenv` not exists. Skip downloading Node matching project local version.'
-	fi
-
-	echo 'Downloading NPM packages.'
-	npm install
+	pnpm install
 .PHONY: install
 
 init:  ## Initialize project repository
@@ -61,7 +34,7 @@ init:  ## Initialize project repository
 .PHONY: init
 
 run:  ## Run development server
-	dotenv npm run dev -- --host
+	dotenv pnpm run dev -- --host
 .PHONY: run
 
 
@@ -76,14 +49,14 @@ generate:  ## Generate codes from schemas
 .PHONY: generate
 
 format:  ## Run autoformatters
-	npx prettier --list-different --write .
-	npx eslint --fix .
+	pnpm exec prettier --list-different --write .
+	pnpm exec eslint --fix .
 .PHONY: format
 
 lint: generate  ## Run all linters
-	npx prettier --check .
-	npx eslint .
-	npx tsc --noEmit
+	pnpm exec prettier --check .
+	pnpm exec eslint .
+	pnpm exec tsc --noEmit
 .PHONY: lint
 
 scan:  ## Run all scans
@@ -91,7 +64,7 @@ scan:  ## Run all scans
 .PHONY: scan
 
 test: generate  ## Run tests
-	npm run test
+	pnpm run test
 .PHONY: test
 
 benchmark:  ## Run benchmarks
@@ -99,8 +72,8 @@ benchmark:  ## Run benchmarks
 .PHONY: benchmark
 
 e2e-test: generate  ## Run e2e tests
-	npm run build
-	npm run e2e
+	pnpm run build
+	pnpm run e2e
 .PHONY: e2e-test
 
 benchmark:  ## Run benchmarks

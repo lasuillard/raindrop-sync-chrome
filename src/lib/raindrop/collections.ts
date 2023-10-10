@@ -3,7 +3,16 @@ import type { Integer, NonNegativeInteger } from '~/lib/types';
 import type { Bookmark } from './bookmarks';
 import { Manager } from './manager';
 import { Resource } from './resource';
-import type { CollectionID, DateStr, EmailStr, ID, RGBStr, URLStr, UserID } from './types';
+import {
+	SystemCollection,
+	type CollectionID,
+	type DateStr,
+	type EmailStr,
+	type ID,
+	type RGBStr,
+	type URLStr,
+	type UserID
+} from './types';
 
 export class CollectionManager extends Manager {
 	/**
@@ -13,7 +22,7 @@ export class CollectionManager extends Manager {
 	get All(): Collection {
 		const raindrop = this.raindrop;
 		return {
-			id: 0,
+			id: SystemCollection.All,
 			title: 'All',
 			slug: 'all',
 
@@ -32,7 +41,7 @@ export class CollectionManager extends Manager {
 	get Unsorted(): Collection {
 		return {
 			...this.All,
-			id: -1,
+			id: SystemCollection.Unsorted,
 			title: 'Unsorted',
 			slug: 'unsorted'
 		};
@@ -45,7 +54,7 @@ export class CollectionManager extends Manager {
 	get Trash(): Collection {
 		return {
 			...this.All,
-			id: -99,
+			id: SystemCollection.Trash,
 			title: 'Trash',
 			slug: 'trash'
 		};

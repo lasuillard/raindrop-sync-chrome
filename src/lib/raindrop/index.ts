@@ -11,9 +11,6 @@ import { CollectionManager } from './collections';
 import { RaindropManager } from './raindrops';
 import { UserManager } from './user';
 
-// TODO: RaindropService -> Raindrop
-// TODO: *API -> *Manager
-// TODO: raindrop -> raindrops, collection -> collections
 /**
  * Raindrop service.
  */

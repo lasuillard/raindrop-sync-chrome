@@ -61,7 +61,18 @@ jobs:
           files: coverage/clover.xml
           flags: unit
 
+      - name: Build extension
+        run: pnpm run build
+
+      - name: Zip extension
+        run: zip -r dist.zip dist/
+
       - name: Run end-to-end tests
-        run: |
-          pnpm run build
-          pnpm run e2e
+        run: pnpm run e2e
+
+      - name: Upload output as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist.zip
+          if-no-files-found: error

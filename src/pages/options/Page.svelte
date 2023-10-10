@@ -28,8 +28,8 @@
 	<ResourceView />
 </main>
 
-<style>
+<style lang="postcss">
 	:root {
-		padding: 1em;
+		@apply bg-slate-50 mx-4 my-2;
 	}
 </style>

@@ -44,7 +44,7 @@ jobs:
       - name: Install PNPM deps
         run: pnpm install
 
-      - name: Cache Puppeteer
+      - name: Extra cache for Puppeteer deps
         uses: actions/cache@v3
         with:
           path: ~/.cache/puppeteer

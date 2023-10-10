@@ -3,7 +3,7 @@ import axios, { HttpStatusCode } from 'axios';
 import { describe, expect, it, vi } from 'vitest';
 import raindrop from '~/lib/raindrop';
 
-describe(raindrop.user.fetchUserInfo.name, () => {
+describe(raindrop.user.fetchUserInfo, () => {
 	it('retrieve data from Raindrop API', async () => {
 		vi.mocked(axios.get).mockResolvedValue({
 			status: HttpStatusCode.Ok,

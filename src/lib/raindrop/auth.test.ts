@@ -4,7 +4,7 @@ import * as chrome from 'sinon-chrome';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import raindrop from '~/lib/raindrop';
 
-describe(raindrop.auth.launchWebAuthFlow.name, () => {
+describe(raindrop.auth.launchWebAuthFlow, () => {
 	beforeEach(() => {
 		chrome.identity.getRedirectURL.returns('https://extension-id.chromiumapp.org/');
 		chrome.identity.launchWebAuthFlow
@@ -65,7 +65,7 @@ describe(raindrop.auth.launchWebAuthFlow.name, () => {
 	});
 });
 
-describe(raindrop.auth.exchangeToken.name, () => {
+describe(raindrop.auth.exchangeToken, () => {
 	it('retrieve data from Raindrop API', async () => {
 		vi.mocked(axios.post).mockResolvedValue({
 			status: HttpStatusCode.Ok,
@@ -129,7 +129,7 @@ describe(raindrop.auth.exchangeToken.name, () => {
 	});
 });
 
-describe(raindrop.auth.refreshToken.name, () => {
+describe(raindrop.auth.refreshToken, () => {
 	it('retrieve data from Raindrop API', async () => {
 		vi.mocked(axios.post).mockResolvedValue({
 			status: HttpStatusCode.Ok,

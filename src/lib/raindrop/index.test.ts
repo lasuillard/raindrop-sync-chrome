@@ -1,5 +1,3 @@
-import { describe, it } from 'vitest';
+import { it } from 'vitest';
 
-describe('default API instance', () => {
-	it.todo('client default should');
-});
+it.todo('nothing to test yet');

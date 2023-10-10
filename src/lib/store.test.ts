@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { persisted } from '~/lib/store';
 
-describe('persisted store', () => {
+describe('persisted', () => {
 	it('should implement original store interface', async () => {
 		const store = await persisted('test', '');
 

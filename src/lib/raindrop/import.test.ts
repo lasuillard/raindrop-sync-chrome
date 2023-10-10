@@ -1,5 +1,3 @@
-import { describe, test } from 'vitest';
+import { it } from 'vitest';
 
-describe('import', () => {
-	test.todo('nothing to test yet');
-});
+it.todo('nothing to test yet');

@@ -3,7 +3,7 @@ import axios, { HttpStatusCode } from 'axios';
 import { describe, expect, it, test, vi } from 'vitest';
 import raindrop from '~/lib/raindrop';
 
-describe(raindrop.bookmarks.getAllBookmarks.name, () => {
+describe(raindrop.bookmarks.getAllBookmarks, () => {
 	it('fetch full pagination results', async () => {
 		const data = { ...raindrops, count: 20 };
 		vi.mocked(axios.get).mockImplementation(async () => ({
@@ -30,7 +30,7 @@ describe(raindrop.bookmarks.getAllBookmarks.name, () => {
 	test.todo('selectively include `"Trash"` system collection');
 });
 
-describe(raindrop.bookmarks.fetchBookmarks.name, () => {
+describe(raindrop.bookmarks.fetchBookmarks, () => {
 	it('retrieve data from Raindrop API', async () => {
 		vi.mocked(axios.get).mockResolvedValue({
 			status: HttpStatusCode.Ok,

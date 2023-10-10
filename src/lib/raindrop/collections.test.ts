@@ -4,7 +4,7 @@ import axios, { HttpStatusCode } from 'axios';
 import { describe, expect, it, vi } from 'vitest';
 import raindrop from '~/lib/raindrop';
 
-describe(raindrop.collections.getCollectionTree.name, () => {
+describe(raindrop.collections.getCollectionTree, () => {
 	it('build tree from groups and collections', async () => {
 		vi.mocked(axios.get).mockImplementation(async (path: string) => {
 			switch (path) {
@@ -34,7 +34,7 @@ describe(raindrop.collections.getCollectionTree.name, () => {
 	});
 });
 
-describe(raindrop.collections.fetchGroups.name, () => {
+describe(raindrop.collections.fetchGroups, () => {
 	it('retrieve data from Raindrop API', async () => {
 		vi.mocked(axios.get).mockResolvedValue({
 			status: HttpStatusCode.Ok,
@@ -48,7 +48,7 @@ describe(raindrop.collections.fetchGroups.name, () => {
 	});
 });
 
-describe(raindrop.collections.fetchCollections.name, () => {
+describe(raindrop.collections.fetchCollections, () => {
 	it('retrieve data from Raindrop API', async () => {
 		vi.mocked(axios.get).mockResolvedValue({
 			status: HttpStatusCode.Ok,

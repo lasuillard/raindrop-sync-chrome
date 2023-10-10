@@ -2,6 +2,7 @@
 	import Button from 'flowbite-svelte/Button.svelte';
 	import Heading from 'flowbite-svelte/Heading.svelte';
 	import P from 'flowbite-svelte/P.svelte';
+	import { createBookmarks as _createBookmarks } from '~/lib/chrome/bookmark';
 	import raindrop from '~/lib/raindrop';
 	import type { Collection } from '~/lib/raindrop/collections';
 	import type { TreeNode } from '~/lib/tree';
@@ -13,40 +14,24 @@
 		treeNode = await raindrop.collections.getCollectionTree();
 	};
 
-	const syncBookmarks = async () => {
+	const createBookmarks = async () => {
 		if (!treeNode) {
 			console.log('Data not loaded yet');
 			return;
 		}
 
 		const bookmarksTree = await chrome.bookmarks.getTree();
+
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unused-vars
 		const [bookmarksBar, otherBookmarks] = bookmarksTree[0].children!;
 
+		// FIXME: For testing purpose; once implementation get stabilized, remove dummy
 		const dummyRoot = await chrome.bookmarks.create({
 			parentId: bookmarksBar.id,
 			title: 'Dummy'
 		});
 
-		async function createBookmarks(parentId: string, rootCollections: TreeNode<Collection>[]) {
-			// Ignore root
-			for (const collection of rootCollections) {
-				const result = await chrome.bookmarks.create({
-					parentId,
-					title: collection.data?.title || 'No Title'
-				});
-				const raindrops = (await collection.data?.getRaindrops()) ?? [];
-				raindrops.forEach((rd) => {
-					chrome.bookmarks.create({
-						parentId: result.id,
-						title: rd.title,
-						url: rd.link
-					});
-				});
-				await createBookmarks(result.id, collection.children);
-			}
-		}
-
-		await createBookmarks(dummyRoot.id, treeNode.children);
+		await _createBookmarks(dummyRoot.id, treeNode);
 	};
 </script>
 
@@ -57,7 +42,7 @@
 	<P data-testid="description" class="mt-2">Bookmarks synchronization settings.</P>
 	<div class="space-x-2 mt-2">
 		<Button outline on:click={fetchItems}>Fetch</Button>
-		<Button outline on:click={syncBookmarks}>Synchronize</Button>
+		<Button outline on:click={createBookmarks}>Synchronize</Button>
 	</div>
 	<div class="p-2 mt-2">
 		{#if treeNode}

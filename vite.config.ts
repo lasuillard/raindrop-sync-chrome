@@ -35,7 +35,7 @@ export default defineConfig({
 		alias: [
 			{ find: /^svelte$/, replacement: 'svelte/internal' } // BUG: https://github.com/vitest-dev/vitest/issues/2834
 		],
-		include: ['tests/**/*.{test,spec}.{js,ts}'],
+		include: ['{src,tests}/**/*.{test,spec}.{js,ts}'],
 		coverage: {
 			all: true,
 			include: ['src/**'],

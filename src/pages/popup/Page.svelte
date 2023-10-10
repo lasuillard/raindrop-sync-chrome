@@ -1,6 +1,8 @@
 <script lang="ts">
 	import A from 'flowbite-svelte/A.svelte';
 	import P from 'flowbite-svelte/P.svelte';
+
+	const openOptionsPage = () => chrome.runtime.openOptionsPage();
 </script>
 
 <main class="w-64 mx-1 my-3 flex flex-col">
@@ -9,9 +11,7 @@
 		<!-- TODO: Sync button with icon -->
 	</div>
 	<div class="mt-2 flex justify-end">
-		<!-- FIXME: How to let Svelte know this is Chrome Extension? -->
-		<!-- svelte-ignore missing-declaration -->
-		<A on:click={() => chrome.runtime.openOptionsPage()}>Options</A>
+		<A on:click={openOptionsPage}>Options</A>
 	</div>
 </main>
 

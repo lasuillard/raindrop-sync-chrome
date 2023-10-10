@@ -33,7 +33,7 @@ describe('tree data structure', () => {
 				return new TreeNode(this.data);
 			}
 		}));
-		const tree = makeTree(source);
+		const tree = makeTree(null, source);
 		const visits: (string | null)[] = [];
 		tree.traverse((node) => {
 			visits.push(node.data);

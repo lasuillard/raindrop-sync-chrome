@@ -16,7 +16,7 @@
 
 <List tag="ul">
 	<Li
-		>&lt;Directory&gt; {treeNode.data?.rawData.slug || 'No title'}
+		>&lt;Directory&gt; {treeNode.data?.slug || 'no-title'}
 		{#if treeNode.children.length > 0}
 			<List tag="ul" class="pl-5 mt-2 space-y-1">
 				{#each treeNode.children as child}
@@ -27,7 +27,7 @@
 		{#if raindrops}
 			<List tag="ul" class="pl-5 mt-2 space-y-1">
 				{#each raindrops as raindrop}
-					<Li>{raindrop.rawData.title}</Li>
+					<Li>{raindrop.title}</Li>
 				{/each}
 			</List>
 		{/if}

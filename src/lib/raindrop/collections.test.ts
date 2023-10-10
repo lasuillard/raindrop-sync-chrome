@@ -18,11 +18,11 @@ describe(raindrop.collections.getCollectionTree.name, () => {
 		const tree = await raindrop.collections.getCollectionTree();
 		const visits: string[] = [];
 		tree.traverse((node) => {
-			visits.push(`${node.data?.rawData._id || null}: ${node.data?.rawData.title || 'root'}`);
+			visits.push(`${node.data?.id || null}: ${node.data?.title || 'root'}`);
 		});
 
 		expect(visits).toEqual([
-			'null: root',
+			'-1: Unsorted',
 			'35947369: Bookmarks bar',
 			'35947370: D1',
 			'35947372: D2',

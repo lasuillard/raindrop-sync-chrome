@@ -96,11 +96,12 @@ function buildTree<_, T>(parent: TreeNode<T>, parentID: string | null, source: T
 
 /**
  * Create the tree from sources.
+ * @param data Data of root node.
  * @param source Array of sources.
  * @returns Root node of built tree.
  */
-export function makeTree<_, T>(source: TreeSource<_, T>[]): TreeNode<T> {
-	const root = new TreeNode<T>(null);
+export function makeTree<_, T>(data: T, source: TreeSource<_, T>[]): TreeNode<T> {
+	const root = new TreeNode<T>(data);
 	buildTree(root, null, source);
 	return root;
 }

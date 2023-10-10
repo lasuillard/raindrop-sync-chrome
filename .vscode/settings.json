@@ -24,8 +24,7 @@
 	"eslint.enable": true,
 	"eslint.format.enable": true,
 	"files.associations": {
-		"**/*.css": "tailwindcss",
-		".devcontainer/override.yml": "dockercompose"
+		"**/*.css": "tailwindcss"
 	},
 	"files.eol": "\n",
 	"files.insertFinalNewline": true,

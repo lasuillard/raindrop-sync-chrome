@@ -46,4 +46,6 @@ VOLUME ["${WORKSPACE}/node_modules"]
 # For Devcontainer GPG forwarding
 RUN rm -rf ~/.gnupg
 
+RUN git config --system --add safe.directory "${WORKSPACE}"
+
 HEALTHCHECK NONE

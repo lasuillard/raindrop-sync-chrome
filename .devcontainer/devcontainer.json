@@ -1,6 +1,6 @@
 {
 	"name": "lasuillard/raindrop-sync-chrome",
-	"dockerComposeFile": ["../docker-compose.yml", "./docker-compose.override.yaml"],
+	"dockerComposeFile": ["../docker-compose.yaml", "./docker-compose.override.yaml"],
 	"runServices": ["workspace", "novnc"],
 	"service": "workspace",
 	"overrideCommand": true,

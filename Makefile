@@ -68,7 +68,7 @@ run:  ## Run development server
 # =============================================================================
 # CI
 # =============================================================================
-ci: generate lint test e2e-test scan  ## Run CI tasks
+ci: generate lint scan test benchmark e2e-test  ## Run CI tasks
 .PHONY: ci
 
 generate:  ## Generate codes from schemas
@@ -76,19 +76,27 @@ generate:  ## Generate codes from schemas
 .PHONY: generate
 
 format:  ## Run autoformatters
-	npx prettier --log-level debug --list-different --write .
-	npx eslint --debug --fix .
+	npx prettier --list-different --write .
+	npx eslint --fix .
 .PHONY: format
 
 lint: generate  ## Run all linters
-	npx prettier --log-level debug --check .
-	npx eslint --debug .
+	npx prettier --check .
+	npx eslint .
 	npx tsc --noEmit
 .PHONY: lint
+
+scan:  ## Run all scans
+	checkov --quiet --directory .
+.PHONY: scan
 
 test: generate  ## Run tests
 	npm run test
 .PHONY: test
+
+benchmark:  ## Run benchmarks
+
+.PHONY: benchmark
 
 e2e-test: generate  ## Run e2e tests
 	npm run build
@@ -98,10 +106,6 @@ e2e-test: generate  ## Run e2e tests
 benchmark:  ## Run benchmarks
 
 .PHONY: benchmark
-
-scan:  ## Run all scans
-	checkov -d .
-.PHONY: scan
 
 docs:  ## Generate dev documents
 
@@ -118,5 +122,5 @@ clean:  ## Remove temporary files
 .PHONY: clean
 
 browser:  ## Launch Chrome browser with extensions loaded
-	dotenv google-chrome --no-first-run --disable-gpu --load-extension="${PWD}/dist"
+	dotenv google-chrome --no-first-run --disable-gpu --load-extension="${PWD}/dist" --no-sandbox
 .PHONY: browser

@@ -23,46 +23,43 @@ permissions: read-all
 
 jobs:
   lint-and-test:
+    name: Lint and Test
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up PNPM
+        uses: pnpm/action-setup@v2
         with:
-          submodules: recursive
+          version: latest
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Prepare images
-        uses: docker/bake-action@v4
+      - name: Set up Node
+        uses: actions/setup-node@v3
         with:
-          targets: workspace
-          set: |
-            *.cache-from=type=gha
-            *.cache-to=type=gha,mode=max
-          load: true
-          push: false
+          node-version-file: .node-version
+          cache: pnpm
 
-      - name: Run checks
-        run: docker compose run --rm -u root workspace make ci
+      - name: Install PNPM deps
+        run: pnpm install
 
-      - name: Upload unit test coverage report
+      - name: Lint code
+        run: pnpm exec eslint .
+
+      - name: Run type checks
+        run: pnpm exec tsc --noEmit
+
+      - name: Run tests
+        run: pnpm run test
+
+      - name: Upload coverage report
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: false
-          files: coverage/unit/cobertura-coverage.xml
+          files: coverage/clover.xml
           flags: unit
-          verbose: true
 
-      - name: Upload e2e test coverage report
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: false
-          files: coverage/e2e/cobertura-coverage.xml
-          flags: e2e,ui,chrome
-          verbose: true
+      - name: Run end-to-end tests
+        run: pnpm run e2e

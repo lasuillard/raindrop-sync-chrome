@@ -1,5 +1,5 @@
 import { describe, it } from 'vitest';
-import { createBookmarks } from './bookmark';
+import { createBookmarks } from '~/lib/chrome/bookmark';
 
 describe(createBookmarks, () => {
 	it.todo('creates bookmark recursively');

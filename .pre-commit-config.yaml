@@ -16,28 +16,28 @@ repos:
       - id: generate
         name: Generate stubs and codes
         language: system
-        types_or: [javascript, jsx, ts, tsx, json, directory]
+        types_or: [javascript, ts, json, directory]
         pass_filenames: false
         entry: make generate
 
       - id: prettier
         name: Format with Prettier
         language: system
-        types_or: [javascript, jsx, ts, tsx, json]
+        types_or: [javascript, ts, svelte, json]
         entry: pnpm exec prettier
         args: [--write]
 
       - id: eslint
         name: Lint with ESLint
         language: system
-        types_or: [javascript, jsx, ts, tsx]
+        types_or: [javascript, ts, svelte]
         entry: pnpm exec eslint
         args: [--fix]
 
       - id: typescript
         name: Type check with TypeScript
         language: system
-        types_or: [javascript, jsx, ts, tsx]
+        types_or: [javascript, ts, svelte]
         pass_filenames: false
         entry: pnpm exec tsc
         args: [--noEmit]
@@ -45,7 +45,7 @@ repos:
       - id: vitest
         name: Run tests with Vitest
         language: system
-        types_or: [javascript, jsx, ts, tsx]
+        types_or: [javascript, ts, svelte]
         pass_filenames: false
         entry: pnpm run test
 

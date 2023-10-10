@@ -24,8 +24,7 @@ export default defineConfig({
 		target: 'esnext',
 		rollupOptions: {
 			plugins: [nodePolyfills()]
-		},
-		outDir: process.env.VITE_BUILD_OUTDIR ?? 'dist'
+		}
 	},
 	server: {
 		port: 5173,
@@ -36,26 +35,19 @@ export default defineConfig({
 		alias: [
 			{ find: /^svelte$/, replacement: 'svelte/internal' } // BUG: https://github.com/vitest-dev/vitest/issues/2834
 		],
-		include: ['{e2e,tests}/**/*.{test,spec}.{js,ts}'],
+		include: ['tests/**/*.{test,spec}.{js,ts}'],
 		coverage: {
 			all: true,
 			include: ['src/**'],
 			exclude: ['src/**/__mocks__/*'],
-			reporter: ['cobertura', 'html'],
-			reportsDirectory: `./coverage/${process.env.VITEST_ENV || 'unknown'}`
+			reporter: ['clover', 'html']
 		},
 		setupFiles: ['tests/setup.ts'],
-		// NOTE: Existence of field "api" enables API
-		// BUG: e2e testing with UI fails due to test rebuilds the output
-		...(process.argv.includes('--ui')
-			? {
-					api: {
-						// Publish for * if inside container for forwarding
-						host: process.env.CONTAINER !== undefined ? '0.0.0.0' : '127.0.0.1',
-						port: 51204,
-						strictPort: true
-					}
-			  }
-			: {})
+		api: {
+			// Publish for * if inside container for forwarding
+			host: process.env.CONTAINER ? '0.0.0.0' : '127.0.0.1',
+			port: 51204,
+			strictPort: true
+		}
 	}
 });

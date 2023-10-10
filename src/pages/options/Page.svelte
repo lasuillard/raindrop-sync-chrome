@@ -3,9 +3,9 @@
 	import Hr from 'flowbite-svelte/Hr.svelte';
 	import P from 'flowbite-svelte/P.svelte';
 	import '~/app.css';
-	import Bookmarks from './Bookmarks.svelte';
-	import Config from './Config.svelte';
-	import TryIt from './TryIt.svelte';
+	import Bookmarks from '~/components/Bookmarks.svelte';
+	import Config from '~/components/Config.svelte';
+	import TryIt from '~/components/TryIt.svelte';
 
 	let version = '';
 	chrome.management.getSelf().then((self) => {

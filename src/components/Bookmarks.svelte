@@ -2,11 +2,11 @@
 	import Button from 'flowbite-svelte/Button.svelte';
 	import Heading from 'flowbite-svelte/Heading.svelte';
 	import P from 'flowbite-svelte/P.svelte';
+	import Tree from '~/components/Tree.svelte';
 	import { createBookmarks as _createBookmarks } from '~/lib/chrome/bookmark';
 	import raindrop from '~/lib/raindrop';
 	import type { Collection } from '~/lib/raindrop/collections';
 	import type { TreeNode } from '~/lib/tree';
-	import Tree from './Tree.svelte';
 
 	let treeNode: TreeNode<Collection> | null = null;
 

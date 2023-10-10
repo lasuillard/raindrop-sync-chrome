@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { render } from '@testing-library/svelte';
 import { describe, expect, it } from 'vitest';
-import TryIt from '~/pages/options/TryIt.svelte';
+import TryIt from '~/components/TryIt.svelte';
 
 describe('TryIt', () => {
 	it('has some descriptive heading', () => {

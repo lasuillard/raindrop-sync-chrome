@@ -2,8 +2,8 @@
 import { render } from '@testing-library/svelte';
 import { tick } from 'svelte';
 import { describe, expect, it } from 'vitest';
+import Config from '~/components/Config.svelte';
 import * as stores from '~/core/stores';
-import Config from '~/pages/options/Config.svelte';
 
 describe('Config', () => {
 	it('has some descriptive heading', () => {

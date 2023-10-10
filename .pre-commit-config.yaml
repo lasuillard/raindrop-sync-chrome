@@ -6,7 +6,7 @@ default_stages: [commit]
 fail_fast: true
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: trailing-whitespace
       - id: end-of-file-fixer
@@ -24,14 +24,14 @@ repos:
         name: Format with Prettier
         language: system
         types_or: [javascript, jsx, ts, tsx, json]
-        entry: npx prettier
+        entry: pnpm exec prettier
         args: [--write]
 
       - id: eslint
         name: Lint with ESLint
         language: system
         types_or: [javascript, jsx, ts, tsx]
-        entry: npx eslint
+        entry: pnpm exec eslint
         args: [--fix]
 
       - id: typescript
@@ -39,7 +39,7 @@ repos:
         language: system
         types_or: [javascript, jsx, ts, tsx]
         pass_filenames: false
-        entry: npx tsc
+        entry: pnpm exec tsc
         args: [--noEmit]
 
       - id: vitest
@@ -47,7 +47,7 @@ repos:
         language: system
         types_or: [javascript, jsx, ts, tsx]
         pass_filenames: false
-        entry: npm run test
+        entry: pnpm run test
 
       - id: checkov
         name: Scan using Checkov

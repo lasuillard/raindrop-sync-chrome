@@ -7,11 +7,11 @@
 		"build": "vite build",
 		"build:watch": "vite build --watch",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "npm run check -- --watch",
-		"test": "VITEST_ENV=unit vitest --coverage --run tests",
-		"test:watch": "VITEST_ENV=unit vitest --coverage --watch --ui tests",
-		"e2e": "VITEST_ENV=e2e vitest --coverage --run e2e",
-		"e2e:watch": "concurrently --raw --kill-others --kill-signal SIGKILL \"npm run build:watch\" \"wait-on --delay 3000 --timeout 15000 dist/manifest.json && VITEST_ENV=e2e VITEST_ENV=e2e VITE_BUILD_OUTDIR=./.tmp/dist vitest --coverage --watch --ui e2e\""
+		"check:watch": "pnpm run check -- --watch",
+		"test": "vitest --coverage --run tests",
+		"test:watch": "vitest --silent --coverage --watch --ui tests",
+		"e2e": "vitest --config vitest.config.e2e.ts --coverage --run e2e",
+		"e2e:watch": "concurrently --raw --kill-others --kill-signal SIGKILL \"pnpm run build:watch\" \"wait-on --delay 3000 --timeout 15000 dist/manifest.json && vitest --silent --config vitest.config.e2e.ts --coverage --watch --ui e2e\""
 	},
 	"devDependencies": {
 		"@crxjs/vite-plugin": "^2.0.0-beta.18",

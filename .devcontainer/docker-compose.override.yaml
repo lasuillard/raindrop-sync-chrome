@@ -1,10 +1,5 @@
 version: '3'
 
-volumes:
-  # NOTE: In host environment, X11 sockets will be created repeatedly on automatic X11 forwarding by Devcontainers
-  #       thus sometimes host' display might not be accessible using :0
-  X11:
-
 services:
   workspace:
     build:
@@ -12,30 +7,16 @@ services:
         WORKSPACE: /workspaces/raindrop-sync-chrome
     volumes:
       - .:/workspaces/raindrop-sync-chrome
-      - X11:/tmp/.X11-unix
     environment:
-      DISPLAY: ':${DISPLAY_NUM:-13}'
+      DISPLAY: novnc:0.0
     healthcheck:
       disable: true
 
-  display:
-    image: ghcr.io/dtinth/xtigervnc-docker:main
-    volumes:
-      - X11:/tmp/.X11-unix
-    environment:
-      VNC_GEOMETRY: 1440x900
-      VNC_DISPLAY: ':${DISPLAY_NUM:-13}'
-    expose:
-      - '59${DISPLAY_NUM:-13}'
-      - 6000
-    command:
-      - bash
-      - -c
-      - |
-        Xtigervnc -desktop "$${VNC_DESKTOP_NAME}" -geometry "$${VNC_GEOMETRY}" -listen tcp -ac -SecurityTypes None -AlwaysShared -AcceptKeyEvents -AcceptPointerEvents -SendCutText -AcceptCutText "$${VNC_DISPLAY}"
-
   novnc:
-    image: geek1011/easy-novnc:1.1.0
+    image: theasp/novnc:latest
+    environment:
+      DISPLAY_WIDTH: '1600'
+      DISPLAY_HEIGHT: '968'
+      RUN_XTERM: 'no'
     ports:
-      - ${NOVNC_PORT:-5800}:5800
-    command: -a :5800 -h display --no-url-password --port "59${DISPLAY_NUM:-13}"
+      - 8080:8080

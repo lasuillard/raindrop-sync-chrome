@@ -5,8 +5,8 @@
 !src/**
 !static/**
 !.npmrc
-!package-lock.json
 !package.json
+!pnpm-lock.yaml
 !postcss.config.js
 !requirements.txt
 !svelte.config.js

@@ -2,7 +2,7 @@
 
 hooks_dir='./.devcontainer/onCreateCommand'
 
-sudo apt update && sudo apt install -y bash-completion
+apt update && apt install -y bash-completion
 
 echo '
 if [ -f /etc/bash_completion ]; then

@@ -5,7 +5,7 @@
 			"name": "SvelteKit: Debug",
 			"type": "node-terminal",
 			"request": "launch",
-			"command": "npm run dev",
+			"command": "pnpm run dev",
 			"serverReadyAction": {
 				"pattern": "Local: .*([0-9]{4})", // NOTE: Can't match pattern as simply as want due to color codes
 				"uriFormat": "http://localhost:%s",

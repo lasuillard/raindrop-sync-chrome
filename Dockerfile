@@ -1,4 +1,4 @@
-FROM node:20.8.0-bookworm-slim AS workspace
+FROM node:20.8.1-bookworm-slim AS workspace
 
 USER root:root
 

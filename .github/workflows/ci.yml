@@ -19,7 +19,8 @@ on:
       - '**.md'
   workflow_dispatch:
 
-permissions: read-all
+permissions:
+  contents: write
 
 jobs:
   lint-and-test:

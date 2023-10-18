@@ -72,15 +72,19 @@ jobs:
       - name: Build extension
         run: pnpm run build
 
-      - name: Zip extension
-        run: zip -r dist.zip dist/
-
       - name: Run end-to-end tests
         run: pnpm run e2e
 
-      - name: Upload output as artifact
+      - name: Set up Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      # NOTE: `CRX_PRIVATE_KEY` secret may differ from environments; e.g. Dependabot PR
+      - name: Pack extension
+        run: chrome --pack-extension=./dist --pack-extension-key=<(echo "${{ secrets.CRX_PRIVATE_KEY }}")
+
+      - name: Upload extension as artifact
         uses: actions/upload-artifact@v3
         with:
-          name: dist
-          path: dist.zip
+          name: crx
+          path: dist.crx
           if-no-files-found: error

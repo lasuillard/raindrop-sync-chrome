@@ -87,3 +87,19 @@ jobs:
           name: crx
           path: raindrop-sync-for-chrome.crx
           if-no-files-found: error
+
+  release:
+    name: Release
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download CRX artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: crx
+
+      - name: Release extension
+        uses: softprops/action-gh-release@v1
+        if: startswith(github.ref, 'refs/tags/v') # For v* tags
+        with:
+          files: raindrop-sync-for-chrome.crx

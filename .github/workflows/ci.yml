@@ -77,7 +77,7 @@ jobs:
 
       # NOTE: `CRX_PRIVATE_KEY` secret may differ from environments for security reason; e.g. Dependabot PR
       - name: Pack extension
-        run: node ./scripts/pack-crx.js
+        run: node ./scripts/pack-crx.cjs
 
       - name: Upload extension as artifact
         uses: actions/upload-artifact@v3

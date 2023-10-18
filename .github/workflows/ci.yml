@@ -75,14 +75,9 @@ jobs:
       - name: Run end-to-end tests
         run: pnpm run e2e
 
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@v1
-
-      # NOTE: `CRX_PRIVATE_KEY` secret may differ from environments; e.g. Dependabot PR
+      # NOTE: `CRX_PRIVATE_KEY` secret may differ from environments for security reason; e.g. Dependabot PR
       - name: Pack extension
-        run: |
-          chrome --pack-extension=./dist --pack-extension-key=<(echo "${{ secrets.CRX_PRIVATE_KEY }}")
-          mv dist.crx raindrop-sync-for-chrome.crx
+        run: node ./scripts/pack-crx.js
 
       - name: Upload extension as artifact
         uses: actions/upload-artifact@v3

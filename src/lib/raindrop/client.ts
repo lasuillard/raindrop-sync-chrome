@@ -1,6 +1,9 @@
 import axios, { AxiosError } from 'axios';
+import { setupCache } from 'axios-cache-interceptor';
 import { get } from 'svelte/store';
 import * as stores from '~/core/stores';
+
+setupCache(axios);
 
 export const defaultClient = axios.create({
 	baseURL: 'https://api.raindrop.io'

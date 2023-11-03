@@ -1,11 +1,65 @@
 import { TreeNode, makeTree, type TreeSource } from '~/lib/tree';
 import type { Integer, NonNegativeInteger } from '~/lib/types';
+import type { Bookmark } from './bookmarks';
 import { Manager } from './manager';
-import type { Raindrop } from './raindrops';
 import { Resource } from './resource';
-import type { CollectionID, DateStr, EmailStr, ID, RGBStr, URLStr, UserID } from './types';
+import {
+	SystemCollection,
+	type CollectionID,
+	type DateStr,
+	type EmailStr,
+	type ID,
+	type RGBStr,
+	type URLStr,
+	type UserID
+} from './types';
 
 export class CollectionManager extends Manager {
+	/**
+	 * All bookmarks.
+	 * @returns System collection for all.
+	 */
+	get All(): Collection {
+		const raindrop = this.raindrop;
+		return {
+			id: SystemCollection.All,
+			title: 'All',
+			slug: 'all',
+
+			async getBookmarks(): Promise<Bookmark[]> {
+				return await raindrop.bookmarks.getAllBookmarks({
+					collection: this.id
+				});
+			}
+		};
+	}
+
+	/**
+	 * Bookmarks that isn't included in any collection appear here
+	 * @returns System collection for unsorted.
+	 */
+	get Unsorted(): Collection {
+		return {
+			...this.All,
+			id: SystemCollection.Unsorted,
+			title: 'Unsorted',
+			slug: 'unsorted'
+		};
+	}
+
+	/**
+	 * Deleted bookmark goes here.
+	 * @returns System collection for trashed bookmarks
+	 */
+	get Trash(): Collection {
+		return {
+			...this.All,
+			id: SystemCollection.Trash,
+			title: 'Trash',
+			slug: 'trash'
+		};
+	}
+
 	public getCollectionTree = getCollectionTree;
 	public fetchGroups = fetchGroups;
 	public fetchCollections = fetchCollections;
@@ -15,17 +69,34 @@ type RawGroupData = FetchGroupsResponse['items'][0];
 type RawCollectionData = FetchCollectionsResponse['items'][0];
 type RawData = RawGroupData | RawCollectionData;
 
-export class Collection extends Resource<RawData> {
-	get id(): CollectionID {
-		return this.rawData._id;
-	}
+/** Collection interface to support system collections. */
+export interface Collection {
+	get id(): CollectionID;
+	get title(): string;
+	get slug(): string;
 
 	/**
 	 * Helper method loading raindrops of this collection.
 	 * @returns Array of raindrops in this collection.
 	 */
-	async getRaindrops(): Promise<Raindrop[]> {
-		return await this.raindrop.raindrops.getAllRaindrops({
+	getBookmarks(): Promise<Bookmark[]>;
+}
+
+export class UserCollection extends Resource<RawData> implements Collection {
+	get id(): CollectionID {
+		return this.rawData._id;
+	}
+
+	get title(): string {
+		return this.rawData.title;
+	}
+
+	get slug(): string {
+		return this.rawData.slug;
+	}
+
+	async getBookmarks(): Promise<Bookmark[]> {
+		return await this.raindrop.bookmarks.getAllBookmarks({
 			collection: this.id
 		});
 	}
@@ -39,32 +110,32 @@ export async function getCollectionTree(this: CollectionManager): Promise<TreeNo
 	const [groups, collections] = await Promise.all([this.fetchGroups(), this.fetchCollections()]);
 
 	const raindrop = this.raindrop;
-	const groupNodes: TreeSource<RawData, Collection>[] = groups.items.map((item) => ({
+	const groupNodes: TreeSource<RawData, UserCollection>[] = groups.items.map((item) => ({
 		data: item,
 		id: item._id.toString(),
 		parent: null,
 
-		toNode(): TreeNode<Collection> {
-			return new TreeNode(new Collection(raindrop, this.data));
+		toNode(): TreeNode<UserCollection> {
+			return new TreeNode(new UserCollection(raindrop, this.data));
 		}
 	}));
-	const collectionNodes: TreeSource<RawData, Collection>[] = collections.items.map((item) => ({
+	const collectionNodes: TreeSource<RawData, UserCollection>[] = collections.items.map((item) => ({
 		data: item,
 		id: item._id.toString(),
 		parent: item.parent.$id.toString(),
 
-		toNode(): TreeNode<Collection> {
-			return new TreeNode(new Collection(raindrop, this.data));
+		toNode(): TreeNode<UserCollection> {
+			return new TreeNode(new UserCollection(raindrop, this.data));
 		}
 	}));
-	const source: TreeSource<RawData, Collection>[] = groupNodes.concat(collectionNodes);
+	const source: TreeSource<RawData, UserCollection>[] = groupNodes.concat(collectionNodes);
 	source.sort(
 		(a, b) =>
 			(a.data?.title ?? '').localeCompare(b.data?.title ?? '') ||
 			(a.data?._id ?? 0) - (b.data?._id ?? 0)
 	);
 
-	const rootNode = makeTree(source);
+	const rootNode = makeTree(this.Unsorted, source);
 	return rootNode;
 }
 

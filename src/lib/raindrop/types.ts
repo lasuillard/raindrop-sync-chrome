@@ -16,7 +16,7 @@ export enum SystemCollection {
  */
 export type CollectionID = SystemCollection | NonNegativeInteger;
 
-export type RaindropID = Integer;
+export type BookmarkID = Integer;
 
 export type DateStr = string;
 export type EmailStr = string;

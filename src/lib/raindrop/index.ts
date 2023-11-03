@@ -6,14 +6,11 @@
  */
 import type { AxiosInstance } from 'axios';
 import { AuthManager } from './auth';
+import { BookmarkManager } from './bookmarks';
 import { defaultClient } from './client';
 import { CollectionManager } from './collections';
-import { RaindropManager } from './raindrops';
 import { UserManager } from './user';
 
-// TODO: RaindropService -> Raindrop
-// TODO: *API -> *Manager
-// TODO: raindrop -> raindrops, collection -> collections
 /**
  * Raindrop service.
  */
@@ -23,14 +20,14 @@ export class Raindrop {
 	// API namespaces
 	public readonly auth: AuthManager;
 	public readonly user: UserManager;
-	public readonly raindrops: RaindropManager;
+	public readonly bookmarks: BookmarkManager;
 	public readonly collections: CollectionManager;
 
 	constructor(client?: AxiosInstance) {
 		this.client = client ?? defaultClient;
 		this.auth = new AuthManager(this);
 		this.user = new UserManager(this);
-		this.raindrops = new RaindropManager(this);
+		this.bookmarks = new BookmarkManager(this);
 		this.collections = new CollectionManager(this);
 	}
 }

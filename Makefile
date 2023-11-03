@@ -33,8 +33,17 @@ init:  ## Initialize project repository
 	pre-commit install --install-hooks --hook-type pre-commit --hook-type commit-msg
 .PHONY: init
 
-run:  ## Run development server
-	dotenv pnpm run dev -- --host
+browser:  ## Launch browser with extensions loaded
+	dotenv google-chrome --no-first-run --disable-gpu --load-extension="${PWD}/dist" --no-sandbox
+.PHONY: browser
+
+run:  ## Run browser with development server
+	dotenv pnpm exec concurrently \
+		--kill-others \
+		--kill-signal SIGKILL \
+		--raw \
+		"pnpm run dev" \
+		"$(MAKE) browser"
 .PHONY: run
 
 
@@ -93,7 +102,3 @@ clean:  ## Remove temporary files
 	find . -path '*/__snapshots__*' -delete
 	find . -path "*.log*" -delete
 .PHONY: clean
-
-browser:  ## Launch Chrome browser with extensions loaded
-	dotenv google-chrome --no-first-run --disable-gpu --load-extension="${PWD}/dist" --no-sandbox
-.PHONY: browser

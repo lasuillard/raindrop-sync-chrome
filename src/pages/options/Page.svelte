@@ -3,9 +3,9 @@
 	import Hr from 'flowbite-svelte/Hr.svelte';
 	import P from 'flowbite-svelte/P.svelte';
 	import '~/app.css';
-	import Config from './Config.svelte';
-	import ResourceView from './ResourceView.svelte';
-	import TryIt from './TryIt.svelte';
+	import Bookmarks from '~/components/Bookmarks.svelte';
+	import Config from '~/components/Config.svelte';
+	import TryIt from '~/components/TryIt.svelte';
 
 	let version = '';
 	chrome.management.getSelf().then((self) => {
@@ -25,11 +25,11 @@
 	<Hr />
 	<TryIt />
 	<Hr />
-	<ResourceView />
+	<Bookmarks />
 </main>
 
-<style>
+<style lang="postcss">
 	:root {
-		padding: 1em;
+		@apply mx-4 my-2 bg-slate-50;
 	}
 </style>

@@ -2,7 +2,7 @@
 // https://developer.chrome.com/docs/extensions/mv3/intro/
 export default {
 	name: 'Raindrop Sync for Chrome',
-	version: '0.1.0',
+	version: '0.2.0',
 	manifest_version: 3,
 	description: 'Inspect background service worker console for output',
 	permissions: ['identity', 'storage', 'bookmarks'],

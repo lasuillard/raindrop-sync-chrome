@@ -40,11 +40,11 @@
 		Bookmarks
 	</Heading>
 	<P data-testid="description" class="mt-2">Bookmarks synchronization settings.</P>
-	<div class="space-x-2 mt-2">
+	<div class="mt-2 space-x-2">
 		<Button outline on:click={fetchItems}>Fetch</Button>
 		<Button outline on:click={createBookmarks}>Synchronize</Button>
 	</div>
-	<div class="p-2 mt-2">
+	<div class="mt-2 p-2">
 		{#if treeNode}
 			<Tree {treeNode}></Tree>
 		{:else}

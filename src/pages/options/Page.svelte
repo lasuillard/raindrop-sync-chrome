@@ -13,7 +13,7 @@
 	});
 </script>
 
-<main class="self-center mx-auto mt-3">
+<main class="mx-auto mt-3 self-center">
 	<Heading class="mb-2" tag="h1" customSize="text-3xl font-extrabold" color="text-gray-600"
 		>Raindrop Sync for Chrome</Heading
 	>

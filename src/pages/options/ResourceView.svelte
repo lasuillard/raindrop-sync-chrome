@@ -20,7 +20,7 @@
 	>
 	<P data-testid="description" class="mt-2">Bookmarks synchronization settings.</P>
 	<Button class="mt-2" size="sm" color="alternative" on:click={loadItems}>Load items</Button>
-	<div class="p-2 mt-2">
+	<div class="mt-2 p-2">
 		{#if treeNode}
 			<Tree {treeNode}></Tree>
 		{:else}

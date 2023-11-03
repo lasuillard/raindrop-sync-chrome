@@ -17,7 +17,7 @@
 	>
 	<P data-testid="description" class="mt-2">Extension global settings.</P>
 	<div class="grid grid-cols-1">
-		<div class="mt-6 grid grid-cols-1 grid-flow-row gap-x-4 gap-y-6">
+		<div class="mt-6 grid grid-flow-row grid-cols-1 gap-x-4 gap-y-6">
 			<div class="flex">
 				<FloatingLabelInput
 					data-testid="client-id/input"

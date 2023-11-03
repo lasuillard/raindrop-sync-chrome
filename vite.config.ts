@@ -46,8 +46,7 @@ export default defineConfig({
 		api: {
 			// Publish for * if inside container for forwarding
 			host: process.env.CONTAINER ? '0.0.0.0' : '127.0.0.1',
-			port: 51204,
-			strictPort: true
+			port: 51204
 		}
 	}
 });

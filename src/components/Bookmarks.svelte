@@ -28,7 +28,7 @@
 		// FIXME: For testing purpose; once implementation get stabilized, remove dummy
 		const dummyRoot = await chrome.bookmarks.create({
 			parentId: bookmarksBar.id,
-			title: 'Dummy'
+			title: 'RSFC'
 		});
 
 		await _createBookmarks(dummyRoot.id, treeNode);

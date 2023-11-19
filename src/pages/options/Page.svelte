@@ -1,4 +1,7 @@
 <script lang="ts">
+	import BookmarkOutline from 'flowbite-svelte-icons/BookmarkOutline.svelte';
+	import SearchOutline from 'flowbite-svelte-icons/SearchOutline.svelte';
+	import UserSettingsOutline from 'flowbite-svelte-icons/UserSettingsOutline.svelte';
 	import Heading from 'flowbite-svelte/Heading.svelte';
 	import P from 'flowbite-svelte/P.svelte';
 	import TabItem from 'flowbite-svelte/TabItem.svelte';
@@ -14,19 +17,31 @@
 	});
 </script>
 
-<main class="mx-auto mt-3 self-center">
+<main class="mx-1 mt-4 self-center">
 	<Heading class="mb-2" tag="h1" customSize="text-3xl font-extrabold" color="text-gray-600"
 		>Raindrop Sync for Chrome</Heading
 	>
-	<P class="mb-3" color="text-gray-600">v{version}</P>
-	<Tabs>
-		<TabItem open title="Bookmarks">
+	<P class="mb-10 ml-1" size="xl" color="text-gray-400">v{version}</P>
+	<Tabs style="underline">
+		<TabItem open>
+			<div slot="title" class="flex items-center gap-2">
+				<BookmarkOutline size="sm" />
+				Bookmarks
+			</div>
 			<Bookmarks />
 		</TabItem>
-		<TabItem title="Try It">
+		<TabItem>
+			<div slot="title" class="flex items-center gap-2">
+				<SearchOutline size="sm" />
+				Try It
+			</div>
 			<TryIt />
 		</TabItem>
-		<TabItem title="Settings">
+		<TabItem>
+			<div slot="title" class="flex items-center gap-2">
+				<UserSettingsOutline size="sm" />
+				Settings
+			</div>
 			<Config />
 		</TabItem>
 	</Tabs>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Button from 'flowbite-svelte/Button.svelte';
-	import Heading from 'flowbite-svelte/Heading.svelte';
 	import P from 'flowbite-svelte/P.svelte';
 	import Tree from '~/components/Tree.svelte';
 	import { createBookmarks as _createBookmarks } from '~/lib/chrome/bookmark';
@@ -36,10 +35,7 @@
 </script>
 
 <div>
-	<Heading data-testid="heading" class="mt-2" tag="h2" customSize="text-xl font-bold">
-		Bookmarks
-	</Heading>
-	<P data-testid="description" class="mt-2">Bookmarks synchronization settings.</P>
+	<P data-testid="description">Bookmarks synchronization settings.</P>
 	<div class="mt-2 space-x-2">
 		<Button outline on:click={fetchItems}>Fetch</Button>
 		<Button outline on:click={createBookmarks}>Synchronize</Button>

@@ -5,7 +5,6 @@ import TryIt from '~/components/TryIt.svelte';
 
 it('has some descriptive heading', () => {
 	const { queryByTestId } = render(TryIt);
-	expect(queryByTestId('heading')).not.toBeNull();
 	expect(queryByTestId('description')).not.toBeNull();
 });
 

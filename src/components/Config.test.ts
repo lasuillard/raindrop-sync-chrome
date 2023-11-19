@@ -7,7 +7,6 @@ import * as stores from '~/core/stores';
 
 it('has some descriptive heading', () => {
 	const { queryByTestId } = render(Config);
-	expect(queryByTestId('heading')).not.toBeNull();
 	expect(queryByTestId('description')).not.toBeNull();
 });
 

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Button from 'flowbite-svelte/Button.svelte';
 	import FloatingLabelInput from 'flowbite-svelte/FloatingLabelInput.svelte';
-	import Heading from 'flowbite-svelte/Heading.svelte';
 	import P from 'flowbite-svelte/P.svelte';
 	import { get } from 'svelte/store';
 	import Eye from '~/components/Eye.svelte';
@@ -28,10 +27,7 @@
 </script>
 
 <div>
-	<Heading data-testid="heading" class="mt-2" tag="h2" customSize="text-xl font-bold">
-		General
-	</Heading>
-	<P data-testid="description" class="mt-2">Extension global settings.</P>
+	<P data-testid="description">Extension global settings.</P>
 	<P>
 		<!-- TODO: More detailed guide registering application with pictures -->
 		To register your application, <b>Client ID</b> and <b>Client Secret</b> then click

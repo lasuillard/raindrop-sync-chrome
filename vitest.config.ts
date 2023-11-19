@@ -18,7 +18,8 @@ export default defineConfig({
 		],
 		include: [
 			'{src,tests}/**/*.{test,spec}.{js,ts}',
-			'src/lib/**/*.{js,ts}' // In-source testing
+			'src/lib/**/*.{js,ts}', // In-source testing
+			'src/{manifest,service-worker}.{js,ts}'
 		],
 		exclude: ['**/__mocks__/*'],
 		coverage: {

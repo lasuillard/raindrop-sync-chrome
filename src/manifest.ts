@@ -1,8 +1,10 @@
+import packageManifest from '../package.json';
+
 // Chrome Manifest Version 3
 // https://developer.chrome.com/docs/extensions/mv3/intro/
 export default {
 	name: 'Raindrop Sync for Chrome',
-	version: '0.2.0',
+	version: packageManifest.version,
 	manifest_version: 3,
 	description: 'Inspect background service worker console for output',
 	permissions: ['identity', 'storage', 'bookmarks'],

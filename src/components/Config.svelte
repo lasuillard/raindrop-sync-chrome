@@ -45,10 +45,11 @@
 					classDiv="w-full mr-2"
 					id="client-id"
 					type={showClientID ? 'text' : 'password'}
-					label="Client ID"
 					required
 					bind:value={$clientID}
-				/>
+				>
+					Client ID
+				</FloatingLabelInput>
 				<Eye
 					data-testid="client-id/show-button"
 					on:click={() => {
@@ -63,10 +64,11 @@
 					classDiv="w-full mr-2"
 					id="client-secret"
 					type={showClientSecret ? 'text' : 'password'}
-					label="Client Secret"
 					required
 					bind:value={$clientSecret}
-				/>
+				>
+					Client Secret
+				</FloatingLabelInput>
 				<Eye
 					data-testid="client-secret/show-button"
 					on:click={() => {
@@ -81,10 +83,11 @@
 					classDiv="w-full mr-2"
 					id="access-token"
 					type={showAccessToken ? 'text' : 'password'}
-					label="Access Token"
 					disabled
 					bind:value={$accessToken}
-				/>
+				>
+					Access Token
+				</FloatingLabelInput>
 				<Eye
 					data-testid="access-token/show-button"
 					on:click={() => {
@@ -99,10 +102,11 @@
 					classDiv="w-full mr-2"
 					id="refresh-token"
 					type={showRefreshToken ? 'text' : 'password'}
-					label="Refresh Token"
 					disabled
 					bind:value={$refreshToken}
-				/>
+				>
+					Refresh Token
+				</FloatingLabelInput>
 				<Eye
 					data-testid="refresh-token/show-button"
 					on:click={() => {

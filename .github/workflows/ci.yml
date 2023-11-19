@@ -19,8 +19,7 @@ on:
       - '**.md'
   workflow_dispatch:
 
-permissions:
-  contents: write
+permissions: read-all
 
 jobs:
   lint-and-test:
@@ -76,31 +75,43 @@ jobs:
       - name: Run end-to-end tests
         run: pnpm run e2e
 
+  build-and-release:
+    name: Build and Release
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    if: startswith(github.ref, 'refs/tags/v') # For v* tags
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install PNPM deps
+        run: pnpm install
+
+      - name: Create an archive
+        run: zip -r raindrop-sync-for-chrome.zip dist
+
       # NOTE: `CRX_PRIVATE_KEY` secret may differ from environments for security reason; e.g. Dependabot PR
       - name: Pack extension
         env:
           CRX_PRIVATE_KEY: ${{ secrets.CRX_PRIVATE_KEY }}
         run: node ./scripts/pack-crx.cjs
 
-      - name: Upload extension as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: crx
-          path: raindrop-sync-for-chrome.crx
-          if-no-files-found: error
-
-  release:
-    name: Release
-    needs: lint-and-test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download CRX artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: crx
-
       - name: Release extension
         uses: softprops/action-gh-release@v1
-        if: startswith(github.ref, 'refs/tags/v') # For v* tags
         with:
-          files: raindrop-sync-for-chrome.crx
+          files: |
+            raindrop-sync-for-chrome.zip
+            raindrop-sync-for-chrome.crx

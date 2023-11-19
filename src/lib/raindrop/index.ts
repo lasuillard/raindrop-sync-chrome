@@ -7,7 +7,7 @@
 import type { AxiosInstance } from 'axios';
 import { AuthManager } from './auth';
 import { BookmarkManager } from './bookmarks';
-import { defaultClient } from './client';
+import { getClient } from './client';
 import { CollectionManager } from './collections';
 import { UserManager } from './user';
 
@@ -24,7 +24,7 @@ export class Raindrop {
 	public readonly collections: CollectionManager;
 
 	constructor(client?: AxiosInstance) {
-		this.client = client ?? defaultClient;
+		this.client = client ?? getClient();
 		this.auth = new AuthManager(this);
 		this.user = new UserManager(this);
 		this.bookmarks = new BookmarkManager(this);
@@ -33,3 +33,11 @@ export class Raindrop {
 }
 
 export default new Raindrop();
+
+/* c8 ignore start */
+if (import.meta.vitest) {
+	const { it } = import.meta.vitest;
+
+	it.todo('nothing to test yet');
+}
+/* c8 ignore stop */

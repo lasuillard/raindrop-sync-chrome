@@ -22,3 +22,16 @@ export type ErrorResponse = {
 export function isErrorResponse(obj: unknown): obj is ErrorResponse {
 	return (obj as ErrorResponse).result === false;
 }
+
+/* c8 ignore start */
+if (import.meta.vitest) {
+	const { describe, expect, it } = import.meta.vitest;
+
+	describe(isErrorResponse, () => {
+		it('type guard for errors should be deterministic', () => {
+			expect(isErrorResponse({ result: true })).toBeFalsy();
+			expect(isErrorResponse({ result: false })).toBeTruthy();
+		});
+	});
+}
+/* c8 ignore stop */

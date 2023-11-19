@@ -1,3 +1,4 @@
 import axios from 'axios';
+import { vi } from 'vitest';
 
-export const defaultClient = axios;
+export const getClient = vi.fn(() => axios);

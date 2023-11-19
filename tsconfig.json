@@ -19,7 +19,8 @@
 		},
 		"isolatedModules": true,
 		"useDefineForClassFields": true,
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+		"types": ["vitest/importMeta"]
 	},
 	"include": [
 		"vite.config.ts",

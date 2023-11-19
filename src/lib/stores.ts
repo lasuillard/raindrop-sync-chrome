@@ -46,3 +46,28 @@ export async function persisted<T>(
 		}
 	};
 }
+
+/* c8 ignore start */
+if (import.meta.vitest) {
+	const { describe, expect, it } = import.meta.vitest;
+
+	describe('persisted', () => {
+		it('should implement original store interface', async () => {
+			const store = await persisted('test', '');
+
+			// Subscription test
+			let changed = '';
+			store.subscribe((value) => {
+				changed = value;
+			});
+
+			await store.set('hello world');
+			expect(changed).toEqual('hello world');
+
+			// `.update()`
+			await store.update((value) => value + ', done');
+			expect(changed).toEqual('hello world, done');
+		});
+	});
+}
+/* c8 ignore stop */

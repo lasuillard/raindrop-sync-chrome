@@ -181,3 +181,73 @@ export async function fetchBookmarks(
 	});
 	return data;
 }
+
+/* c8 ignore start */
+if (import.meta.vitest) {
+	const raindrops = await import('^/tests/fixtures/raindrops.json');
+	const { default: axios, HttpStatusCode } = await import('axios');
+	const { default: raindrop } = await import('~/lib/raindrop');
+	const { describe, expect, it, test, vi } = import.meta.vitest;
+
+	describe(raindrop.bookmarks.getAllBookmarks, () => {
+		it('fetch full pagination results', async () => {
+			const data = { ...raindrops, count: 20 };
+			vi.mocked(axios.get).mockImplementation(async () => ({
+				status: HttpStatusCode.Ok,
+				data: JSON.parse(JSON.stringify(data)) // Need deep copy due to property changes
+			}));
+
+			const result = await raindrop.bookmarks.getAllBookmarks({ pageSize: 5 });
+
+			expect(axios.get).toHaveBeenCalledTimes(4);
+			const calledWith = [
+				{ params: { search: '', sort: '', page: 0, perpage: 5 } },
+				{ params: { search: '', sort: '', page: 1, perpage: 5 } },
+				{ params: { search: '', sort: '', page: 2, perpage: 5 } },
+				{ params: { search: '', sort: '', page: 3, perpage: 5 } }
+			];
+			for (const args of calledWith) {
+				expect(axios.get).toHaveBeenCalledWith('/rest/v1/raindrops/0', args);
+			}
+			expect(result).toHaveLength(20);
+		});
+
+		test.todo('selectively include `"Unsorted"` system collection');
+		test.todo('selectively include `"Trash"` system collection');
+	});
+
+	describe(raindrop.bookmarks.fetchBookmarks, () => {
+		it('retrieve data from Raindrop API', async () => {
+			vi.mocked(axios.get).mockResolvedValue({
+				status: HttpStatusCode.Ok,
+				data: raindrops
+			});
+
+			const result = await raindrop.bookmarks.fetchBookmarks({
+				page: 0,
+				perpage: 5
+			});
+
+			expect(axios.get).toHaveBeenCalledWith('/rest/v1/raindrops/0', {
+				params: {
+					search: '',
+					sort: '',
+					page: 0,
+					perpage: 5
+				}
+			});
+			expect(result).toEqual(raindrops);
+		});
+
+		it('`sort` option `"score"` needs `search` not empty', () => {
+			expect(
+				raindrop.bookmarks.fetchBookmarks({
+					sort: 'score',
+					page: 0,
+					perpage: 5
+				})
+			).rejects.toThrow('`sort` option `"score"` can be used only if `search` query is not empty');
+		});
+	});
+}
+/* c8 ignore stop */

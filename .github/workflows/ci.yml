@@ -78,8 +78,7 @@ jobs:
     name: Build and Release
     needs: lint-and-test
     runs-on: ubuntu-latest
-    # TODO: Revert it (mocked for testing)
-    # if: startswith(github.ref, 'refs/tags/v') # For v* tags
+    if: startswith(github.ref, 'refs/tags/v') # For v* tags
     permissions:
       contents: write
     steps:
@@ -113,12 +112,8 @@ jobs:
         run: node ./scripts/pack-crx.cjs
 
       - name: Release extension
-        run: ls -al raindrop-sync-for-chrome.*
-
-      # TODO: Revert it (mocked for testing)
-      # - name: Release extension
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     files: |
-      #       raindrop-sync-for-chrome.zip
-      #       raindrop-sync-for-chrome.crx
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            raindrop-sync-for-chrome.zip
+            raindrop-sync-for-chrome.crx

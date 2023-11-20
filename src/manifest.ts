@@ -7,6 +7,7 @@ const manifest = {
 	version: packageManifest.version,
 	manifest_version: 3,
 	description: 'Inspect background service worker console for output',
+	homepage_url: packageManifest.homepage,
 	permissions: ['identity', 'storage', 'bookmarks'],
 	action: {
 		default_title: 'Test',

@@ -1,6 +1,12 @@
 {
 	"name": "raindrop-sync-chrome",
 	"version": "0.2.2",
+	"author": {
+		"name": "Yuchan Lee",
+		"url": "https://github.com/lasuillard",
+		"email": "lasuillard@gmail.com"
+	},
+	"homepage": "https://github.com/lasuillard/raindrop-sync-chrome",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",

@@ -69,11 +69,10 @@ jobs:
           files: coverage/clover.xml
           flags: unit
 
-      - name: Build extension
-        run: pnpm run build
-
       - name: Run end-to-end tests
-        run: pnpm run e2e
+        run: |
+          pnpm run build
+          pnpm run e2e
 
   build-and-release:
     name: Build and Release

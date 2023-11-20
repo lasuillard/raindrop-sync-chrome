@@ -23,3 +23,11 @@ export type EmailStr = string;
 export type URLStr = string;
 export type RGBStr = string;
 export type LangStr = string;
+
+/* c8 ignore start */
+if (import.meta.vitest) {
+	const { it } = import.meta.vitest;
+
+	it('custom type tests run via TS');
+}
+/* c8 ignore stop */

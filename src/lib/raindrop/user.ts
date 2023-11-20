@@ -76,3 +76,26 @@ export async function fetchUserInfo(this: UserManager): Promise<FetchUserInfoRes
 
 	return data;
 }
+
+/* c8 ignore start */
+if (import.meta.vitest) {
+	const user = await import('^/tests/fixtures/user.json');
+	const { default: axios, HttpStatusCode } = await import('axios');
+	const { default: raindrop } = await import('~/lib/raindrop');
+	const { describe, expect, it, vi } = import.meta.vitest;
+
+	describe(raindrop.user.fetchUserInfo, () => {
+		it('retrieve data from Raindrop API', async () => {
+			vi.mocked(axios.get).mockResolvedValue({
+				status: HttpStatusCode.Ok,
+				data: user
+			});
+
+			const result = await raindrop.user.fetchUserInfo();
+
+			expect(axios.get).toHaveBeenCalledWith('/rest/v1/user');
+			expect(result).toEqual(user);
+		});
+	});
+}
+/* c8 ignore stop */

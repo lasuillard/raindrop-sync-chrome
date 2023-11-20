@@ -2,7 +2,7 @@ import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { defineConfig } from 'vitest/config';
 import { viteConfig } from './vite.config';
 
-const { resolve } = viteConfig;
+const { define, resolve } = viteConfig;
 
 // NOTE: Separate unit test config because coverage report prints out multiple times
 //       It's likely problem of CRXJS plugin
@@ -10,12 +10,18 @@ const { resolve } = viteConfig;
 //       Similar issue: https://github.com/vitest-dev/vitest/issues/3439
 export default defineConfig({
 	plugins: [svelte()],
+	define,
 	resolve,
 	test: {
 		alias: [
 			{ find: /^svelte$/, replacement: 'svelte/internal' } // BUG: https://github.com/vitest-dev/vitest/issues/2834
 		],
-		include: ['{src,tests}/**/*.{test,spec}.{js,ts}'],
+		include: [
+			'{src,tests}/**/*.{test,spec}.{js,ts}',
+			'src/lib/**/*.{js,ts}', // In-source testing
+			'src/{manifest,service-worker}.{js,ts}'
+		],
+		exclude: ['**/__mocks__/*'],
 		coverage: {
 			all: true,
 			include: ['src/**'],

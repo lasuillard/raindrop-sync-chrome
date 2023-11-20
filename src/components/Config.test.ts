@@ -3,7 +3,7 @@ import { render } from '@testing-library/svelte';
 import { tick } from 'svelte';
 import { describe, expect, it } from 'vitest';
 import Config from '~/components/Config.svelte';
-import * as stores from '~/core/stores';
+import * as settings from '~/lib/settings';
 
 it('has some descriptive heading', () => {
 	const { queryByTestId } = render(Config);
@@ -32,7 +32,7 @@ describe('client ID', () => {
 		const { getByTestId } = render(Config);
 		const input = getByTestId('client-id/input') as HTMLInputElement;
 		expect(input.value).toEqual('');
-		stores.clientID.set('new-client-id');
+		settings.clientID.set('new-client-id');
 		await tick();
 		expect(input.value).toEqual('new-client-id');
 	});
@@ -60,7 +60,7 @@ describe('client secret', () => {
 		const { getByTestId } = render(Config);
 		const input = getByTestId('client-secret/input') as HTMLInputElement;
 		expect(input.value).toEqual('');
-		stores.clientSecret.set('new-client-secret');
+		settings.clientSecret.set('new-client-secret');
 		await tick();
 		expect(input.value).toEqual('new-client-secret');
 	});
@@ -88,7 +88,7 @@ describe('access token', () => {
 		const { getByTestId } = render(Config);
 		const input = getByTestId('access-token/input') as HTMLInputElement;
 		expect(input.value).toEqual('');
-		stores.accessToken.set('new-access-token');
+		settings.accessToken.set('new-access-token');
 		await tick();
 		expect(input.value).toEqual('new-access-token');
 	});
@@ -116,7 +116,7 @@ describe('refresh token', () => {
 		const { getByTestId } = render(Config);
 		const input = getByTestId('refresh-token/input') as HTMLInputElement;
 		expect(input.value).toEqual('');
-		stores.refreshToken.set('new-refresh-token');
+		settings.refreshToken.set('new-refresh-token');
 		await tick();
 		expect(input.value).toEqual('new-refresh-token');
 	});

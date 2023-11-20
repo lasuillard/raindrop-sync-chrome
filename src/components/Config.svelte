@@ -4,9 +4,9 @@
 	import P from 'flowbite-svelte/P.svelte';
 	import { get } from 'svelte/store';
 	import Eye from '~/components/Eye.svelte';
-	import * as stores from '~/core/stores';
-	import { accessToken, clientID, clientSecret, refreshToken } from '~/core/stores';
 	import raindrop from '~/lib/raindrop';
+	import * as settings from '~/lib/settings';
+	import { accessToken, clientID, clientSecret, refreshToken } from '~/lib/settings';
 
 	let showClientID = false;
 	let showClientSecret = false;
@@ -18,11 +18,11 @@
 	 */
 	async function launchWebAuthFlow() {
 		const { accessToken, refreshToken } = await raindrop.auth.launchWebAuthFlow({
-			clientID: get(stores.clientID),
-			clientSecret: get(stores.clientSecret)
+			clientID: get(settings.clientID),
+			clientSecret: get(settings.clientSecret)
 		});
-		stores.accessToken.set(accessToken);
-		stores.refreshToken.set(refreshToken);
+		settings.accessToken.set(accessToken);
+		settings.refreshToken.set(refreshToken);
 	}
 </script>
 

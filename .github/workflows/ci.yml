@@ -101,6 +101,9 @@ jobs:
       - name: Install PNPM deps
         run: pnpm install
 
+      - name: Build extension
+        run: pnpm run build
+
       - name: Create an archive
         run: zip -r raindrop-sync-for-chrome.zip dist
 

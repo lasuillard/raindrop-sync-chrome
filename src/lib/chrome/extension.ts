@@ -6,7 +6,7 @@ import path from 'path';
  * @returns Absolute path to project root directory.
  */
 export function getProjectRoot(): string {
-	return path.join(__dirname, '../../');
+	return path.join(__dirname, '../../../');
 }
 
 /**
@@ -42,7 +42,7 @@ if (import.meta.vitest) {
 
 	describe(getProjectRoot, () => {
 		it('should be', () => {
-			expect(getProjectRoot()).toEqual(path.join(__dirname, '../../'));
+			expect(getProjectRoot()).toEqual(path.join(__dirname, '../../../'));
 		});
 	});
 

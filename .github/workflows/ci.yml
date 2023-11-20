@@ -117,3 +117,4 @@ jobs:
           files: |
             raindrop-sync-for-chrome.zip
             raindrop-sync-for-chrome.crx
+          generate_release_notes: true

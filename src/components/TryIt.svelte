@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Button from 'flowbite-svelte/Button.svelte';
 	import ButtonGroup from 'flowbite-svelte/ButtonGroup.svelte';
-	import Heading from 'flowbite-svelte/Heading.svelte';
 	import Input from 'flowbite-svelte/Input.svelte';
 	import Label from 'flowbite-svelte/Label.svelte';
 	import P from 'flowbite-svelte/P.svelte';
@@ -25,10 +24,7 @@
 </script>
 
 <div>
-	<Heading data-testid="heading" class="mt-2" tag="h2" customSize="text-xl font-bold"
-		>Try It</Heading
-	>
-	<P data-testid="description" class="mt-2">Try Raindrop queries.</P>
+	<P data-testid="description">Try Raindrop queries.</P>
 	<div class="mt-4">
 		<div>
 			<Label for="query">Query</Label>

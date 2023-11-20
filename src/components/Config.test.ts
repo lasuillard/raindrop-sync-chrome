@@ -7,7 +7,6 @@ import * as settings from '~/lib/settings';
 
 it('has some descriptive heading', () => {
 	const { queryByTestId } = render(Config);
-	expect(queryByTestId('heading')).not.toBeNull();
 	expect(queryByTestId('description')).not.toBeNull();
 });
 

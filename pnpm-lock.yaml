@@ -12,8 +12,8 @@ devDependencies:
     specifier: ^1.5.3
     version: 1.5.3
   '@lasuillard/raindrop-client':
-    specifier: ^0.1.2
-    version: 0.1.2
+    specifier: ^0.1.3
+    version: 0.1.3
   '@sveltejs/vite-plugin-svelte':
     specifier: ^2.4.6
     version: 2.4.6(svelte@4.2.2)(vite@4.5.0)
@@ -547,8 +547,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@lasuillard/raindrop-client@0.1.2:
-    resolution: {integrity: sha512-72PYRsNI1vzMfVi8RmXllbdbieIpmflgbfjL0DzSzNNpEYy7tkGeltBjzhr9GAis4sA12sels4v6BTd+qZe7Gg==, tarball: https://npm.pkg.github.com/download/@lasuillard/raindrop-client/0.1.2/d5edbf3ff54a0a1133e9a0c4fcbfe61a49eb04bf}
+  /@lasuillard/raindrop-client@0.1.3:
+    resolution: {integrity: sha512-G8YpvazQct7aFAOLmdDcapqFuhC2xHqGuvTUxscwIMrDVSuMHA5uH/p29s+gvHEyX7/qZ8BDZUkD50O3nijS9w==, tarball: https://npm.pkg.github.com/download/@lasuillard/raindrop-client/0.1.3/ee372e29ac7b3fc24ff0c4c1d831e108799b38da}
     dependencies:
       axios: 1.6.2
       form-data: 4.0.0
@@ -831,8 +831,8 @@ packages:
     resolution: {integrity: sha512-GDV68H0mBSN449sa5HEj51E0wfpVQb8xNSMzxf/PrypMFcLTMwJMOM/cgXiv71Mq5drkOQmUGvL1okOZcu6RrQ==}
     dev: true
 
-  /@types/yauzl@2.10.2:
-    resolution: {integrity: sha512-Km7XAtUIduROw7QPgvcft0lIupeG8a8rdKL8RiSyKvlE7dYY31fEn41HVuQsRFDuROA8tA4K2UVL+WdfFmErBA==}
+  /@types/yauzl@2.10.3:
+    resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
     requiresBuild: true
     dependencies:
       '@types/node': 20.8.10
@@ -2428,7 +2428,7 @@ packages:
       get-stream: 5.2.0
       yauzl: 2.10.0
     optionalDependencies:
-      '@types/yauzl': 2.10.2
+      '@types/yauzl': 2.10.3
     transitivePeerDependencies:
       - supports-color
     dev: true

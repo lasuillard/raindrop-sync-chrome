@@ -2,20 +2,19 @@ version: '3'
 
 services:
   workspace:
-    image: localhost:5000/lasuillard/raindrop-sync-chrome:local
     build:
       context: .
       dockerfile: ./Dockerfile
       target: workspace
     ports:
-      - 127.0.0.1:5173:5173 # Vite dev + HMR
-      - 127.0.0.1:51204:51204 # Vitest UI
+      - ${VITE_HOST:-127.0.0.1}:${VITE_PORT:-5173}:5173 # Vite dev + HMR
+      - ${VITEST_UI_HOST:-127.0.0.1}:${VITEST_UI_PORT:-51204}:51204 # Vitest UI
     environment:
       CONTAINER: 1
     cap_add:
       - SYS_ADMIN
     command: sleep infinity
     init: true
-    shm_size: 2g
+    shm_size: 4g
     extra_hosts:
       - host.docker.internal:host-gateway

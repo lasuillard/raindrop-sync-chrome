@@ -39,7 +39,7 @@ RUN corepack enable && pnpm config set store-dir ~/.local/share/pnpm/store
 
 # Install deps
 COPY .npmrc package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+RUN --mount=type=secret,id=npmrc,target=/root/.npmrc pnpm install --frozen-lockfile
 
 VOLUME ["${WORKSPACE}/node_modules"]
 

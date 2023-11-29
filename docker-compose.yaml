@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: ./Dockerfile
       target: workspace
+      secrets:
+        - npmrc
     ports:
       - ${VITE_HOST:-127.0.0.1}:${VITE_PORT:-5173}:5173 # Vite dev + HMR
       - ${VITEST_UI_HOST:-127.0.0.1}:${VITEST_UI_PORT:-51204}:51204 # Vitest UI
@@ -18,3 +20,7 @@ services:
     shm_size: 4g
     extra_hosts:
       - host.docker.internal:host-gateway
+
+secrets:
+  npmrc:
+    file: ~/.npmrc

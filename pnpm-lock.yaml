@@ -11,6 +11,9 @@ devDependencies:
   '@floating-ui/dom':
     specifier: ^1.5.3
     version: 1.5.3
+  '@lasuillard/raindrop-client':
+    specifier: ^0.3.0
+    version: 0.3.0
   '@sveltejs/vite-plugin-svelte':
     specifier: ^2.5.3
     version: 2.5.3(svelte@4.2.7)(vite@4.5.0)
@@ -542,6 +545,14 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
+    dev: true
+
+  /@lasuillard/raindrop-client@0.3.0:
+    resolution: {integrity: sha512-QsfoCdJBlK9J3eGZLKVPDeBRgOK3LDV1nvYnA3NqnjYL3p83trW18Z5b+URJVYLv3XQLboSTK2GhS3/8dqEdBg==, tarball: https://npm.pkg.github.com/download/@lasuillard/raindrop-client/0.3.0/235c1fc1c754bfdaa048d3253fc34afa14379d34}
+    dependencies:
+      axios: 1.6.2
+    transitivePeerDependencies:
+      - debug
     dev: true
 
   /@nodelib/fs.scandir@2.1.5:

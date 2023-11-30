@@ -9,6 +9,7 @@ const manifest = {
 	description: 'Inspect background service worker console for output',
 	homepage_url: packageManifest.homepage,
 	permissions: ['identity', 'storage', 'bookmarks'],
+	host_permissions: ['https://api.raindrop.io/*'],
 	action: {
 		default_title: 'Test',
 		default_popup: 'src/popup.html'

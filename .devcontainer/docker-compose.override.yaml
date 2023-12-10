@@ -15,8 +15,8 @@ services:
   novnc:
     image: theasp/novnc:latest
     environment:
-      DISPLAY_WIDTH: '1600'
-      DISPLAY_HEIGHT: '968'
+      DISPLAY_WIDTH: '${NOVNC_DISPLAY_WIDTH:-1600}'
+      DISPLAY_HEIGHT: '${NOVNC_DISPLAY_HEIGHT:-968}'
       RUN_XTERM: 'no'
     ports:
-      - 8080:8080
+      - ${NOVNC_HOST:-0.0.0.0}:${NOVNC_PORT:-8080}:8080

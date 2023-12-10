@@ -12,8 +12,8 @@ devDependencies:
     specifier: ^1.5.3
     version: 1.5.3
   '@lasuillard/raindrop-client':
-    specifier: ^0.3.0
-    version: 0.3.0
+    specifier: ^0.4.0
+    version: 0.4.0
   '@sveltejs/vite-plugin-svelte':
     specifier: ^2.5.3
     version: 2.5.3(svelte@4.2.7)(vite@4.5.0)
@@ -547,8 +547,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@lasuillard/raindrop-client@0.3.0:
-    resolution: {integrity: sha512-QsfoCdJBlK9J3eGZLKVPDeBRgOK3LDV1nvYnA3NqnjYL3p83trW18Z5b+URJVYLv3XQLboSTK2GhS3/8dqEdBg==, tarball: https://npm.pkg.github.com/download/@lasuillard/raindrop-client/0.3.0/235c1fc1c754bfdaa048d3253fc34afa14379d34}
+  /@lasuillard/raindrop-client@0.4.0:
+    resolution: {integrity: sha512-1NXwjhA2A6B1P/K2fp464rfBvcEhySisA+6nSFx+NUvAgGiwRcK3jv4eSPjwFpoIJqC0mRWrfnXjpe5HLzAndA==, tarball: https://npm.pkg.github.com/download/@lasuillard/raindrop-client/0.4.0/0b128c322cffa9f7d7db3733d8bc3b427a44e9d7}
     dependencies:
       axios: 1.6.2
     transitivePeerDependencies:

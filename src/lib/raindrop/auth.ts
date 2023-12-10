@@ -1,4 +1,4 @@
-import api, { Raindrop } from '@lasuillard/raindrop-client';
+import { client, generated } from '@lasuillard/raindrop-client';
 
 export interface AuthFlowParams {
 	clientID: string;
@@ -20,9 +20,9 @@ export type AuthFlowResponse = {
  */
 export async function launchWebAuthFlow(
 	params: AuthFlowParams,
-	raindrop?: Raindrop
+	raindrop?: client.Raindrop
 ): Promise<AuthFlowResponse> {
-	const rd = raindrop ?? new Raindrop();
+	const rd = raindrop ?? new client.Raindrop();
 
 	// NOTE: `url` includes credentials; DO NOT print
 	const redirectURL = chrome.identity.getRedirectURL();
@@ -62,7 +62,7 @@ export async function launchWebAuthFlow(
 		refresh_token: refreshToken,
 		expires_in,
 		token_type: tokenType
-	} = data as api.TokenResponse;
+	} = data as generated.TokenResponse;
 
 	const expiresIn = new Date();
 	expiresIn.setSeconds(expiresIn.getSeconds() + expires_in);
@@ -80,7 +80,7 @@ if (import.meta.vitest) {
 	const chrome = await import('sinon-chrome');
 	const { beforeEach, describe, expect, it, vi } = import.meta.vitest;
 
-	const rd = new Raindrop();
+	const rd = new client.Raindrop();
 
 	describe(launchWebAuthFlow, () => {
 		beforeEach(() => {

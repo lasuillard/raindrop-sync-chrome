@@ -1,16 +1,15 @@
 <script lang="ts">
+	import { generated, utils } from '@lasuillard/raindrop-client';
 	import Button from 'flowbite-svelte/Button.svelte';
 	import P from 'flowbite-svelte/P.svelte';
 	import Tree from '~/components/Tree.svelte';
 	import { createBookmarks as _createBookmarks } from '~/lib/chrome/bookmark';
-	import raindrop from '~/lib/raindrop';
-	import type { Collection } from '~/lib/raindrop/collections';
-	import type { TreeNode } from '~/lib/tree';
+	import rd from '~/lib/raindrop';
 
-	let treeNode: TreeNode<Collection> | null = null;
+	let treeNode: utils.tree.TreeNode<generated.Collection | null>;
 
 	const fetchItems = async () => {
-		treeNode = await raindrop.collections.getCollectionTree();
+		treeNode = await rd.collection.getCollectionTree();
 	};
 
 	const createBookmarks = async () => {

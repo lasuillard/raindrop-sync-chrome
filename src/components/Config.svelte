@@ -4,8 +4,7 @@
 	import P from 'flowbite-svelte/P.svelte';
 	import { get } from 'svelte/store';
 	import Eye from '~/components/Eye.svelte';
-	import raindrop from '~/lib/raindrop';
-	import * as settings from '~/lib/settings';
+	import { launchWebAuthFlow as _launchWebAuthFlow } from '~/lib/raindrop/auth';
 	import { accessToken, clientID, clientSecret, refreshToken } from '~/lib/settings';
 
 	let showClientID = false;
@@ -13,17 +12,19 @@
 	let showAccessToken = false;
 	let showRefreshToken = false;
 
-	/**
-	 * Launch web auth flow.
-	 */
-	async function launchWebAuthFlow() {
-		const { accessToken, refreshToken } = await raindrop.auth.launchWebAuthFlow({
-			clientID: get(settings.clientID),
-			clientSecret: get(settings.clientSecret)
-		});
-		settings.accessToken.set(accessToken);
-		settings.refreshToken.set(refreshToken);
-	}
+	const launchWebAuthFlow = async () => {
+		try {
+			const result = await _launchWebAuthFlow({
+				clientID: get(clientID),
+				clientSecret: get(clientSecret)
+			});
+			accessToken.set(result.accessToken);
+			refreshToken.set(result.refreshToken);
+		} catch (err) {
+			// TODO: Show error message as modal or toast
+			console.error('Failed to authorize app:', err);
+		}
+	};
 </script>
 
 <div>

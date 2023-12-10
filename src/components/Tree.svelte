@@ -1,22 +1,28 @@
 <script lang="ts">
+	import { generated, utils } from '@lasuillard/raindrop-client';
 	import Li from 'flowbite-svelte/Li.svelte';
 	import List from 'flowbite-svelte/List.svelte';
 	import { onMount } from 'svelte';
-	import type { Bookmark } from '~/lib/raindrop/bookmarks';
-	import type { Collection } from '~/lib/raindrop/collections';
-	import type { TreeNode } from '~/lib/tree';
+	import rd from '~/lib/raindrop';
 
-	export let treeNode: TreeNode<Collection>;
-	let raindrops: Bookmark[];
+	export let treeNode: utils.tree.TreeNode<generated.Collection>;
+	let raindrops: generated.Raindrop[];
+
+	// BUG: https://github.com/lasuillard/raindrop-client/issues/15
+	// @ts-expect-error API schema mismatch from actual response
+	let nodeTitle = treeNode.data?.slug || 'no-title';
 
 	onMount(async () => {
-		raindrops = (await treeNode.data?.getBookmarks()) ?? [];
+		// If root, data likely to be `null`
+		if (treeNode.data) {
+			raindrops = await rd.raindrop.getAllRaindrops(treeNode.data._id);
+		}
 	});
 </script>
 
 <List tag="ul">
-	<Li
-		>&lt;Directory&gt; {treeNode.data?.slug || 'no-title'}
+	<Li>
+		&lt;Directory&gt; {nodeTitle}
 		{#if treeNode.children.length > 0}
 			<List tag="ul" class="mt-2 space-y-1 pl-5">
 				{#each treeNode.children as child}

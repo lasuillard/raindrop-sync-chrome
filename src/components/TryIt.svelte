@@ -5,7 +5,7 @@
 	import Label from 'flowbite-svelte/Label.svelte';
 	import P from 'flowbite-svelte/P.svelte';
 	import Textarea from 'flowbite-svelte/Textarea.svelte';
-	import raindrop from '~/lib/raindrop';
+	import rd from '~/lib/raindrop';
 
 	let query = '';
 	let queryResult: unknown = null;
@@ -13,12 +13,7 @@
 
 	/** Send query to fetch raindrops. */
 	async function sendQuery() {
-		const result = await raindrop.bookmarks.fetchBookmarks({
-			collection: 0,
-			search: query,
-			page: 0,
-			perpage: 5
-		});
+		const result = await rd.raindrop.getRaindrops(0, undefined, 5, 0, query);
 		queryResult = result;
 	}
 </script>

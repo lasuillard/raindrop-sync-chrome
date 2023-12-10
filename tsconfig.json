@@ -7,7 +7,7 @@
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
-		"sourceMap": false,
+		"sourceMap": true,
 		"strict": true,
 		"target": "ESNext",
 		"module": "ESNext",

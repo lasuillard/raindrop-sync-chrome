@@ -34,7 +34,12 @@ init:  ## Initialize project repository
 .PHONY: init
 
 browser:  ## Launch browser with extensions loaded
-	dotenv google-chrome --no-first-run --disable-gpu --load-extension="${PWD}/dist" --no-sandbox
+	dotenv google-chrome \
+		--no-first-run \
+		--disable-gpu \
+		--load-extension="${PWD}/dist" \
+		--no-sandbox \
+		--remote-debugging-port=9222
 .PHONY: browser
 
 run:  ## Run browser with development server

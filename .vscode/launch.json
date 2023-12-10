@@ -2,16 +2,14 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "SvelteKit: Debug",
-			"type": "node-terminal",
-			"request": "launch",
-			"command": "pnpm run dev",
-			"serverReadyAction": {
-				"pattern": "Local: .*([0-9]{4})", // NOTE: Can't match pattern as simply as want due to color codes
-				"uriFormat": "http://localhost:%s",
-				"action": "debugWithChrome",
-				"webRoot": "${workspaceFolder}/src"
-			}
+			"name": "Attach to Chrome",
+			"port": 9222,
+			"request": "attach",
+			"type": "chrome",
+			"webRoot": "${workspaceFolder}/src",
+			"urlFilter": "chrome-extension://*",
+			"sourceMaps": true,
+			"resolveSourceMapLocations": ["!**/node_modules/**"]
 		}
 	]
 }

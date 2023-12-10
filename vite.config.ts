@@ -27,7 +27,8 @@ export const viteConfig = {
 		target: 'esnext',
 		rollupOptions: {
 			plugins: [nodePolyfills()]
-		}
+		},
+		sourcemap: true
 	},
 	server: {
 		port: 5173,

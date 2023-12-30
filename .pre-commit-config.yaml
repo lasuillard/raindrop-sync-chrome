@@ -48,10 +48,3 @@ repos:
         types_or: [javascript, ts, svelte]
         pass_filenames: false
         entry: pnpm run test
-
-      - id: checkov
-        name: Scan using Checkov
-        language: system
-        types: [file]
-        entry: checkov
-        args: [-f]

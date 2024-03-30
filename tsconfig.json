@@ -32,5 +32,6 @@
 		"e2e/**/*.d.ts",
 		"tests/**/*.ts",
 		"tests/**/*.d.ts"
-	]
+	],
+	"exclude": ["node_modules/**/*"]
 }

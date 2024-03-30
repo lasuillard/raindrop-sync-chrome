@@ -23,15 +23,16 @@ help: Makefile  ## Show help
 # =============================================================================
 # Common
 # =============================================================================
-install:  ## Install the app locally
-	pnpm install
+install:  ## Install deps and tools
+	yarn install
+	yarn run puppeteer browsers install chrome
+	pre-commit install --install-hooks
 .PHONY: install
 
-init:  ## Initialize project repository
-	git submodule update --init
+update:  ## Update deps and tools
+	yarn upgrade
 	pre-commit autoupdate
-	pre-commit install --install-hooks --hook-type pre-commit --hook-type commit-msg
-.PHONY: init
+.PHONY: update
 
 browser:  ## Launch browser with extensions loaded
 	dotenv google-chrome \
@@ -43,11 +44,11 @@ browser:  ## Launch browser with extensions loaded
 .PHONY: browser
 
 run:  ## Run browser with development server
-	dotenv pnpm exec concurrently \
+	dotenv yarn run concurrently \
 		--kill-others \
 		--kill-signal SIGKILL \
 		--raw \
-		"pnpm run dev" \
+		"yarn run dev" \
 		"$(MAKE) browser"
 .PHONY: run
 
@@ -55,7 +56,7 @@ run:  ## Run browser with development server
 # =============================================================================
 # CI
 # =============================================================================
-ci: generate lint scan test benchmark e2e-test  ## Run CI tasks
+ci: generate lint test e2e-test  ## Run CI tasks
 .PHONY: ci
 
 generate:  ## Generate codes from schemas
@@ -63,36 +64,24 @@ generate:  ## Generate codes from schemas
 .PHONY: generate
 
 format:  ## Run autoformatters
-	pnpm exec prettier --list-different --write .
-	pnpm exec eslint --fix .
+	yarn run prettier --list-different --write .
+	yarn run eslint --fix .
 .PHONY: format
 
 lint: generate  ## Run all linters
-	pnpm exec prettier --check .
-	pnpm exec eslint .
-	pnpm exec tsc --noEmit
+	yarn run prettier --check .
+	yarn run eslint .
+	yarn run tsc --noEmit
 .PHONY: lint
 
-scan:  ## Run all scans
-	checkov --quiet --directory .
-.PHONY: scan
-
 test: generate  ## Run tests
-	pnpm run test
+	yarn run test
 .PHONY: test
 
-benchmark:  ## Run benchmarks
-
-.PHONY: benchmark
-
 e2e-test: generate  ## Run e2e tests
-	pnpm run build
-	pnpm run e2e
+	yarn run build
+	yarn run e2e
 .PHONY: e2e-test
-
-benchmark:  ## Run benchmarks
-
-.PHONY: benchmark
 
 docs:  ## Generate dev documents
 

@@ -13,11 +13,11 @@
 		"build": "vite build",
 		"build:watch": "vite build --watch",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "pnpm run check -- --watch",
+		"check:watch": "yarn run check -- --watch",
 		"test": "vitest --config vitest.config.ts --coverage --run",
 		"test:watch": "vitest --config vitest.config.ts --silent --coverage --watch --ui",
 		"e2e": "vitest --config vitest.config.e2e.ts --run",
-		"e2e:watch": "concurrently --raw --kill-others --kill-signal SIGKILL \"pnpm run build:watch\" \"wait-on --delay 3000 --timeout 15000 dist/manifest.json && vitest --silent --config vitest.config.e2e.ts --watch --ui\""
+		"e2e:watch": "concurrently --raw --kill-others --kill-signal SIGKILL \"yarn run build:watch\" \"wait-on --delay 3000 --timeout 15000 dist/manifest.json && vitest --silent --config vitest.config.e2e.ts --watch --ui\""
 	},
 	"devDependencies": {
 		"@crxjs/vite-plugin": "2.0.0-beta.19",

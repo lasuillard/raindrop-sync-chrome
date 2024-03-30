@@ -4,65 +4,62 @@ on:
   push:
     branches:
       - main
-    tags:
-      - v*
-    paths-ignore:
-      - '.devcontainer/**'
-      - '.vscode/**'
-      - '**.md'
   pull_request:
     branches:
       - main
-    paths-ignore:
-      - '.devcontainer/**'
-      - '.vscode/**'
-      - '**.md'
   workflow_dispatch:
 
 permissions: read-all
 
 jobs:
-  lint-and-test:
-    name: Lint and Test
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: yarn
+
+      - name: Login to GitHub Packages registry
+        run: echo "//npm.pkg.github.com/:_authToken=${{ github.token }}" >> ~/.npmrc
+
+      - name: Install deps
+        run: yarn install --frozen-lockfile
+
+      - name: Lint code
+        run: yarn run eslint .
+
+      - name: Run type checks
+        run: yarn run tsc --noEmit
+
+  test:
+    name: Test
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up PNPM
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
-          cache: pnpm
+          cache: yarn
 
       - name: Login to GitHub Packages registry
         run: echo "//npm.pkg.github.com/:_authToken=${{ github.token }}" >> ~/.npmrc
 
-      - name: Install PNPM deps
-        run: pnpm install
-
-      - name: Extra cache for Puppeteer deps
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/puppeteer
-          key: ${{ runner.os }}-puppeteer-${{ hashFiles('pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-puppeteer-
-
-      - name: Lint code
-        run: pnpm exec eslint .
-
-      - name: Run type checks
-        run: pnpm exec tsc --noEmit
+      - name: Install deps
+        run: yarn install --frozen-lockfile
 
       - name: Run tests
-        run: pnpm run test
+        run: yarn run test
 
       - name: Upload coverage report
         uses: codecov/codecov-action@v3
@@ -72,55 +69,35 @@ jobs:
           files: coverage/clover.xml
           flags: unit
 
-      - name: Run end-to-end tests
-        run: |
-          pnpm run build
-          pnpm run e2e
-
-  build-and-release:
-    name: Build and Release
-    needs: lint-and-test
+  e2e-test:
+    name: E2E Test
     runs-on: ubuntu-latest
-    if: startswith(github.ref, 'refs/tags/v') # For v* tags
-    permissions:
-      contents: write
+    timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Set up PNPM
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
 
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
-          cache: pnpm
+          cache: yarn
 
       - name: Login to GitHub Packages registry
         run: echo "//npm.pkg.github.com/:_authToken=${{ github.token }}" >> ~/.npmrc
 
-      - name: Install PNPM deps
-        run: pnpm install
+      - name: Install deps
+        run: yarn install --frozen-lockfile
 
-      - name: Build extension
-        run: pnpm run build
-
-      - name: Create an archive
-        run: zip -r raindrop-sync-for-chrome.zip dist
-
-      # NOTE: `CRX_PRIVATE_KEY` secret may differ from environments for security reason; e.g. Dependabot PR
-      - name: Pack extension
-        env:
-          CRX_PRIVATE_KEY: ${{ secrets.CRX_PRIVATE_KEY }}
-        run: node ./scripts/pack-crx.cjs
-
-      - name: Release extension
-        uses: softprops/action-gh-release@v1
+      - name: Extra cache for Puppeteer deps
+        uses: actions/cache@v4
         with:
-          files: |
-            raindrop-sync-for-chrome.zip
-            raindrop-sync-for-chrome.crx
-          generate_release_notes: true
+          path: ~/.cache/puppeteer
+          key: ${{ runner.os }}-puppeteer-${{ hashFiles('yarn-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-puppeteer-
+
+      - name: Run end-to-end tests
+        run: |
+          yarn run build
+          yarn run e2e

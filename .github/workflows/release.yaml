@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - v*
+
+permissions: read-all
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: yarn
+
+      - name: Login to GitHub Packages registry
+        run: echo "//npm.pkg.github.com/:_authToken=${{ github.token }}" >> ~/.npmrc
+
+      - name: Install deps
+        run: yarn install --frozen-lockfile
+
+      - name: Build extension
+        run: yarn run build
+
+      - name: Create an archive
+        run: zip -r raindrop-sync-for-chrome.zip dist
+
+      # NOTE: `CRX_PRIVATE_KEY` secret may differ from environments for security reason; e.g. Dependabot PR
+      - name: Pack extension
+        env:
+          CRX_PRIVATE_KEY: ${{ secrets.CRX_PRIVATE_KEY }}
+        run: node ./scripts/pack-crx.cjs
+
+      - name: Release extension
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            raindrop-sync-for-chrome.zip
+            raindrop-sync-for-chrome.crx
+          generate_release_notes: true

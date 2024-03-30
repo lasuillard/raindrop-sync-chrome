@@ -2,15 +2,15 @@ version: '3'
 
 services:
   workspace:
-    build:
-      args:
-        WORKSPACE: /workspaces/raindrop-sync-chrome
+    image: mcr.microsoft.com/devcontainers/typescript-node:1-20-bookworm
     volumes:
-      - .:/workspaces/raindrop-sync-chrome
+      - ..:/workspace
     environment:
       DISPLAY: novnc:0.0
     healthcheck:
       disable: true
+    cap_add:
+      - SYS_ADMIN
 
   novnc:
     image: theasp/novnc:latest

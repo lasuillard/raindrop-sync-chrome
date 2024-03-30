@@ -1,17 +1,18 @@
 {
 	"name": "lasuillard/raindrop-sync-chrome",
-	"dockerComposeFile": ["../docker-compose.yaml", "./docker-compose.override.yaml"],
+	"dockerComposeFile": ["./docker-compose.devcontainer.yaml"],
 	"runServices": ["workspace", "novnc"],
 	"service": "workspace",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
+		"ghcr.io/devcontainers-contrib/features/apt-get-packages:1": {
+			"packages": "libnss3-dev,libdbus-1-3,libatk1.0-0,libatk-bridge2.0-0,libcups2,libdrm-dev,libxkbcommon-x11-0,libxcomposite-dev,libxdamage1,libxrandr2,libgbm-dev,libasound2"
+		}
+	},
 	"overrideCommand": true,
-	"initializeCommand": "./.devcontainer/initializeCommand.sh",
 	"onCreateCommand": "./.devcontainer/onCreateCommand.sh",
-	"updateContentCommand": "./.devcontainer/updateContentCommand.sh",
-	"postCreateCommand": "./.devcontainer/postCreateCommand.sh",
-	"postStartCommand": "./.devcontainer/postStartCommand.sh",
-	"postAttachCommand": "./.devcontainer/postAttachCommand.sh",
 	"shutdownAction": "stopCompose",
-	"workspaceFolder": "/workspaces/raindrop-sync-chrome",
+	"workspaceFolder": "/workspace",
 	"customizations": {
 		"vscode": {
 			"extensions": [

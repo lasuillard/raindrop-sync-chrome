@@ -11,6 +11,7 @@
 	},
 	"overrideCommand": true,
 	"onCreateCommand": "./.devcontainer/onCreateCommand.sh",
+	"postAttachCommand": "pre-commit install",
 	"shutdownAction": "stopCompose",
 	"workspaceFolder": "/workspace",
 	"customizations": {

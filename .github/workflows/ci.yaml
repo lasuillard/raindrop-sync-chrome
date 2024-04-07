@@ -26,9 +26,6 @@ jobs:
           node-version-file: .node-version
           cache: yarn
 
-      - name: Login to GitHub Packages registry
-        run: echo "//npm.pkg.github.com/:_authToken=${{ github.token }}" >> ~/.npmrc
-
       - name: Install deps
         run: yarn install --frozen-lockfile
 
@@ -51,9 +48,6 @@ jobs:
         with:
           node-version-file: .node-version
           cache: yarn
-
-      - name: Login to GitHub Packages registry
-        run: echo "//npm.pkg.github.com/:_authToken=${{ github.token }}" >> ~/.npmrc
 
       - name: Install deps
         run: yarn install --frozen-lockfile
@@ -82,9 +76,6 @@ jobs:
         with:
           node-version-file: .node-version
           cache: yarn
-
-      - name: Login to GitHub Packages registry
-        run: echo "//npm.pkg.github.com/:_authToken=${{ github.token }}" >> ~/.npmrc
 
       - name: Install deps
         run: yarn install --frozen-lockfile

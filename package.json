@@ -24,7 +24,7 @@
 		"@floating-ui/dom": "^1.5.3",
 		"@lasuillard/raindrop-client": "^0.4.2",
 		"@sveltejs/vite-plugin-svelte": "^2.5.3",
-		"@testing-library/svelte": "^4.0.5",
+		"@testing-library/svelte": "^5.2.0",
 		"@tsconfig/svelte": "^5.0.2",
 		"@types/chrome": "^0.0.237",
 		"@types/sinon-chrome": "^2.2.15",

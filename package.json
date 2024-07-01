@@ -61,7 +61,7 @@
 		"tslib": "^2.6.2",
 		"typescript": "^5.3.3",
 		"vite": "^4.5.1",
-		"vite-plugin-node-polyfills": "^0.17.0",
+		"vite-plugin-node-polyfills": "^0.22.0",
 		"vitest": "^0.34.6",
 		"wait-on": "^7.2.0"
 	},

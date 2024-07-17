@@ -71,7 +71,7 @@ describe('access token', () => {
 		const { getByTestId } = render(Config);
 		const input = getByTestId('access-token/input') as HTMLInputElement;
 		expect(input).toBeTruthy();
-		expect(input.getAttributeNames()).toContain('disabled');
+		expect(input.getAttributeNames()).not.toContain('disabled');
 	});
 
 	it('is masked by default and able to toggle it', async () => {

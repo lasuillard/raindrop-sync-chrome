@@ -80,7 +80,6 @@
 					classDiv="w-full mr-2"
 					id="access-token"
 					type={showAccessToken ? 'text' : 'password'}
-					disabled
 					bind:value={$accessToken}
 				>
 					Access Token

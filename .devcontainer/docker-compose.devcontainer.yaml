@@ -7,7 +7,7 @@ services:
     volumes:
       - ..:/workspace
     environment:
-      DISPLAY: novnc:0.0
+      DISPLAY: ${DISPLAY:-novnc:0.0}
     healthcheck:
       disable: true
     cap_add:

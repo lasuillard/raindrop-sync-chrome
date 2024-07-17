@@ -16,28 +16,28 @@
 	<Tabs style="underline">
 		<TabItem open>
 			<div slot="title" class="flex items-center gap-2">
-				<BookmarkOutline size="sm" class="outline-none" />
+				<BookmarkOutline size="sm" />
 				Bookmarks
 			</div>
 			<Bookmarks />
 		</TabItem>
 		<TabItem>
 			<div slot="title" class="flex items-center gap-2">
-				<SearchOutline size="sm" class="outline-none" />
+				<SearchOutline size="sm" />
 				Try It
 			</div>
 			<TryIt />
 		</TabItem>
 		<TabItem>
 			<div slot="title" class="flex items-center gap-2">
-				<UserSettingsOutline size="sm" class="outline-none" />
+				<UserSettingsOutline size="sm" />
 				Settings
 			</div>
 			<Config />
 		</TabItem>
 		<TabItem>
 			<div slot="title" class="flex items-center gap-2">
-				<QuestionCircleOutline size="sm" class="outline-none" />
+				<QuestionCircleOutline size="sm" />
 				About
 			</div>
 			<About />

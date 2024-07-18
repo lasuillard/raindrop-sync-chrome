@@ -5,7 +5,7 @@
 	import { get } from 'svelte/store';
 	import Eye from '~/components/Eye.svelte';
 	import { launchWebAuthFlow as _launchWebAuthFlow } from '~/lib/raindrop/auth';
-	import { accessToken, clientID, clientSecret, refreshToken } from '~/lib/settings';
+	import { accessToken, clientID, clientSecret, notifications, refreshToken } from '~/lib/settings';
 
 	let showClientID = false;
 	let showClientSecret = false;
@@ -23,6 +23,10 @@
 		} catch (err) {
 			// TODO: Show error message as modal or toast
 			console.error('Failed to authorize app:', err);
+			$notifications[$notifications.length] = {
+				type: 'error',
+				message: String(err)
+			};
 		}
 	};
 </script>

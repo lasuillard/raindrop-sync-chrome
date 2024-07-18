@@ -12,6 +12,7 @@ services:
       disable: true
     cap_add:
       - SYS_ADMIN
+    shm_size: 2gb
 
   novnc:
     image: theasp/novnc:latest

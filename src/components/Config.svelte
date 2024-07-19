@@ -4,8 +4,9 @@
 	import P from 'flowbite-svelte/P.svelte';
 	import { get } from 'svelte/store';
 	import Eye from '~/components/Eye.svelte';
+	import { putMessage } from '~/lib/messages';
 	import { launchWebAuthFlow as _launchWebAuthFlow } from '~/lib/raindrop/auth';
-	import { accessToken, clientID, clientSecret, notifications, refreshToken } from '~/lib/settings';
+	import { accessToken, clientID, clientSecret, refreshToken } from '~/lib/settings';
 
 	let showClientID = false;
 	let showClientSecret = false;
@@ -20,13 +21,10 @@
 			});
 			accessToken.set(result.accessToken);
 			refreshToken.set(result.refreshToken);
+			putMessage({ type: 'success', message: 'Successfully authorized app.' });
 		} catch (err) {
-			// TODO: Show error message as modal or toast
 			console.error('Failed to authorize app:', err);
-			$notifications[$notifications.length] = {
-				type: 'error',
-				message: String(err)
-			};
+			putMessage({ type: 'error', message: String(err) });
 		}
 	};
 </script>

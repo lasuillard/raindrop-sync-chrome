@@ -1,4 +1,3 @@
-import { writable } from 'svelte/store';
 import { persisted } from './stores';
 
 const options = {
@@ -18,12 +17,6 @@ export const refreshToken = await persisted('refreshToken', '', options);
  * - Hints from resource servers, such as `$.user.lastAction`, `$.user.lastVisit` from user info data
  */
 export const lastTouch = await persisted('lastTouch', null, options);
-
-type Noti = {
-	type: 'info' | 'success' | 'warning' | 'error';
-	message: string;
-};
-export const notifications = writable<Noti[]>([]);
 
 /* c8 ignore start */
 if (import.meta.vitest) {

@@ -9,40 +9,49 @@
 	import About from '~/components/About.svelte';
 	import Bookmarks from '~/components/Bookmarks.svelte';
 	import Config from '~/components/Config.svelte';
+	import Message from '~/components/Message.svelte';
 	import TryIt from '~/components/TryIt.svelte';
+	import { messageBox } from '~/lib/messages';
 </script>
 
 <main class="mx-1 mt-4 self-center">
 	<Tabs style="underline">
 		<TabItem open>
 			<div slot="title" class="flex items-center gap-2">
-				<BookmarkOutline size="sm" />
+				<BookmarkOutline size="sm" class="focus:outline-none" />
 				Bookmarks
 			</div>
 			<Bookmarks />
 		</TabItem>
 		<TabItem>
 			<div slot="title" class="flex items-center gap-2">
-				<SearchOutline size="sm" />
+				<SearchOutline size="sm" class="focus:outline-none" />
 				Try It
 			</div>
 			<TryIt />
 		</TabItem>
 		<TabItem>
 			<div slot="title" class="flex items-center gap-2">
-				<UserSettingsOutline size="sm" />
+				<UserSettingsOutline size="sm" class="focus:outline-none" />
 				Settings
 			</div>
 			<Config />
 		</TabItem>
 		<TabItem>
 			<div slot="title" class="flex items-center gap-2">
-				<QuestionCircleOutline size="sm" />
+				<QuestionCircleOutline size="sm" class="focus:outline-none" />
 				About
 			</div>
 			<About />
 		</TabItem>
 	</Tabs>
+
+	<!-- Global message box -->
+	<div class="absolute right-6 top-6 space-y-2">
+		{#each Object.entries($messageBox) as [id, message] (id)}
+			<Message {message} />
+		{/each}
+	</div>
 </main>
 
 <style lang="postcss">

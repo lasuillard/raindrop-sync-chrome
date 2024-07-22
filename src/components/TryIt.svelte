@@ -1,10 +1,5 @@
 <script lang="ts">
-	import Button from 'flowbite-svelte/Button.svelte';
-	import ButtonGroup from 'flowbite-svelte/ButtonGroup.svelte';
-	import Input from 'flowbite-svelte/Input.svelte';
-	import Label from 'flowbite-svelte/Label.svelte';
-	import P from 'flowbite-svelte/P.svelte';
-	import Textarea from 'flowbite-svelte/Textarea.svelte';
+	import { Button, ButtonGroup, Input, Label, P, Textarea } from 'flowbite-svelte';
 	import rd from '~/lib/raindrop';
 
 	let query = '';

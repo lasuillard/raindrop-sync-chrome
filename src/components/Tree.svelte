@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { generated, utils } from '@lasuillard/raindrop-client';
-	import Li from 'flowbite-svelte/Li.svelte';
-	import List from 'flowbite-svelte/List.svelte';
+	import { Li, List } from 'flowbite-svelte';
 	import { onMount } from 'svelte';
 	import rd from '~/lib/raindrop';
 

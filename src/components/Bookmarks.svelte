@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { generated, utils } from '@lasuillard/raindrop-client';
-	import Button from 'flowbite-svelte/Button.svelte';
-	import P from 'flowbite-svelte/P.svelte';
+	import { Button, P } from 'flowbite-svelte';
 	import Tree from '~/components/Tree.svelte';
 	import { createBookmarks as _createBookmarks } from '~/lib/chrome/bookmark';
 	import rd from '~/lib/raindrop';

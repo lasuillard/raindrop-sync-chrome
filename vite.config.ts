@@ -7,9 +7,6 @@ import manifest from './src/manifest';
 
 export const viteConfig = {
 	plugins: [svelte(), crx({ manifest })],
-	define: {
-		'import.meta.vitest': 'undefined'
-	},
 	resolve: {
 		alias: [
 			{ find: '~', replacement: path.resolve(__dirname, '/src') },

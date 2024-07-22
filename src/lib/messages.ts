@@ -38,11 +38,3 @@ export function dismissMessage(id?: string) {
 		return box;
 	});
 }
-
-/* c8 ignore start */
-if (import.meta.vitest) {
-	const { describe } = import.meta.vitest;
-
-	describe.todo('To Do');
-}
-/* c8 ignore stop */

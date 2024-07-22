@@ -6,10 +6,7 @@
 	import rd from '~/lib/raindrop';
 
 	export let treeNode: utils.tree.TreeNode<generated.Collection>;
-	let raindrops: generated.Raindrop[];
-
-	// BUG: https://github.com/lasuillard/raindrop-client/issues/15
-	// @ts-expect-error API schema mismatch from actual response
+	let raindrops: generated.GetRaindropResponseItem[] = [];
 	let nodeTitle = treeNode.data?.slug || 'no-title';
 
 	onMount(async () => {

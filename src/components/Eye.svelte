@@ -1,6 +1,5 @@
 <script lang="ts">
-	import EyeSlashSolid from 'flowbite-svelte-icons/EyeSlashSolid.svelte';
-	import EyeSolid from 'flowbite-svelte-icons/EyeSolid.svelte';
+	import { EyeSlashSolid, EyeSolid } from 'flowbite-svelte-icons';
 
 	export let open = false;
 	export let size: 'sm' | 'xs' | 'md' | 'lg' | 'xl' = 'sm';

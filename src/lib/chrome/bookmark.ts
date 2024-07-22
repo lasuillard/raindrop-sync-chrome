@@ -35,13 +35,3 @@ export async function createBookmarks(
 		})
 	);
 }
-
-/* c8 ignore start */
-if (import.meta.vitest) {
-	const { describe, it } = import.meta.vitest;
-
-	describe(createBookmarks, () => {
-		it.todo('creates bookmark recursively');
-	});
-}
-/* c8 ignore stop */

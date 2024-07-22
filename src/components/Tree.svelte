@@ -1,15 +1,11 @@
 <script lang="ts">
 	import { generated, utils } from '@lasuillard/raindrop-client';
-	import Li from 'flowbite-svelte/Li.svelte';
-	import List from 'flowbite-svelte/List.svelte';
+	import { Li, List } from 'flowbite-svelte';
 	import { onMount } from 'svelte';
 	import rd from '~/lib/raindrop';
 
 	export let treeNode: utils.tree.TreeNode<generated.Collection>;
-	let raindrops: generated.Raindrop[];
-
-	// BUG: https://github.com/lasuillard/raindrop-client/issues/15
-	// @ts-expect-error API schema mismatch from actual response
+	let raindrops: generated.GetRaindropResponseItem[] = [];
 	let nodeTitle = treeNode.data?.slug || 'no-title';
 
 	onMount(async () => {

@@ -1,10 +1,11 @@
 <script lang="ts">
-	import BookmarkOutline from 'flowbite-svelte-icons/BookmarkOutline.svelte';
-	import QuestionCircleOutline from 'flowbite-svelte-icons/QuestionCircleOutline.svelte';
-	import SearchOutline from 'flowbite-svelte-icons/SearchOutline.svelte';
-	import UserSettingsOutline from 'flowbite-svelte-icons/UserSettingsOutline.svelte';
-	import TabItem from 'flowbite-svelte/TabItem.svelte';
-	import Tabs from 'flowbite-svelte/Tabs.svelte';
+	import { TabItem, Tabs } from 'flowbite-svelte';
+	import {
+		BookmarkOutline,
+		QuestionCircleOutline,
+		SearchOutline,
+		UserSettingsOutline
+	} from 'flowbite-svelte-icons';
 	import '~/app.css';
 	import About from '~/components/About.svelte';
 	import Bookmarks from '~/components/Bookmarks.svelte';

@@ -1,6 +1,5 @@
 <script lang="ts">
-	import A from 'flowbite-svelte/A.svelte';
-	import P from 'flowbite-svelte/P.svelte';
+	import { A, P } from 'flowbite-svelte';
 
 	const openOptionsPage = () => chrome.runtime.openOptionsPage();
 </script>

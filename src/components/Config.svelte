@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Button from 'flowbite-svelte/Button.svelte';
-	import FloatingLabelInput from 'flowbite-svelte/FloatingLabelInput.svelte';
-	import P from 'flowbite-svelte/P.svelte';
+	import { Button, FloatingLabelInput, P } from 'flowbite-svelte';
 	import { get } from 'svelte/store';
 	import Eye from '~/components/Eye.svelte';
 	import { putMessage } from '~/lib/messages';

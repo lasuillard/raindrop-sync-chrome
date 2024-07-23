@@ -9,50 +9,74 @@ Chrome browser extension for syncing bookmarks with Raindrop.
 
 ## 🚀 Getting Started
 
-> ❗ This project is under development. Most of features may incomplete and buggy.
+> ❗ **Caution:** This project is currently under development. Many features may be incomplete or buggy.
 
-### 📦 Installing extension locally
+### 📦 Installing the Extension Locally
 
-The extension is not published to Chrome Web Store yet, here we describe how to install extension locally. Once most of core features implemented and stabilized, we will publish it to the Chrome Web Store.
+The extension is not yet published to the Chrome Web Store. Follow the steps below to install it locally. Once the core features are implemented and stabilized, we will publish the extension to the Chrome Web Store.
 
-1. Download the extension archive (`.zip`) file from [releases](https://github.com/lasuillard/raindrop-sync-chrome/releases).
+1. **Download the Extension Archive**
 
-2. Unzip the archive at location you want, and open up the Chrome browser.
+    Download the `.zip` file from the [releases page](https://github.com/lasuillard/raindrop-sync-chrome/releases).
 
-3. Go to `chrome://extensions`.
+2. **Unzip the Archive**
 
-4. Enable **Developer Mode**, toggle at the top-right corner.
+    Extract the contents of the downloaded archive to your desired location, then open the Chrome browser.
+
+3. **Access Chrome Extensions**
+
+    Navigate to `chrome://extensions` in your Chrome browser.
+
+4. **Enable Developer Mode**
+
+    Toggle **Developer Mode** on at the top-right corner of the page.
 
     ![Chrome Manage Extensions Page](/docs/images/chrome-manage-extensions.png)
 
-5. Click the **Load Unpacked** button and go to the directory you unzipped at prior step.
+5. **Load the Unpacked Extension**
+
+    Click the **Load Unpacked** button and select the directory where you unzipped the extension.
 
     ![Chrome Load Unpacked Extension](/docs/images/chrome-load-unpacked-extension.png)
 
-6. Now you will see the extension in the list.
+6. **Verify Installation**
+
+    You should now see the extension listed among your installed extensions.
 
     ![Chrome Extension Installed](/docs/images/chrome-extension-installed.png)
 
-7. Now extension is available for use.
+7. **Start Using the Extension**
 
-> ‼️ Again, this project is at a early stage of development. Most of features incomplete and buggy, and possibly break your bookmarks due to poor implementation. Before use, we recommend having backup of your bookmarks list.
+    The extension is now available for use.
 
-### 👟 Initializing application
+> ‼️ **Warning:** This project is in the early stages of development. Many features are incomplete or buggy, and there is a risk of breaking your bookmarks due to poor implementation. We strongly recommend backing up your bookmarks before using this extension.
 
-1. Visit options page.
+### 👟 Initializing the Application
 
-2. Go to **Settings** tab.
+1. **Visit the Options Page**
 
-3. Go to Raindrop.io and create an integrations for this extension.
+    Open the extension's options page.
+
+2. **Access the Settings Tab**
+
+    Navigate to the **Settings** tab.
+
+3. **Create an Integration in Raindrop.io**
+
+    Go to Raindrop.io and create an integration for this extension.
 
     ![Raindrop App Installation](/docs/images/raindrop-app-installation.png)
 
-    The extension identifier in URL(`https://<EXTENSION_ID>.chromiumapp.org/`) may differ based on location of unpacked extension, so you need to replace it accordingly.
+    > **Note:** The extension identifier in the URL (`https://<EXTENSION_ID>.chromiumapp.org/`) may differ based on the location of the unpacked extension. Please replace it accordingly.
 
-    Now, there are two ways of initializing application for use:
+    Now, there are two methods for initializing the application:
 
     ![RSFC Register App](/docs/images/rsfc-register-app.png)
 
-    1. Simplest and recommended way is using test token. It never expires, Just click the **Create test token** in app settings in Raindrop and copy & paste (no need to click **Register**) it to extension settings' **Access Token** field.
+    1. **Using a Test Token (Recommended)**
 
-    2. The other method is registering the extension as OAuth app using client ID and client secret. Copy and paste each value to settings and click **Register** to authorize application.
+        The simplest and recommended way is to use a test token that never expires. Click on **Create test token** in the app settings in Raindrop, then copy and paste it (no need to click **Register**) into the extension settings' **Access Token** field.
+
+    2. **Registering as an OAuth App**
+
+        Alternatively, you can register the extension as an OAuth app using a client ID and client secret. Copy and paste each value into the settings and click **Register** to authorize the application.

@@ -15,7 +15,7 @@ describe('basic', async () => {
 
 	beforeAll(async () => {
 		browser = await puppeteer.launch({
-			headless: 'new',
+			headless: true,
 			args: [
 				'--disable-gpu',
 				'--no-sandbox',

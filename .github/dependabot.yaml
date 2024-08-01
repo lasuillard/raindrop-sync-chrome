@@ -13,6 +13,10 @@ updates:
     ignore:
       - dependency-name: '*'
         update-types: ['version-update:semver-patch']
+    groups:
+      dev-dependencies:
+        applies-to: version-updates
+        dependency-type: development
 
   - package-ecosystem: 'devcontainers'
     directory: '/'

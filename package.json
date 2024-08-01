@@ -43,7 +43,7 @@
 		"eslint-plugin-svelte": "^2.35.1",
 		"flowbite": "^2.2.0",
 		"flowbite-svelte": "^0.44.20",
-		"flowbite-svelte-icons": "^0.4.5",
+		"flowbite-svelte-icons": "^1.6.1",
 		"jsdom": "^23.0.1",
 		"postcss": "^8.4.32",
 		"prettier": "^3.3.2",

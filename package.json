@@ -42,7 +42,7 @@
 		"eslint-plugin-jsdoc": "^46.9.0",
 		"eslint-plugin-svelte": "^2.35.1",
 		"flowbite": "^2.2.0",
-		"flowbite-svelte": "^0.44.20",
+		"flowbite-svelte": "^0.46.15",
 		"flowbite-svelte-icons": "^0.4.5",
 		"jsdom": "^23.0.1",
 		"postcss": "^8.4.32",

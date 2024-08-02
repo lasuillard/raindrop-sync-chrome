@@ -19,7 +19,7 @@
 
 		const bookmarksTree = await chrome.bookmarks.getTree();
 
-		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-unused-vars
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const [bookmarksBar, otherBookmarks] = bookmarksTree[0].children!;
 
 		// FIXME: For testing purpose; once implementation get stabilized, remove dummy

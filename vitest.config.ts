@@ -25,7 +25,7 @@ export default defineConfig({
 		coverage: {
 			all: true,
 			include: ['src/**'],
-			exclude: ['src/**/__mocks__/*', 'src/**/*.d.ts'],
+			exclude: ['src/**/__mocks__/*', 'src/**/*.d.ts', 'src/**/*.{test,spec}.{js,ts}'],
 			reporter: ['text', 'clover', 'html']
 		},
 		setupFiles: ['tests/setup.ts'],

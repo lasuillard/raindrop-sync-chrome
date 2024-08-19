@@ -1,3 +1,4 @@
+import { codecovVitePlugin } from '@codecov/vite-plugin';
 import { crx } from '@crxjs/vite-plugin';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
 import path from 'path';
@@ -6,7 +7,15 @@ import { defineConfig } from 'vitest/config';
 import manifest from './src/manifest';
 
 export const viteConfig = {
-	plugins: [svelte(), crx({ manifest })],
+	plugins: [
+		svelte(),
+		crx({ manifest }),
+		codecovVitePlugin({
+			enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
+			bundleName: 'raindrop-sync-chrome',
+			uploadToken: process.env.CODECOV_TOKEN
+		})
+	],
 	resolve: {
 		alias: [
 			{ find: '~', replacement: path.resolve(__dirname, '/src') },

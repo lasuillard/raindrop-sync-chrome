@@ -4,6 +4,7 @@ html/
 .tmp/
 vitest.config.js.timestamp-*
 vitest.config.ts.timestamp-*
+junit.xml
 
 # User hook scripts for VSC devcontainer lifecycle
 .devcontainer/initializeCommand/

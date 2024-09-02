@@ -1,7 +1,7 @@
 import { client } from '@lasuillard/raindrop-client';
 import chrome from 'sinon-chrome';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { launchWebAuthFlow } from '../../../src/lib/raindrop/auth';
+import { launchWebAuthFlow } from '~/lib/raindrop/auth';
 import tokenResponse from '../../fixtures/token.json';
 
 describe(launchWebAuthFlow, () => {

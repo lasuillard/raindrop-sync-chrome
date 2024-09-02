@@ -1,6 +1,6 @@
 import path from 'path';
 import { describe, expect, it } from 'vitest';
-import { getExtensionID, getExtensionPath, getProjectRoot } from './extension';
+import { getExtensionID, getExtensionPath, getProjectRoot } from '~/lib/chrome/extension';
 
 describe(getProjectRoot, () => {
 	it('should be', () => {

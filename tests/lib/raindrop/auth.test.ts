@@ -2,7 +2,14 @@ import { client } from '@lasuillard/raindrop-client';
 import chrome from 'sinon-chrome';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { launchWebAuthFlow } from '~/lib/raindrop/auth';
-import tokenResponse from '../../fixtures/token.json';
+
+const tokenResponse = {
+	access_token: '<ACCESS_TOKEN>',
+	refresh_token: '<REFRESH_TOKEN>',
+	expires: 1209599974,
+	expires_in: 1209599,
+	token_type: 'Bearer'
+};
 
 describe(launchWebAuthFlow, () => {
 	const rd = new client.Raindrop();

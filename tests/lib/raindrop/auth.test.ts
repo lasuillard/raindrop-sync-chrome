@@ -1,8 +1,8 @@
 import { client } from '@lasuillard/raindrop-client';
-import tokenResponse from '^/tests/fixtures/token.json';
 import chrome from 'sinon-chrome';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { launchWebAuthFlow } from './auth';
+import { launchWebAuthFlow } from '../../../src/lib/raindrop/auth';
+import tokenResponse from '../../fixtures/token.json';
 
 describe(launchWebAuthFlow, () => {
 	const rd = new client.Raindrop();

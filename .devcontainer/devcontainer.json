@@ -10,7 +10,7 @@
 	"onCreateCommand": "./.devcontainer/onCreateCommand.sh",
 	"postAttachCommand": "pre-commit install",
 	"shutdownAction": "stopCompose",
-	"workspaceFolder": "/workspace",
+	"workspaceFolder": "/workspaces/raindrop-sync-chrome",
 	"customizations": {
 		"vscode": {
 			"extensions": [

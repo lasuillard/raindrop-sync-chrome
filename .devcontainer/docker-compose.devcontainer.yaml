@@ -5,7 +5,7 @@ services:
     build:
       context: .
     volumes:
-      - ..:/workspace
+      - ..:/workspaces/raindrop-sync-chrome
     environment:
       DISPLAY: ${DISPLAY:-novnc:0.0}
     healthcheck:

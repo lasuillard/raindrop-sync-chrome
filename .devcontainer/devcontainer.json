@@ -24,7 +24,7 @@
 				"GraphQL.vscode-graphql-syntax",
 				"svelte.svelte-vscode",
 				"bradlc.vscode-tailwindcss",
-				"ZixuanChen.vitest-explorer",
+				"vitest.explorer",
 				"vivaxy.vscode-conventional-commits"
 			]
 		}

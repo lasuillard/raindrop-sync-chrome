@@ -23,6 +23,10 @@
 		const [bookmarksBar, otherBookmarks] = bookmarksTree[0].children!;
 
 		// FIXME: For testing purpose; once implementation get stabilized, remove dummy
+		const targetNode = bookmarksBar.children?.find((node) => node.title === 'RSFC');
+		if (targetNode) {
+			await chrome.bookmarks.removeTree(targetNode.id);
+		}
 		const dummyRoot = await chrome.bookmarks.create({
 			parentId: bookmarksBar.id,
 			title: 'RSFC'

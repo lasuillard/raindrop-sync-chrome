@@ -19,17 +19,13 @@ interface Options {
  * @returns Store instance.
  */
 // FIXME: Store return type mismatch (async interface)
-export async function persisted<T>(
-	key: string,
-	defaultValue: T,
-	options?: Options
-): Promise<Writable<T>> {
+// TODO: Need refactoring to use async store
+export function persisted<T>(key: string, defaultValue: T, options?: Options): Writable<T> {
 	const storage = options?.storage ?? chrome.storage.local;
 
 	// Load previous value from storage
-	const preValue = await storage.get(key)?.then((v) => v[key]);
-	const initialValue = preValue ?? defaultValue;
-	const { subscribe, set: _set, update: _update } = writable(initialValue);
+	const { subscribe, set: _set, update: _update } = writable(defaultValue);
+	storage.get(key).then((v) => _set(v[key]));
 
 	return {
 		subscribe,

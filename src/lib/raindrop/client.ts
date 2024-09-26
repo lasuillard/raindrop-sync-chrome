@@ -1,6 +1,6 @@
 import { client, generated } from '@lasuillard/raindrop-client';
 import axios, { AxiosError, type AxiosInstance } from 'axios';
-import { setupCache } from 'axios-cache-interceptor';
+// import { setupCache } from 'axios-cache-interceptor';
 import { get } from 'svelte/store';
 import * as settings from '~/lib/settings';
 
@@ -64,7 +64,8 @@ export function getAxiosClient(): AxiosInstance {
 		}
 	);
 
-	setupCache(instance);
+	// TODO: Disabled premature cache setup for now for debugging purpose
+	// setupCache(instance);
 
 	return instance;
 }

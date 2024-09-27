@@ -1,7 +1,7 @@
-import { persisted } from './stores';
+import { DummyStorage, persisted } from './stores';
 
 const options = {
-	storage: chrome.storage.sync
+	storage: import.meta.env.MODE === 'test' ? new DummyStorage() : chrome.storage.sync
 };
 
 export const clientID = persisted('clientID', '', options);

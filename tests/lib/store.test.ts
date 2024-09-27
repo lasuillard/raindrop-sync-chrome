@@ -3,7 +3,7 @@ import { persisted } from '~/lib/stores';
 
 describe('persisted', () => {
 	it('should implement original store interface', async () => {
-		const store = await persisted('test', '');
+		const store = persisted('test', '');
 
 		// Subscription test
 		let changed = '';

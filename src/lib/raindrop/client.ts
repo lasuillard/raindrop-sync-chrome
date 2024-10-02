@@ -14,9 +14,7 @@ export function getClient(
 	configuration?: generated.Configuration,
 	axiosClient?: AxiosInstance
 ): client.Raindrop {
-	configuration ??= new generated.Configuration({
-		accessToken: () => get(settings.accessToken)
-	});
+	configuration ??= new generated.Configuration();
 	axiosClient ??= getAxiosClient();
 
 	return new client.Raindrop(configuration, axiosClient);
@@ -34,7 +32,11 @@ export function getAxiosClient(): AxiosInstance {
 	// TODO: Request throttling; https://www.npmjs.com/package/axios-request-throttle
 	instance.interceptors.request.use(
 		function (config) {
-			// Do something with config
+			const accessToken = get(settings.accessToken);
+			if (accessToken) {
+				config.headers.Authorization = `Bearer ${accessToken}`;
+			}
+
 			return config;
 		},
 		function (error: AxiosError) {

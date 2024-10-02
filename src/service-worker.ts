@@ -2,10 +2,10 @@ import { syncBookmarks } from '~/lib/sync';
 
 chrome.runtime.onInstalled.addListener(async (details) => {
 	switch (details.reason) {
-		case 'install':
+		case chrome.runtime.OnInstalledReason.INSTALL:
 			console.debug('Extension installed');
 			break;
-		case 'update':
+		case chrome.runtime.OnInstalledReason.UPDATE:
 			console.debug('Extension updated, re-scheduling alarms');
 			await chrome.alarms.clearAll();
 			break;

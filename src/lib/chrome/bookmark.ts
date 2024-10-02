@@ -8,7 +8,7 @@ import rd from '~/lib/raindrop';
  */
 export async function createBookmarks(
 	parentId: string,
-	tree: utils.tree.TreeNode<generated.Collection>
+	tree: utils.tree.TreeNode<generated.Collection | null>
 ) {
 	// Create all bookmarks
 	const raindrops = tree.data?._id ? await rd.raindrop.getAllRaindrops(tree.data?._id) : [];

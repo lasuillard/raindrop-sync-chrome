@@ -16,4 +16,8 @@ export const refreshToken = persisted('refreshToken', '', options);
  * - When last fetch made by extension
  * - Hints from resource servers, such as `$.user.lastAction`, `$.user.lastVisit` from user info data
  */
-export const lastTouch = persisted('lastTouch', null, options);
+export const lastTouch = persisted('lastTouch', new Date(0), {
+	...options,
+	serializer: (value: Date) => value.toJSON(),
+	deserializer: (value: string) => new Date(value)
+});

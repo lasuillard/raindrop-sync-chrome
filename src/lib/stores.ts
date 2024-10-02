@@ -35,8 +35,10 @@ export class DummyStorage implements Storage {
 	}
 }
 
-export interface Options {
+export interface Options<T> {
 	storage?: Storage;
+	serializer?: (value: T) => string;
+	deserializer?: (value: string) => T;
 }
 
 export interface AsyncWritable<T> extends Readable<T> {
@@ -53,24 +55,33 @@ const defaultStorage = import.meta.env.MODE === 'test' ? new DummyStorage() : ch
  * @param options Store options.
  * @returns Store instance.
  */
-export function persisted<T>(key: string, defaultValue: T, options?: Options): AsyncWritable<T> {
+export function persisted<T>(key: string, defaultValue: T, options?: Options<T>): AsyncWritable<T> {
 	const storage = options?.storage ?? defaultStorage;
+	const serializer = options?.serializer ?? JSON.stringify;
+	const deserializer = options?.deserializer ?? JSON.parse;
 
 	// Load previous value from storage
 	const { subscribe, set: _set, update: _update } = writable(defaultValue);
-	storage.get(key).then((v) => _set(v[key] ?? defaultValue));
+	storage.get(key).then((v) => {
+		const savedValue = v[key];
+		if (savedValue !== undefined) {
+			const deserialized = deserializer(savedValue);
+			console.debug(`Saved value: ${savedValue}, deserialized as: ${deserialized}`);
+			_set(deserialized);
+		}
+	});
 
 	return {
 		subscribe,
 		set: async (value: T) => {
-			await storage.set({ [key]: value });
+			await storage.set({ [key]: serializer(value) });
 			_set(value);
 		},
 		update: async (updater: Updater<T>) => {
 			return _update((last: T) => {
 				const value = updater(last);
 				storage
-					.set({ [key]: value })
+					.set({ [key]: serializer(value) })
 					?.catch((reason) => console.error('Error while saving value to backend: ' + reason));
 				return value;
 			});

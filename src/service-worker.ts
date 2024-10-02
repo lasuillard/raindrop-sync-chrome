@@ -11,8 +11,8 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 			break;
 	}
 	await chrome.alarms.create('sync-bookmarks', {
-		delayInMinutes: 0.05,
-		periodInMinutes: 0.5
+		delayInMinutes: 0,
+		periodInMinutes: 5
 	});
 });
 

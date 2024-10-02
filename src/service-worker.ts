@@ -1,4 +1,4 @@
-import rd from '~/lib/raindrop';
+import { syncBookmarks } from '~/lib/sync';
 
 chrome.runtime.onInstalled.addListener(async (details) => {
 	switch (details.reason) {
@@ -6,23 +6,22 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 			console.debug('Extension installed');
 			break;
 		case 'update':
-			console.debug('Extension updated');
+			console.debug('Extension updated, re-scheduling alarms');
 			await chrome.alarms.clearAll();
 			break;
 	}
-	await chrome.alarms.create('demo-default-alarm', {
-		delayInMinutes: 0.1,
-		periodInMinutes: 1
+	await chrome.alarms.create('sync-bookmarks', {
+		delayInMinutes: 0.05,
+		periodInMinutes: 0.5
 	});
 });
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {
-	console.debug('Alarm fired:', alarm);
-	const currentUser = await rd.user.getCurrentUser();
-	const lastUpdate = currentUser.data.user.lastUpdate;
-	if (!lastUpdate) {
-		console.warn('No last update found in user data');
-		return;
+	console.debug('Alarm fired:', alarm.name);
+	switch (alarm.name) {
+		case 'sync-bookmarks':
+			console.debug('Syncing bookmarks');
+			await syncBookmarks();
+			break;
 	}
-	console.log('lastUpdate', lastUpdate);
 });

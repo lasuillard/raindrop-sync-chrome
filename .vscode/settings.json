@@ -14,7 +14,7 @@
 		"view",
 		"workspace"
 	],
-	"cSpell.words": ["cobertura", "CODECOV", "jsonschema"],
+	"cSpell.words": ["cobertura", "CODECOV", "jsonschema", "testid"],
 	"editor.codeActionsOnSave": {
 		"source.fixAll": "explicit",
 		"source.organizeImports": "explicit"

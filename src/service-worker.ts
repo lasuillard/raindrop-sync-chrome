@@ -1,3 +1,5 @@
+import { get } from 'svelte/store';
+import * as settings from '~/lib/settings';
 import { syncBookmarks } from '~/lib/sync';
 
 chrome.runtime.onInstalled.addListener(async (details) => {
@@ -10,10 +12,18 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 			await chrome.alarms.clearAll();
 			break;
 	}
-	await chrome.alarms.create('sync-bookmarks', {
-		delayInMinutes: 0,
-		periodInMinutes: 5
-	});
+
+	const autoSyncEnabled = get(settings.autoSyncEnabled);
+	if (autoSyncEnabled) {
+		const execOnStartup = get(settings.autoSyncExecOnStartup);
+		const delayInMinutes = execOnStartup ? 0 : undefined;
+		const periodInMinutes = get(settings.autoSyncIntervalInMinutes);
+		if (!execOnStartup) {
+			console.info('Sync on startup is disabled');
+		}
+		console.debug(`Scheduling alarms with delay: ${delayInMinutes}, period: ${periodInMinutes}`);
+		await chrome.alarms.create('sync-bookmarks', { delayInMinutes, periodInMinutes });
+	}
 });
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {

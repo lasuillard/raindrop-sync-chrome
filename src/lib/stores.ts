@@ -67,9 +67,12 @@ export function persisted<T>(key: string, defaultValue: T, options?: Options<T>)
 		if (savedValue !== undefined) {
 			const deserialized = deserializer(savedValue);
 			console.debug(
-				`Retrieving value for key "${key}", value "${savedValue}" deserialized as "${deserialized}"`
+				`Retrieving value for key "${key}", value ${savedValue} deserialized as ${deserialized}`
 			);
 			_set(deserialized);
+		} else {
+			console.debug(`Value for key "${key}" not found, setting value to default (${defaultValue})`);
+			_set(defaultValue);
 		}
 	});
 

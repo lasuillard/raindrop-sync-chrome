@@ -21,3 +21,7 @@ export const lastTouch = persisted('lastTouch', new Date(0), {
 	serializer: (value: Date) => value.toJSON(),
 	deserializer: (value: string) => new Date(value)
 });
+
+export const autoSyncEnabled = persisted('autoSyncEnabled', false, options);
+export const autoSyncIntervalInMinutes = persisted('autoSyncIntervalInMinutes', 5, options);
+export const autoSyncExecOnStartup = persisted('autoSyncExecOnStartup', false, options);

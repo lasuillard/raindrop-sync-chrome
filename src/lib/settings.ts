@@ -4,24 +4,24 @@ const options = {
 	storage: import.meta.env.MODE === 'test' ? new DummyStorage() : chrome.storage.sync
 };
 
+// API credentials
+// NOTE: Can use test token for access token instead of OAuth flow
 export const clientID = persisted('clientID', '', options);
 export const clientSecret = persisted('clientSecret', '', options);
 export const accessToken = persisted('accessToken', '', options);
 export const refreshToken = persisted('refreshToken', '', options);
 
-/**
- * Store tracking when last action made in remote resources (raindrop.io) to manage caches
- *
- * It should be determined based on:
- * - When last fetch made by extension
- * - Hints from resource servers, such as `$.user.lastAction`, `$.user.lastVisit` from user info data
- */
+// Timestamp of the last time changes made in Raindrop.io
 export const lastTouch = persisted('lastTouch', new Date(0), {
 	...options,
 	serializer: (value: Date) => value.toJSON(),
 	deserializer: (value: string) => new Date(value)
 });
 
+// Parent bookmark ID to create new bookmarks under
+export const syncLocation = persisted<string | undefined>('syncLocation', undefined, options);
+
+// Auto-sync configurations
 export const autoSyncEnabled = persisted('autoSyncEnabled', false, options);
 export const autoSyncIntervalInMinutes = persisted('autoSyncIntervalInMinutes', 5, options);
 export const autoSyncExecOnStartup = persisted('autoSyncExecOnStartup', false, options);

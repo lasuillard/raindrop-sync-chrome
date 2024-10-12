@@ -19,7 +19,7 @@ export const lastTouch = persisted('lastTouch', new Date(0), {
 });
 
 // Parent bookmark ID to create new bookmarks under
-export const syncLocation = persisted<string | undefined>('syncLocation', undefined, options);
+export const syncLocation = persisted<string>('syncLocation', '', options);
 
 // Auto-sync configurations
 export const autoSyncEnabled = persisted('autoSyncEnabled', false, options);

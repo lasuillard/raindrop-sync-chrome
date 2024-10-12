@@ -1,8 +1,8 @@
 import { generated, utils } from '@lasuillard/raindrop-client';
 import { get } from 'svelte/store';
-import { createBookmarks } from '~/lib/chrome/bookmark';
+import { clearBookmarks, createBookmarks } from '~/lib/chrome/bookmark';
 import rd from '~/lib/raindrop';
-import { lastTouch } from '~/lib/settings';
+import { lastTouch, syncLocation } from '~/lib/settings';
 
 export interface SyncBookmarksArgs {
 	/**
@@ -48,21 +48,17 @@ export async function syncBookmarks(args: SyncBookmarksArgs = {}) {
 		return;
 	}
 
-	console.debug('Removing existing bookmarks');
-	const targetNode = bookmarksBar.children?.find((node) => node.title === 'RSFC');
-	if (targetNode) {
-		await chrome.bookmarks.removeTree(targetNode.id);
+	const syncFolderId = get(syncLocation);
+	const syncFolder = (await chrome.bookmarks.getSubTree(syncFolderId))[0];
+	if (!syncFolder) {
+		throw new Error(`Sync folder ${syncFolderId} not found`);
 	}
 
-	// TODO: Make it configurable
-	console.debug('Creating new bookmarks');
-	const syncRoot = await chrome.bookmarks.create({
-		parentId: bookmarksBar.id,
-		title: 'RSFC'
-	});
+	console.debug('Clearing bookmarks in sync folder');
+	await clearBookmarks(syncFolder);
 
 	// TODO: Abstract browser bookmark interface to support other browsers in future
-	await createBookmarks(syncRoot.id, treeNode);
+	await createBookmarks(syncFolder.id, treeNode);
 	lastTouch.set(new Date());
 	console.info('Synchronization completed');
 }

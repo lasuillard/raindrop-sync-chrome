@@ -46,12 +46,12 @@
 		}
 
 		const dfs = (arr: chrome.bookmarks.BookmarkTreeNode[], depth: number = 0) => {
-			for (let i = 0; i < arr.length; i++) {
+			for (const node of arr) {
 				if (depth != 0 /* Ignore virtual root */) {
-					bookmarkFolders.push({ id: arr[i].id, title: arr[i].title, depth });
+					bookmarkFolders.push({ id: node.id, title: node.title, depth });
 				}
-				if (arr[i].children) {
-					dfs(arr[i].children ?? [], depth + 1);
+				if (node.children) {
+					dfs(node.children ?? [], depth + 1);
 				}
 			}
 		};

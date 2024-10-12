@@ -35,3 +35,13 @@ export async function createBookmarks(
 		})
 	);
 }
+
+/**
+ * Clear all bookmarks in a folder.
+ * @param folder Folder to clear bookmarks.
+ */
+export async function clearBookmarks(folder: chrome.bookmarks.BookmarkTreeNode) {
+	for (const child of folder.children ?? []) {
+		await chrome.bookmarks.removeTree(child.id);
+	}
+}

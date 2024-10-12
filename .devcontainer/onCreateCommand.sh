@@ -4,4 +4,4 @@ curl -sL https://sentry.io/get-cli/ | sh
 
 pipx install dotenv-cli
 
-sudo chown -R "$(whoami)" ~/.config/google-chrome
+sudo chown -R "$(id -u):$(id -g)" ~/.config/google-chrome

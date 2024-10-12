@@ -6,8 +6,7 @@ services:
       context: .
     volumes:
       - ..:/workspaces/raindrop-sync-chrome
-    environment:
-      DISPLAY: ${DISPLAY:-novnc:0.0}
+      - google-chrome:/home/node/.config/google-chrome
     healthcheck:
       disable: true
     cap_add:
@@ -22,3 +21,6 @@ services:
       RUN_XTERM: 'no'
     ports:
       - ${NOVNC_HOST:-127.0.0.1}:${NOVNC_PORT:-8080}:8080
+
+volumes:
+  google-chrome: {}

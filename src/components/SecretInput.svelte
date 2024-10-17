@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { FloatingLabelInput } from 'flowbite-svelte';
 	import { EyeSlashSolid, EyeSolid } from 'flowbite-svelte-icons';
-	import type { Writable } from 'svelte/store';
 
-	export let boundStore: Writable<unknown>;
+	export let value: unknown;
 	let showSecret = false;
 </script>
 
@@ -12,7 +11,7 @@
 		classDiv="w-full mr-2"
 		type={showSecret ? 'text' : 'password'}
 		required
-		bind:value={$boundStore}
+		bind:value
 	>
 		<slot />
 	</FloatingLabelInput>

@@ -61,17 +61,40 @@
 		// Force trigger reactivity
 		bookmarkFolders = bookmarkFolders;
 	});
+
+	// TODO: Alarms for auto sync should be re-scheduled on changes
+	let settingsChange = {
+		clientID: get(clientID),
+		clientSecret: get(clientSecret),
+		accessToken: get(accessToken),
+		refreshToken: get(refreshToken),
+		autoSyncEnabled: get(autoSyncEnabled),
+		autoSyncExecOnStartup: get(autoSyncExecOnStartup),
+		autoSyncIntervalInMinutes: get(autoSyncIntervalInMinutes),
+		syncLocation: get(syncLocation)
+	};
+
+	const save = () => {
+		clientID.set(settingsChange.clientID);
+		clientSecret.set(settingsChange.clientSecret);
+		accessToken.set(settingsChange.accessToken);
+		refreshToken.set(settingsChange.refreshToken);
+		autoSyncEnabled.set(settingsChange.autoSyncEnabled);
+		autoSyncExecOnStartup.set(settingsChange.autoSyncExecOnStartup);
+		autoSyncIntervalInMinutes.set(settingsChange.autoSyncIntervalInMinutes);
+		syncLocation.set(settingsChange.syncLocation);
+		putMessage({ type: 'success', message: 'Settings saved.' });
+	};
 </script>
 
 <div>
 	<div class="grid grid-cols-1">
 		<Heading tag="h4">Application</Heading>
 		<div class="mt-6 grid grid-flow-row grid-cols-1 gap-x-4 gap-y-6">
-			<P></P>
-			<SecretInput boundStore={clientID}>Client ID</SecretInput>
-			<SecretInput boundStore={clientSecret}>Client Secret</SecretInput>
-			<SecretInput boundStore={accessToken}>Access Token</SecretInput>
-			<SecretInput boundStore={refreshToken}>Refresh Token</SecretInput>
+			<SecretInput bind:value={settingsChange.clientID}>Client ID</SecretInput>
+			<SecretInput bind:value={settingsChange.clientSecret}>Client Secret</SecretInput>
+			<SecretInput bind:value={settingsChange.accessToken}>Access Token</SecretInput>
+			<SecretInput bind:value={settingsChange.refreshToken}>Refresh Token</SecretInput>
 			<P>
 				<!-- TODO: More detailed guide registering application with pictures -->
 				To register your application, fill <b>Client ID</b> and <b>Client Secret</b> then click
@@ -82,11 +105,13 @@
 		<div class="mt-6 grid grid-flow-row grid-cols-1 gap-x-4 gap-y-6">
 			<Heading tag="h4">Sync</Heading>
 			<!-- TODO: Re-schedule alarm on changes -->
-			<Toggle bind:checked={$autoSyncEnabled}>AutoSync</Toggle>
-			<Toggle bind:checked={$autoSyncExecOnStartup}>AutoSync on Startup</Toggle>
+			<Toggle bind:checked={settingsChange.autoSyncEnabled}>AutoSync</Toggle>
+			<Toggle bind:checked={settingsChange.autoSyncExecOnStartup}>AutoSync on Startup</Toggle>
 			<div>
-				<Range bind:value={$autoSyncIntervalInMinutes} min="1" max="60" />
-				<P size="sm" align="center">Sync every {$autoSyncIntervalInMinutes} minutes</P>
+				<Range bind:value={settingsChange.autoSyncIntervalInMinutes} min="1" max="60" />
+				<P size="sm" align="center">
+					Sync every {settingsChange.autoSyncIntervalInMinutes} minutes
+				</P>
 			</div>
 			<div>
 				<Heading tag="h5">Sync Location</Heading>
@@ -96,13 +121,16 @@
 				<div class="mt-2">
 					{#each bookmarkFolders as bf}
 						<div style="margin-left: {6 * 0.25 * (bf.depth - 1)}rem;" class="my-1">
-							<Radio name="sync-location" bind:group={$syncLocation} value={bf.id}>
+							<Radio name="sync-location" bind:group={settingsChange.syncLocation} value={bf.id}>
 								{bf.title}
 							</Radio>
 						</div>
 					{/each}
 				</div>
 			</div>
+		</div>
+		<div class="mt-8 grid grid-cols-1 gap-x-4">
+			<Button outline on:click={save}>Save</Button>
 		</div>
 		<!-- TODO: Debug actions: check token validity, force refresh token, etc. -->
 	</div>

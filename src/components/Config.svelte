@@ -13,6 +13,7 @@
 		clientID,
 		clientSecret,
 		refreshToken,
+		scheduleAutoSync,
 		syncLocation
 	} from '~/lib/settings';
 
@@ -74,15 +75,17 @@
 		syncLocation: get(syncLocation)
 	};
 
-	const save = () => {
-		clientID.set(settingsChange.clientID);
-		clientSecret.set(settingsChange.clientSecret);
-		accessToken.set(settingsChange.accessToken);
-		refreshToken.set(settingsChange.refreshToken);
-		autoSyncEnabled.set(settingsChange.autoSyncEnabled);
-		autoSyncExecOnStartup.set(settingsChange.autoSyncExecOnStartup);
-		autoSyncIntervalInMinutes.set(settingsChange.autoSyncIntervalInMinutes);
-		syncLocation.set(settingsChange.syncLocation);
+	const save = async () => {
+		console.debug('Saving settings:', settingsChange);
+		await clientID.set(settingsChange.clientID);
+		await clientSecret.set(settingsChange.clientSecret);
+		await accessToken.set(settingsChange.accessToken);
+		await refreshToken.set(settingsChange.refreshToken);
+		await autoSyncEnabled.set(settingsChange.autoSyncEnabled);
+		await autoSyncExecOnStartup.set(settingsChange.autoSyncExecOnStartup);
+		await autoSyncIntervalInMinutes.set(settingsChange.autoSyncIntervalInMinutes);
+		await syncLocation.set(settingsChange.syncLocation);
+		await scheduleAutoSync();
 		putMessage({ type: 'success', message: 'Settings saved.' });
 	};
 </script>

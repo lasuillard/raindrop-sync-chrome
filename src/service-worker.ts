@@ -1,4 +1,3 @@
-import { get } from 'svelte/store';
 import * as settings from '~/lib/settings';
 import { syncBookmarks } from '~/lib/sync';
 
@@ -8,22 +7,12 @@ chrome.runtime.onInstalled.addListener(async (details) => {
 			console.debug('Extension installed');
 			break;
 		case chrome.runtime.OnInstalledReason.UPDATE:
-			console.debug('Extension updated, re-scheduling alarms');
-			await chrome.alarms.clearAll();
+			console.debug('Extension updated');
 			break;
 	}
 
-	const autoSyncEnabled = get(settings.autoSyncEnabled);
-	if (autoSyncEnabled) {
-		const execOnStartup = get(settings.autoSyncExecOnStartup);
-		const delayInMinutes = execOnStartup ? 0 : undefined;
-		const periodInMinutes = get(settings.autoSyncIntervalInMinutes);
-		if (!execOnStartup) {
-			console.info('Sync on startup is disabled');
-		}
-		console.debug(`Scheduling alarms with delay: ${delayInMinutes}, period: ${periodInMinutes}`);
-		await chrome.alarms.create('sync-bookmarks', { delayInMinutes, periodInMinutes });
-	}
+	console.info('Re-scheduling auto-sync');
+	await settings.scheduleAutoSync();
 });
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {

@@ -2,7 +2,7 @@ import { generated, utils } from '@lasuillard/raindrop-client';
 import { get } from 'svelte/store';
 import { clearBookmarks, createBookmarks } from '~/lib/chrome/bookmark';
 import rd from '~/lib/raindrop';
-import { lastTouch, syncLocation } from '~/lib/settings';
+import { clientLastSync, syncLocation } from '~/lib/settings';
 
 export interface SyncBookmarksArgs {
 	/**
@@ -30,18 +30,18 @@ export async function syncBookmarks(args: SyncBookmarksArgs = {}) {
 
 	// Check user's last update time
 	const currentUser = await rd.user.getCurrentUser();
-	const lastUpdate = currentUser.data.user.lastUpdate
+	const serverLastUpdate = currentUser.data.user.lastUpdate
 		? new Date(currentUser.data.user.lastUpdate)
 		: new Date();
 
-	const lastTouchValue = get(lastTouch);
+	const clientLastSyncValue = get(clientLastSync);
 
 	// Skip sync if last update is within threshold
-	const secondsSinceLastTouch = (lastUpdate.getTime() - lastTouchValue.getTime()) / 1000;
+	const secondsSinceLastTouch = (serverLastUpdate.getTime() - clientLastSyncValue.getTime()) / 1000;
 	if (secondsSinceLastTouch <= thresholdSeconds) {
-		console.debug('Skipping sync because last touch within threshold', {
-			lastUpdate: lastUpdate.toISOString(),
-			lastTouch: lastTouchValue.toISOString(),
+		console.debug('Skipping sync because last touch within threshold:', {
+			serverLastUpdate: serverLastUpdate.toISOString(),
+			clientLastSync: clientLastSyncValue.toISOString(),
 			thresholdSeconds,
 			secondsSinceLastTouch
 		});
@@ -59,6 +59,6 @@ export async function syncBookmarks(args: SyncBookmarksArgs = {}) {
 
 	// TODO: Abstract browser bookmark interface to support other browsers in future
 	await createBookmarks(syncFolder.id, treeNode);
-	lastTouch.set(new Date());
+	clientLastSync.set(new Date());
 	console.info('Synchronization completed');
 }

@@ -13,7 +13,7 @@ export const accessToken = persisted('accessToken', '', options);
 export const refreshToken = persisted('refreshToken', '', options);
 
 // Timestamp of the last time changes made in Raindrop.io
-export const lastTouch = persisted('lastTouch', new Date(0), {
+export const clientLastSync = persisted('clientLastSync', new Date(0), {
 	...options,
 	serializer: (value: Date) => value.toJSON(),
 	deserializer: (value: string) => new Date(value)

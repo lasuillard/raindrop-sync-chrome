@@ -6,7 +6,7 @@ services:
       context: .
     volumes:
       - ..:/workspaces/raindrop-sync-chrome
-      - google-chrome:/home/node/.config/google-chrome
+      - google-chrome:/home/node/.config/google-chrome/Default
     healthcheck:
       disable: true
     cap_add:

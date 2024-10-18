@@ -48,7 +48,7 @@
 
 		const dfs = (arr: chrome.bookmarks.BookmarkTreeNode[], depth: number = 0) => {
 			for (const node of arr) {
-				if (depth != 0 /* Ignore virtual root */) {
+				if (depth != 0 /* Ignore virtual root */ && node.url === undefined) {
 					bookmarkFolders.push({ id: node.id, title: node.title, depth });
 				}
 				if (node.children) {

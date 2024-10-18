@@ -48,7 +48,7 @@
 	</Tabs>
 
 	<!-- Global message box -->
-	<div class="absolute right-6 top-6 space-y-2">
+	<div class="fixed right-6 top-6 space-y-2">
 		{#each Object.entries($messageBox) as [id, message] (id)}
 			<Message {message} />
 		{/each}

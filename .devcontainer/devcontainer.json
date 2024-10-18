@@ -28,5 +28,8 @@
 				"vivaxy.vscode-conventional-commits"
 			]
 		}
+	},
+	"remoteEnv": {
+		"DISPLAY": "novnc:0.0"
 	}
 }

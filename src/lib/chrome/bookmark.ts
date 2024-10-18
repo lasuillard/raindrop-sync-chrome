@@ -8,7 +8,7 @@ import rd from '~/lib/raindrop';
  */
 export async function createBookmarks(
 	parentId: string,
-	tree: utils.tree.TreeNode<generated.Collection>
+	tree: utils.tree.TreeNode<generated.Collection | null>
 ) {
 	// Create all bookmarks
 	const raindrops = tree.data?._id ? await rd.raindrop.getAllRaindrops(tree.data?._id) : [];
@@ -34,4 +34,14 @@ export async function createBookmarks(
 			);
 		})
 	);
+}
+
+/**
+ * Clear all bookmarks in a folder.
+ * @param folder Folder to clear bookmarks.
+ */
+export async function clearBookmarks(folder: chrome.bookmarks.BookmarkTreeNode) {
+	for (const child of folder.children ?? []) {
+		await chrome.bookmarks.removeTree(child.id);
+	}
 }

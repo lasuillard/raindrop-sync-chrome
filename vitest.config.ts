@@ -17,7 +17,7 @@ export default defineConfig({
 		],
 		include: ['tests/**/*.{test,spec}.{js,ts}'],
 		exclude: ['**/__mocks__/*'],
-		reporters: ['junit'],
+		reporters: ['junit', 'default'],
 		outputFile: {
 			junit: './junit.xml'
 		},

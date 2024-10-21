@@ -109,10 +109,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@codecov/bundler-plugin-core@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@codecov/bundler-plugin-core/-/bundler-plugin-core-1.2.0.tgz#4a896dd3bd9f9f98a60519aadcf8e3daff37ae5d"
-  integrity sha512-ublUP5V0tW6oDnaJ1UBWvEmVAkvMmPNEwWkpF+WwJSCBWNLvWrkSwG84S3Gt5Xbnh17xEyAxXBmNzF+mXVXBgw==
+"@codecov/bundler-plugin-core@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@codecov/bundler-plugin-core/-/bundler-plugin-core-1.2.1.tgz#66ff68b2def6187fb50b5d8e732ca99b048662e8"
+  integrity sha512-9Iqr+PAQ/QVEnvKr56W/Jo8IaWJDFQkbcffNgG8Oc5GIQ1NRWsPmL/jxhkGrnp2LMJnpG2gPtV3+fet1jy6gbA==
   dependencies:
     "@actions/core" "^1.10.1"
     "@actions/github" "^6.0.0"
@@ -122,11 +122,11 @@
     zod "^3.22.4"
 
 "@codecov/vite-plugin@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@codecov/vite-plugin/-/vite-plugin-1.2.0.tgz#341949ed25a8d20805a565ce5e68c7914567b0c8"
-  integrity sha512-hX3VDomMYRNWDgLTRu7mzGn902ei6tiKa3S9qDrwQwVHdsBw22J47towlpxf3g92QWMOKrkWgEpQrU50h9PWzg==
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@codecov/vite-plugin/-/vite-plugin-1.2.1.tgz#43946637c29bae20a1b896c492144dea07941bf0"
+  integrity sha512-fxlSsRpilO593qzpZ+7gOij/adWJmfcGkuR+b68OaBZq/kAH1IDssZX1RO6/mKtxr+BcjByZ7mcKU59SFHVWIA==
   dependencies:
-    "@codecov/bundler-plugin-core" "^1.2.0"
+    "@codecov/bundler-plugin-core" "^1.2.1"
     unplugin "^1.10.1"
 
 "@crxjs/vite-plugin@2.0.0-beta.19":
@@ -296,10 +296,10 @@
     debug "^4.3.1"
     minimatch "^3.1.2"
 
-"@eslint/core@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@eslint/core/-/core-0.6.0.tgz#9930b5ba24c406d67a1760e94cdbac616a6eb674"
-  integrity sha512-8I2Q8ykA4J0x0o7cg67FPVnehcqWTBehu/lmY+bolPFHGjh49YzGBMXTvpqVgEbBdvNCSxj6iFgiIyHzf03lzg==
+"@eslint/core@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@eslint/core/-/core-0.7.0.tgz#a1bb4b6a4e742a5ff1894b7ee76fbf884ec72bd3"
+  integrity sha512-xp5Jirz5DyPYlPiKat8jaq0EmYvDXKKpzTbxXMpT9eqlRJkRKIz9AGMdlvYjih+im+QlhWrpvVjl8IPC/lHlUw==
 
 "@eslint/eslintrc@^3.1.0":
   version "3.1.0"
@@ -316,10 +316,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@eslint/js@9.12.0", "@eslint/js@^9.11.1":
-  version "9.12.0"
-  resolved "https://registry.yarnpkg.com/@eslint/js/-/js-9.12.0.tgz#69ca3ca9fab9a808ec6d67b8f6edb156cbac91e1"
-  integrity sha512-eohesHH8WFRUprDNyEREgqP6beG6htMeUYeCpkEgBCieCMme5r9zFWjzAJp//9S+Kub4rqE+jXe9Cp1a7IYIIA==
+"@eslint/js@9.13.0", "@eslint/js@^9.11.1":
+  version "9.13.0"
+  resolved "https://registry.yarnpkg.com/@eslint/js/-/js-9.13.0.tgz#c5f89bcd57eb54d5d4fa8b77693e9c28dc97e547"
+  integrity sha512-IFLyoY4d72Z5y/6o/BazFBezupzI/taV8sGumxTAVw3lXG9A6md1Dc34T9s1FoD/an9pJH8RHbAxsaEbBed9lA==
 
 "@eslint/object-schema@^2.1.4":
   version "2.1.4"
@@ -327,9 +327,9 @@
   integrity sha512-BsWiH1yFGjXXS2yvrf5LyuoSIIbPrGUWob917o+BTKuZ7qJdxX8aJLRxs1fS9n6r7vESrq1OUqb68dANcFXuQQ==
 
 "@eslint/plugin-kit@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@eslint/plugin-kit/-/plugin-kit-0.2.0.tgz#8712dccae365d24e9eeecb7b346f85e750ba343d"
-  integrity sha512-vH9PiIMMwvhCx31Af3HiGzsVNULDbyVkHXwlemn/B0TFj/00ho3y55efXrUZTfQipxoHC5u4xq6zblww1zm1Ig==
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@eslint/plugin-kit/-/plugin-kit-0.2.1.tgz#cd14fe2db79fa639839dfef4105e83bad1814482"
+  integrity sha512-HFZ4Mp26nbWk9d/BpvP0YNL6W4UoZF0VFcTw/aPPA8RpOxeFQgK+ClABGgAUXs9Y/RGX/l1vOmrqz1MQt9MNuw==
   dependencies:
     levn "^0.4.1"
 
@@ -794,9 +794,9 @@
     pretty-format "^27.0.2"
 
 "@testing-library/svelte@^5.2.0":
-  version "5.2.3"
-  resolved "https://registry.yarnpkg.com/@testing-library/svelte/-/svelte-5.2.3.tgz#af165579007af408713a637e3fe007e64094cf35"
-  integrity sha512-y5eaD2Vp3hb729dAv3dOYNoZ9uNM0bQ0rd5AfXDWPvI+HiGmjl8ZMOuKzBopveyAkci1Kplb6kS53uZhPGEK+w==
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@testing-library/svelte/-/svelte-5.2.4.tgz#378dbed8a71de0d63c1911b1325a5c6b241aee3c"
+  integrity sha512-EFdy73+lULQgMJ1WolAymrxWWrPv9DWyDuDFKKlUip2PA/EXuHptzfYOKWljccFWDKhhGOu3dqNmoc2f/h/Ecg==
   dependencies:
     "@testing-library/dom" "^10.0.0"
 
@@ -859,9 +859,9 @@
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
 
 "@types/node@*":
-  version "22.7.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.7.6.tgz#3ec3e2b071e136cd11093c19128405e1d1f92f33"
-  integrity sha512-/d7Rnj0/ExXDMcioS78/kf1lMzYk4BZV8MZGTBKzTGZ6/406ukkbYlIsZmMPhcR5KlkunDHQLrtAVmSq7r+mSw==
+  version "22.7.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.7.7.tgz#6cd9541c3dccb4f7e8b141b491443f4a1570e307"
+  integrity sha512-SRxCrrg9CL/y54aiMCG3edPKdprgMVGDXjA3gB8UmmBW5TcXzRUYAh8EWzTnSJFAd1rgImPELza+A3bJ+qxz8Q==
   dependencies:
     undici-types "~6.19.2"
 
@@ -1304,9 +1304,9 @@ available-typed-arrays@^1.0.7:
     possible-typed-array-names "^1.0.0"
 
 axios-cache-interceptor@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/axios-cache-interceptor/-/axios-cache-interceptor-1.6.0.tgz#6be79520138dce08a4a301a9163eb8f875f78d25"
-  integrity sha512-xuo4mZckPQmNV50bJpsMmGfpFV8SXsUWWUVKf1DXQy7t9p+6Pan9zrD3icAlCIdoYFw/ZJFKV6nUVqy8j0XCLQ==
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/axios-cache-interceptor/-/axios-cache-interceptor-1.6.1.tgz#98eae5032bac5c9a694d82ff20214328c5eab11c"
+  integrity sha512-bRzjABzkQ5JOsCrJNhwpabfQ9fV7LykgCKm0AcftXKFrxMhbruXCxak8iCBrxercv4Yb6Hkt2qBMMEWc66vMEw==
   dependencies:
     cache-parser "1.2.5"
     fast-defer "1.1.8"
@@ -2275,21 +2275,21 @@ eslint-plugin-jsdoc@^50.3.1:
     synckit "^0.9.1"
 
 eslint-plugin-svelte@^2.44.1:
-  version "2.45.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-svelte/-/eslint-plugin-svelte-2.45.1.tgz#2a9c1c5088667d432c36b0933229248450a199a6"
-  integrity sha512-mYAKNDRji0YWl7o00KQi0enREcrtzcN7xwK/8lwk5uLRoKLjzPXc+WjngsYpPV35I3AF7UlXc1+JfyNMJS+njA==
+  version "2.46.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-svelte/-/eslint-plugin-svelte-2.46.0.tgz#87bcc2820233065f79114012203b082319ff03e9"
+  integrity sha512-1A7iEMkzmCZ9/Iz+EAfOGYL8IoIG6zeKEq1SmpxGeM5SXmoQq+ZNnCpXFVJpsxPWYx8jIVGMerQMzX20cqUl0g==
   dependencies:
     "@eslint-community/eslint-utils" "^4.4.0"
     "@jridgewell/sourcemap-codec" "^1.4.15"
     eslint-compat-utils "^0.5.1"
     esutils "^2.0.3"
-    known-css-properties "^0.34.0"
+    known-css-properties "^0.35.0"
     postcss "^8.4.38"
     postcss-load-config "^3.1.4"
     postcss-safe-parser "^6.0.0"
     postcss-selector-parser "^6.1.0"
     semver "^7.6.2"
-    svelte-eslint-parser "^0.42.0"
+    svelte-eslint-parser "^0.43.0"
 
 eslint-scope@^7.2.2:
   version "7.2.2"
@@ -2318,16 +2318,16 @@ eslint-visitor-keys@^4.1.0:
   integrity sha512-Q7lok0mqMUSf5a/AdAZkA5a/gHcO6snwQClVNNvFKCAVlxXucdU8pKydU5ZVZjBx5xr37vGbFFWtLQYreLzrZg==
 
 eslint@^9.11.1:
-  version "9.12.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-9.12.0.tgz#54fcba2876c90528396da0fa44b6446329031e86"
-  integrity sha512-UVIOlTEWxwIopRL1wgSQYdnVDcEvs2wyaO6DGo5mXqe3r16IoCNWkR29iHhyaP4cICWjbgbmFUGAhh0GJRuGZw==
+  version "9.13.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-9.13.0.tgz#7659014b7dda1ff876ecbd990f726e11c61596e6"
+  integrity sha512-EYZK6SX6zjFHST/HRytOdA/zE72Cq/bfw45LSyuwrdvcclb/gqV8RRQxywOBEWO2+WDpva6UZa4CcDeJKzUCFA==
   dependencies:
     "@eslint-community/eslint-utils" "^4.2.0"
     "@eslint-community/regexpp" "^4.11.0"
     "@eslint/config-array" "^0.18.0"
-    "@eslint/core" "^0.6.0"
+    "@eslint/core" "^0.7.0"
     "@eslint/eslintrc" "^3.1.0"
-    "@eslint/js" "9.12.0"
+    "@eslint/js" "9.13.0"
     "@eslint/plugin-kit" "^0.2.0"
     "@humanfs/node" "^0.16.5"
     "@humanwhocodes/module-importer" "^1.0.1"
@@ -3186,10 +3186,10 @@ kleur@^4.1.5:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.5.tgz#95106101795f7050c6c650f350c683febddb1780"
   integrity sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==
 
-known-css-properties@^0.34.0:
-  version "0.34.0"
-  resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.34.0.tgz#ccd7e9f4388302231b3f174a8b1d5b1f7b576cea"
-  integrity sha512-tBECoUqNFbyAY4RrbqsBQqDFpGXAEbdD5QKr8kACx3+rnArmuuR22nKQWKazvp07N9yjTyDZaw/20UIH8tL9DQ==
+known-css-properties@^0.35.0:
+  version "0.35.0"
+  resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.35.0.tgz#f6f8e40ab4e5700fa32f5b2ef5218a56bc853bd6"
+  integrity sha512-a/RAk2BfKk+WFGhhOCAYqSiFLc34k8Mt/6NWRI4joER0EYUzXIcFivjjnoD3+XU1DggLn/tZc3DOAgke7l8a4A==
 
 lazystream@^1.0.0:
   version "1.0.1"
@@ -4605,10 +4605,10 @@ svelte-check@^4.0.4:
     picocolors "^1.0.0"
     sade "^1.7.4"
 
-svelte-eslint-parser@^0.42.0:
-  version "0.42.0"
-  resolved "https://registry.yarnpkg.com/svelte-eslint-parser/-/svelte-eslint-parser-0.42.0.tgz#a4b28b14505194e7f0b1aec22b2724253941cf40"
-  integrity sha512-e7LyqFPTuF43ZYhKOf0Gq1lzP+G64iWVJXAIcwVxohGx5FFyqdUkw7DEXNjZ+Fm+TAA98zPmDqWvgD1OpyMi5A==
+svelte-eslint-parser@^0.43.0:
+  version "0.43.0"
+  resolved "https://registry.yarnpkg.com/svelte-eslint-parser/-/svelte-eslint-parser-0.43.0.tgz#649e80f65183c4c1d1536d03dcb903e0632f4da4"
+  integrity sha512-GpU52uPKKcVnh8tKN5P4UZpJ/fUDndmq7wfsvoVXsyP+aY0anol7Yqo01fyrlaWGMFfm4av5DyrjlaXdLRJvGA==
   dependencies:
     eslint-scope "^7.2.2"
     eslint-visitor-keys "^3.4.3"

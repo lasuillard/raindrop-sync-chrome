@@ -1,19 +1,54 @@
-import { persisted } from './stores';
+import { get } from 'svelte/store';
+import { DummyStorage, persisted } from './stores';
 
 const options = {
-	storage: chrome.storage.sync
+	storage: import.meta.env.MODE === 'test' ? new DummyStorage() : chrome.storage.sync
 };
 
-export const clientID = await persisted('clientID', '', options);
-export const clientSecret = await persisted('clientSecret', '', options);
-export const accessToken = await persisted('accessToken', '', options);
-export const refreshToken = await persisted('refreshToken', '', options);
+// API credentials
+// NOTE: Can use test token for access token instead of OAuth flow
+export const clientID = persisted('clientID', '', options);
+export const clientSecret = persisted('clientSecret', '', options);
+export const accessToken = persisted('accessToken', '', options);
+export const refreshToken = persisted('refreshToken', '', options);
+
+// Timestamp of the last time changes made in Raindrop.io
+export const clientLastSync = persisted('clientLastSync', new Date(0), {
+	...options,
+	serializer: (value: Date) => value.toJSON(),
+	deserializer: (value: string) => new Date(value)
+});
+
+// Parent bookmark ID to create new bookmarks under
+export const syncLocation = persisted<string>('syncLocation', '', options);
+
+// Auto-sync configurations
+export const autoSyncEnabled = persisted('autoSyncEnabled', false, options);
+export const autoSyncIntervalInMinutes = persisted('autoSyncIntervalInMinutes', 5, options);
+export const autoSyncExecOnStartup = persisted('autoSyncExecOnStartup', false, options);
 
 /**
- * Store tracking when last action made in remote resources (raindrop.io) to manage caches
- *
- * It should be determined based on:
- * - When last fetch made by extension
- * - Hints from resource servers, such as `$.user.lastAction`, `$.user.lastVisit` from user info data
+ * Schedule auto-sync alarms based on the current settings.
  */
-export const lastTouch = await persisted('lastTouch', null, options);
+export async function scheduleAutoSync() {
+	console.debug('Scheduling auto-sync alarms');
+	await chrome.alarms.clearAll();
+
+	if (get(autoSyncEnabled) !== true) {
+		console.info('Auto-sync is disabled');
+		return;
+	}
+
+	const execOnStartup = get(autoSyncExecOnStartup);
+	if (!execOnStartup) {
+		console.info('Sync on startup is disabled');
+	}
+
+	// If `undefined`, sync on startup is disabled
+	const delayInMinutes = execOnStartup ? 0 : undefined;
+
+	const periodInMinutes = get(autoSyncIntervalInMinutes);
+
+	console.debug(`Scheduling alarms with delay: ${delayInMinutes}, period: ${periodInMinutes}`);
+	await chrome.alarms.create('sync-bookmarks', { delayInMinutes, periodInMinutes });
+}

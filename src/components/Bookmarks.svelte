@@ -2,8 +2,8 @@
 	import { generated, utils } from '@lasuillard/raindrop-client';
 	import { Button, P } from 'flowbite-svelte';
 	import Tree from '~/components/Tree.svelte';
-	import { createBookmarks as _createBookmarks } from '~/lib/chrome/bookmark';
 	import rd from '~/lib/raindrop';
+	import { syncBookmarks } from '~/lib/sync';
 
 	let treeNode: utils.tree.TreeNode<generated.Collection | null>;
 
@@ -17,18 +17,7 @@
 			return;
 		}
 
-		const bookmarksTree = await chrome.bookmarks.getTree();
-
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		const [bookmarksBar, otherBookmarks] = bookmarksTree[0].children!;
-
-		// FIXME: For testing purpose; once implementation get stabilized, remove dummy
-		const dummyRoot = await chrome.bookmarks.create({
-			parentId: bookmarksBar.id,
-			title: 'RSFC'
-		});
-
-		await _createBookmarks(dummyRoot.id, treeNode);
+		await syncBookmarks({ treeNode });
 	};
 </script>
 

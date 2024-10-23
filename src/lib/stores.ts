@@ -1,15 +1,52 @@
-import { writable, type Updater, type Writable } from 'svelte/store';
+import { writable, type Readable, type Updater } from 'svelte/store';
 
 // https://github.com/joshnuss/svelte-local-storage-store
-interface Storage {
-	get(keys: string | string[]): Promise<{ [key: string]: unknown }>;
-	set(items: { [key: string]: unknown }): Promise<void>;
+export interface Storage {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	get(keys: string | string[]): Promise<{ [key: string]: any }>;
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	set(items: { [key: string]: any }): Promise<void>;
 	clear(): Promise<void>;
 }
 
-interface Options {
-	storage?: Storage;
+// Dummy in-memory storage for testing w/o real storage backend
+export class DummyStorage implements Storage {
+	protected map: Map<string, unknown> = new Map();
+
+	get(keys: string | string[]): Promise<{ [key: string]: unknown }> {
+		const result: [string, unknown][] = [];
+		const keyArray = Array.isArray(keys) ? keys : [keys];
+		for (const [key, value] of this.map.entries()) {
+			if (keyArray.includes(key)) {
+				result.push([key, value]);
+			}
+		}
+		return Promise.resolve(Object.fromEntries(result));
+	}
+	set(items: { [key: string]: unknown }): Promise<void> {
+		for (const [key, value] of Object.entries(items)) {
+			this.map.set(key, value);
+		}
+		return Promise.resolve();
+	}
+	clear() {
+		this.map.clear();
+		return Promise.resolve();
+	}
 }
+
+export interface Options<T> {
+	storage?: Storage;
+	serializer?: (value: T) => string;
+	deserializer?: (value: string) => T;
+}
+
+export interface AsyncWritable<T> extends Readable<T> {
+	set(this: void, value: T): Promise<void>;
+	update(this: void, updater: Updater<T>): Promise<void>;
+}
+
+const defaultStorage = import.meta.env.MODE === 'test' ? new DummyStorage() : chrome.storage.local;
 
 /**
  * Custom store persisting data via Chrome storage API.
@@ -18,29 +55,39 @@ interface Options {
  * @param options Store options.
  * @returns Store instance.
  */
-// FIXME: Store return type mismatch (async interface)
-export async function persisted<T>(
-	key: string,
-	defaultValue: T,
-	options?: Options
-): Promise<Writable<T>> {
-	const storage = options?.storage ?? chrome.storage.local;
+export function persisted<T>(key: string, defaultValue: T, options?: Options<T>): AsyncWritable<T> {
+	const storage = options?.storage ?? defaultStorage;
+	const serializer = options?.serializer ?? JSON.stringify;
+	const deserializer = options?.deserializer ?? JSON.parse;
 
 	// Load previous value from storage
-	const preValue = await storage.get(key)?.then((v) => v[key]);
-	const initialValue = preValue ?? defaultValue;
-	const { subscribe, set: _set, update: _update } = writable(initialValue);
+	const { subscribe, set: _set, update: _update } = writable(defaultValue);
+	storage.get(key).then((v) => {
+		const savedValue = v[key];
+		if (savedValue !== undefined) {
+			const deserialized = deserializer(savedValue);
+			console.debug(
+				`Retrieving value for key "${key}", value ${savedValue} deserialized as ${deserialized}`
+			);
+			_set(deserialized);
+		} else {
+			console.debug(`Value for key "${key}" not found, setting value to default (${defaultValue})`);
+			_set(defaultValue);
+		}
+	});
 
 	return {
 		subscribe,
 		set: async (value: T) => {
-			await storage.set({ [key]: value });
+			await storage.set({ [key]: serializer(value) });
 			_set(value);
 		},
 		update: async (updater: Updater<T>) => {
 			return _update((last: T) => {
 				const value = updater(last);
-				storage.set({ [key]: value })?.catch((reason) => console.log(reason));
+				storage
+					.set({ [key]: serializer(value) })
+					?.catch((reason) => console.error('Error while saving value to backend: ' + reason));
 				return value;
 			});
 		}

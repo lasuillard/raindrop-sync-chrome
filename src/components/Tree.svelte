@@ -4,7 +4,7 @@
 	import { onMount } from 'svelte';
 	import rd from '~/lib/raindrop';
 
-	export let treeNode: utils.tree.TreeNode<generated.Collection>;
+	export let treeNode: utils.tree.TreeNode<generated.Collection | null>;
 	let raindrops: generated.GetRaindropResponseItem[] = [];
 	let nodeTitle = treeNode.data?.slug || 'no-title';
 

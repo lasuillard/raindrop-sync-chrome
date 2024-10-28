@@ -21,7 +21,7 @@
 	},
 	"devDependencies": {
 		"@codecov/vite-plugin": "^1.2.0",
-		"@crxjs/vite-plugin": "2.0.0-beta.19",
+		"@crxjs/vite-plugin": "2.0.0-beta.28",
 		"@eslint/eslintrc": "^3.1.0",
 		"@eslint/js": "^9.11.1",
 		"@floating-ui/dom": "^1.5.3",

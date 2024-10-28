@@ -441,10 +441,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@lasuillard/raindrop-client@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@lasuillard/raindrop-client/-/raindrop-client-0.5.2.tgz#d379635679fda688b6599bea46eb146a47a42a4d"
-  integrity sha512-Vz1JeHhCaoOK6/6IagvoeYePIXzMOo0Vns7/AJ8QfjY97T4A0+w5/RT3Rog9TiUMtKZXO05MJ5OUHOY008ATqQ==
+"@lasuillard/raindrop-client@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@lasuillard/raindrop-client/-/raindrop-client-0.5.3.tgz#7a788b10df61c185e308805ea5541c678b18226c"
+  integrity sha512-qvXlkw8NJJoPpLj04uUgnWX+fir0I3i4eZNg7PjK0priJa0oS7kGwVZKsyawp9xrHQFrkF/FCmdWx+ipvKgzmQ==
   dependencies:
     axios "^1.6.8"
 

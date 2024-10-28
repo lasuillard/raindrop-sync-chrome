@@ -7,7 +7,7 @@ export default defineConfig({
 	resolve,
 	test: {
 		include: ['e2e/**/*.{test,spec}.{js,ts}'],
-		reporters: ['junit'],
+		reporters: ['junit', 'default'],
 		outputFile: {
 			junit: './junit.xml'
 		},

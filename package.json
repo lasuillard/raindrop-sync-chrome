@@ -25,7 +25,7 @@
 		"@eslint/eslintrc": "^3.1.0",
 		"@eslint/js": "^9.11.1",
 		"@floating-ui/dom": "^1.5.3",
-		"@lasuillard/raindrop-client": "^0.5.2",
+		"@lasuillard/raindrop-client": "^0.5.3",
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",
 		"@testing-library/svelte": "^5.2.0",
 		"@tsconfig/svelte": "^5.0.2",

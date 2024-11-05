@@ -10,8 +10,11 @@ export async function createBookmarks(
 	parentId: string,
 	tree: utils.tree.TreeNode<generated.Collection | null>
 ) {
+	// If data is null, considered as root(unsorted) collection
+	const collectionId = tree.data?._id ?? 0;
+
 	// Create all bookmarks
-	const raindrops = tree.data?._id ? await rd.raindrop.getAllRaindrops(tree.data?._id) : [];
+	const raindrops = await rd.raindrop.getAllRaindrops(collectionId);
 	await Promise.all(
 		raindrops.map((rd) =>
 			chrome.bookmarks.create({

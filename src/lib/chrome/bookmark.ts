@@ -11,7 +11,7 @@ export async function createBookmarks(
 	tree: utils.tree.TreeNode<generated.Collection | null>
 ) {
 	// If data is null, considered as root(unsorted) collection
-	const collectionId = tree.data?._id ?? 0;
+	const collectionId = tree.data?._id ?? -1;
 
 	// Create all bookmarks
 	const raindrops = await rd.raindrop.getAllRaindrops(collectionId);

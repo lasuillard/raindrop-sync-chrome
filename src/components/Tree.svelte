@@ -10,7 +10,7 @@
 
 	onMount(async () => {
 		// If root, data likely to be `null`
-		const collectionId = treeNode.data?._id || 0;
+		const collectionId = treeNode.data?._id || -1;
 		raindrops = await rd.raindrop.getAllRaindrops(collectionId);
 	});
 </script>

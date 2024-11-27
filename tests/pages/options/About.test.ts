@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { render } from '@testing-library/svelte';
 import { expect, it, vi } from 'vitest';
-import About from '~/components/About.svelte';
+import About from '~/pages/options/About.svelte';
 
 it('renders OK', () => {
 	// @ts-expect-error Mocking conflict

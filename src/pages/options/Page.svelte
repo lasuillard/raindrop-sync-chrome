@@ -7,12 +7,12 @@
 		UserSettingsOutline
 	} from 'flowbite-svelte-icons';
 	import '~/app.css';
-	import About from '~/components/About.svelte';
-	import Bookmarks from '~/components/Bookmarks.svelte';
-	import Config from '~/components/Config.svelte';
 	import Message from '~/components/Message.svelte';
-	import TryIt from '~/components/TryIt.svelte';
 	import { messageBox } from '~/lib/messages';
+	import About from './About.svelte';
+	import Bookmarks from './Bookmarks.svelte';
+	import Config from './Config.svelte';
+	import TryIt from './TryIt.svelte';
 </script>
 
 <main class="mx-1 mt-4 self-center">

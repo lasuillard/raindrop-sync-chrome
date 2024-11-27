@@ -1,6 +1,7 @@
+import { it } from '^/tests/e2e/_helpers/vitest';
 import type { Browser, Page } from 'puppeteer';
 import puppeteer from 'puppeteer';
-import { afterAll, beforeAll, describe, expect, it } from 'vitest';
+import { afterAll, beforeAll, describe, expect } from 'vitest';
 import { getExtensionID, getExtensionPath } from '~/lib/chrome/extension';
 
 const extensionPath = getExtensionPath();

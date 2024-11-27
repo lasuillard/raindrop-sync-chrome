@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { render } from '@testing-library/svelte';
 import { expect, it } from 'vitest';
-import Bookmarks from '~/components/Bookmarks.svelte';
+import Bookmarks from '~/pages/options/Bookmarks.svelte';
 
 it('has some descriptive heading', () => {
 	const { queryByTestId } = render(Bookmarks);

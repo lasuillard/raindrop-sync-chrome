@@ -1,4 +1,9 @@
-import { it } from 'vitest';
+// @vitest-environment jsdom
+import { render } from '@testing-library/svelte';
+import { expect, it } from 'vitest';
+import Page from '~/pages/options/Page.svelte';
 
-it.todo('has shortcut to options');
-it.todo('has a big button trigger sync');
+it('renders OK', () => {
+	const { container } = render(Page);
+	expect(container).toBeTruthy();
+});

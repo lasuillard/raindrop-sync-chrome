@@ -28,8 +28,6 @@
 		"src/**/*.ts",
 		"src/**/*.js",
 		"src/**/*.svelte",
-		"e2e/**/*.ts",
-		"e2e/**/*.d.ts",
 		"tests/**/*.ts",
 		"tests/**/*.d.ts"
 	],

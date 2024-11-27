@@ -6,7 +6,6 @@ import { afterEach, beforeEach, vi } from 'vitest';
 vi.stubGlobal('chrome', chrome);
 
 beforeEach(() => {
-	vi.mock('axios');
 	vi.mock('~/lib/raindrop/client');
 });
 

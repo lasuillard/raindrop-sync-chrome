@@ -26,7 +26,7 @@
 		"axios-cache-interceptor": "^1.6.0",
 		"crx": "^5.0.1",
 		"flowbite": "^2.5.1",
-		"flowbite-svelte": "^0.46.15",
+		"flowbite-svelte": "^0.47.3",
 		"flowbite-svelte-icons": "^1.6.1",
 		"postcss": "^8.4.32",
 		"react": "^18.2.0",

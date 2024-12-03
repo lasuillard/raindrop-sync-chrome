@@ -1156,7 +1156,7 @@ anymatch@~3.1.2:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
-apexcharts@^3.54.0:
+apexcharts@^3.54.1:
   version "3.54.1"
   resolved "https://registry.yarnpkg.com/apexcharts/-/apexcharts-3.54.1.tgz#9b78a6ee10e4225d5e04309c8e5b379e2c5c9da2"
   integrity sha512-E4et0h/J1U3r3EwS/WlqJCQIbepKbp6wGUmaAwJOMjHUP4Ci0gxanLa7FR3okx6p9coi4st6J853/Cb1NP0vpA==
@@ -2514,15 +2514,15 @@ flowbite-svelte-icons@^1.6.1:
   resolved "https://registry.yarnpkg.com/flowbite-svelte-icons/-/flowbite-svelte-icons-1.6.2.tgz#db70756dfd30d81558cd255538b7cbc32c6db605"
   integrity sha512-zgG1rbFC+rxHcjBYlktTGdFlT2l1KX3I30YKiUSxjz/OXXbWP/qHAl6LTDtKhsT/2bRCb/g3CVBZFdmSkTeOdw==
 
-flowbite-svelte@^0.46.15:
-  version "0.46.23"
-  resolved "https://registry.yarnpkg.com/flowbite-svelte/-/flowbite-svelte-0.46.23.tgz#6b60d177c0652cb60c005c3f787ffa132d133eba"
-  integrity sha512-saCqG/4cOm26+k5ECJ++AyvuyMqAHuIExPaO9ull0gvgAE3kLSsCAKc/bAeJPmMoYnm6dUDpvGKgSq73W9YTUQ==
+flowbite-svelte@^0.47.3:
+  version "0.47.3"
+  resolved "https://registry.yarnpkg.com/flowbite-svelte/-/flowbite-svelte-0.47.3.tgz#b037d21da3da72953af89218b27c6ac62cf1381d"
+  integrity sha512-1Wdbx+YV6S20dnnMERr/XFNjO+sb22QOrZtIK0Wa8SXxxuYPmbkT3b4mR4TYwUWvWheXsWvlcPLSlV8YGJgItw==
   dependencies:
     "@floating-ui/dom" "^1.6.11"
-    apexcharts "^3.54.0"
+    apexcharts "^3.54.1"
     flowbite "^2.5.2"
-    tailwind-merge "^2.5.3"
+    tailwind-merge "^2.5.4"
 
 flowbite@^2.0.0, flowbite@^2.5.1, flowbite@^2.5.2:
   version "2.5.2"
@@ -4649,10 +4649,10 @@ synckit@^0.9.1:
     "@pkgr/core" "^0.1.0"
     tslib "^2.6.2"
 
-tailwind-merge@^2.5.2, tailwind-merge@^2.5.3:
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-2.5.4.tgz#4bf574e81fa061adeceba099ae4df56edcee78d1"
-  integrity sha512-0q8cfZHMu9nuYP/b5Shb7Y7Sh1B7Nnl5GqNr1U+n2p6+mybvRtayrQ+0042Z5byvTA8ihjlP8Odo8/VnHbZu4Q==
+tailwind-merge@^2.5.2, tailwind-merge@^2.5.4:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-2.5.5.tgz#98167859b856a2a6b8d2baf038ee171b9d814e39"
+  integrity sha512-0LXunzzAZzo0tEPxV3I297ffKZPlKDrjj7NXphC8V5ak9yHC5zRmxnOe2m/Rd/7ivsOMJe3JZ2JVocoDdQTRBA==
 
 tailwindcss@^3.3.6:
   version "3.4.14"

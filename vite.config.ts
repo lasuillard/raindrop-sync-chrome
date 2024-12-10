@@ -17,7 +17,6 @@ export const viteConfig = {
 		})
 	],
 	resolve: {
-		conditions: process.env.VITEST ? ['browser'] : [],
 		alias: [
 			{ find: '~', replacement: path.resolve(__dirname, '/src') },
 			{ find: '^', replacement: path.resolve(__dirname, '/') }

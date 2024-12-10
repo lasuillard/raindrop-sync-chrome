@@ -8,9 +8,14 @@ const { resolve } = viteConfig;
 //       It's likely problem of CRXJS plugin
 //
 //       Similar issue: https://github.com/vitest-dev/vitest/issues/3439
+console.log(process.env);
+
 export default defineConfig({
 	plugins: [svelte()],
-	resolve,
+	resolve: {
+		conditions: process.env.VITEST && !process.env.E2E ? ['browser'] : [],
+		...resolve
+	},
 	test: {
 		include: ['tests/**/*.{test,spec}.{js,ts}'],
 		exclude: ['**/__mocks__/*'],

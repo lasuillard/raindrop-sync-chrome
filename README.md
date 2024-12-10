@@ -7,6 +7,24 @@
 
 Chrome browser extension for syncing bookmarks with Raindrop.
 
+## ✨ Features
+
+Core features supported:
+
+-   [x] One-way sync from Raindrop.io to Chrome Bookmarks
+
+-   [x] Background sync on startup and periodically
+
+Planned features:
+
+-   [ ] Granular synchronization: map query results and collections to specific bookmark folders
+
+-   [ ] Two-way sync between Raindrop.io and Chrome Bookmarks
+
+-   [ ] Publish the extension to the Chrome Web Store
+
+-   [ ] Support for additional browsers
+
 ## 🚀 Getting Started
 
 > ❗ **Caution:** This project is currently under development. Many features may be incomplete or buggy.
@@ -71,7 +89,7 @@ The extension is not yet published to the Chrome Web Store. Follow the steps bel
 
     Now, there are two methods for initializing the application:
 
-    ![RSFC Register App](/docs/images/rsfc-register-app.png)
+    ![RSFC Access Token](/docs/images/rsfc-access-token.png)
 
     1. **Using a Test Token (Recommended)**
 
@@ -80,3 +98,9 @@ The extension is not yet published to the Chrome Web Store. Follow the steps bel
     2. **Registering as an OAuth App**
 
         Alternatively, you can register the extension as an OAuth app using a client ID and client secret. Copy and paste each value into the settings and click **Register** to authorize the application.
+
+    To run sync manually, go to **Bookmarks** tab and click **Fetch**. Once data is fetched, click **Synchronize**.
+
+    ![RSFC Manual Sync](/docs/images/rsfc-manual-sync.png)
+
+    > **Note:** Manual sync is internal debugging utility. Later it will be rewritten.

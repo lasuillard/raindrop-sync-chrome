@@ -1,4 +1,4 @@
-// @vitest-environment jsdom
+// @vitest-environment happy-dom
 import { render } from '@testing-library/svelte';
 import { expect, it, vi } from 'vitest';
 import About from '~/pages/options/About.svelte';

@@ -25,7 +25,7 @@
 		"axios": "^1.7.4",
 		"axios-cache-interceptor": "^1.6.0",
 		"crx": "^5.0.1",
-		"flowbite": "^2.5.1",
+		"flowbite": "^3.1.1",
 		"flowbite-svelte": "^0.47.4",
 		"flowbite-svelte-icons": "^2.0.2",
 		"postcss": "^8.5.1",

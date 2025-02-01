@@ -28,7 +28,7 @@
 		"flowbite": "^2.5.1",
 		"flowbite-svelte": "^0.47.4",
 		"flowbite-svelte-icons": "^2.0.2",
-		"postcss": "^8.4.32",
+		"postcss": "^8.5.1",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"svelte": "^5.16.0",

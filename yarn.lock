@@ -2527,10 +2527,10 @@ flatted@^3.2.9, flatted@^3.3.2:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.3.2.tgz#adba1448a9841bec72b42c532ea23dbbedef1a27"
   integrity sha512-AiwGJM8YcNOaobumgtng+6NHuOqC3A7MixFeDafM3X9cIUM+xUXoS5Vfgf+OihAYe20fxqNM9yPBXJzRtZ/4eA==
 
-flowbite-datepicker@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/flowbite-datepicker/-/flowbite-datepicker-1.3.0.tgz#60b2423dfa1013e61c50babcf8512501d8b835ee"
-  integrity sha512-CLVqzuoE2vkUvWYK/lJ6GzT0be5dlTbH3uuhVwyB67+PjqJWABm2wv68xhBf5BqjpBxvTSQ3mrmLHpPJ2tvrSQ==
+flowbite-datepicker@^1.3.0, flowbite-datepicker@^1.3.1:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/flowbite-datepicker/-/flowbite-datepicker-1.3.2.tgz#ad830d73f923344fb5614978f0d87e790cc69c4b"
+  integrity sha512-6Nfm0MCVX3mpaR7YSCjmEO2GO8CDt6CX8ZpQnGdeu03WUCWtEPQ/uy0PUiNtIJjJZWnX0Cm3H55MOhbD1g+E/g==
   dependencies:
     "@rollup/plugin-node-resolve" "^15.2.3"
     flowbite "^2.0.0"
@@ -2553,7 +2553,7 @@ flowbite-svelte@^0.47.4:
     flowbite "^2.5.2"
     tailwind-merge "^2.5.4"
 
-flowbite@^2.0.0, flowbite@^2.5.1, flowbite@^2.5.2:
+flowbite@^2.0.0, flowbite@^2.5.2:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/flowbite/-/flowbite-2.5.2.tgz#4a14b87ad3f2abd8bcd7b0fb52a6b06fd7a74685"
   integrity sha512-kwFD3n8/YW4EG8GlY3Od9IoKND97kitO+/ejISHSqpn3vw2i5K/+ZI8Jm2V+KC4fGdnfi0XZ+TzYqQb4Q1LshA==
@@ -2561,6 +2561,16 @@ flowbite@^2.0.0, flowbite@^2.5.1, flowbite@^2.5.2:
     "@popperjs/core" "^2.9.3"
     flowbite-datepicker "^1.3.0"
     mini-svg-data-uri "^1.4.3"
+
+flowbite@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/flowbite/-/flowbite-3.1.1.tgz#464338a50500e152dddcbc99a053f97e66a592ad"
+  integrity sha512-ZYj519lS7Ls+ek6jOi12JRJytDtwekJdnwSjDXhiS8G+k2j3X8HfFOGtbdrYey6h2+z/seEDSqsSjDca/wClxw==
+  dependencies:
+    "@popperjs/core" "^2.9.3"
+    flowbite-datepicker "^1.3.1"
+    mini-svg-data-uri "^1.4.3"
+    postcss "^8.5.1"
 
 follow-redirects@^1.15.6:
   version "1.15.9"

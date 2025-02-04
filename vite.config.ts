@@ -40,6 +40,10 @@ export const viteConfig = {
 		port: 5173,
 		strictPort: true,
 		hmr: { port: 5173 }
+	},
+	// https://github.com/crxjs/chrome-extension-tools/issues/971
+	legacy: {
+		skipWebSocketTokenCheck: true
 	}
 };
 

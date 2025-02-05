@@ -11,9 +11,11 @@ export const viteConfig = {
 		svelte(),
 		crx({ manifest }),
 		codecovVitePlugin({
-			enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
+			enableBundleAnalysis: true,
 			bundleName: 'raindrop-sync-chrome',
-			uploadToken: process.env.CODECOV_TOKEN
+			oidc: {
+				useGitHubOIDC: true
+			}
 		})
 	],
 	resolve: {

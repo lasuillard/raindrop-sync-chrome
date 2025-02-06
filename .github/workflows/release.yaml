@@ -2,6 +2,8 @@ name: Release
 
 on:
   push:
+    branches:
+      - main
     tags:
       - v*
 
@@ -37,8 +39,10 @@ jobs:
       - name: Create an archive
         run: zip -r raindrop-sync-for-chrome.zip dist
 
+      # Release will be created if the tag is in the format v*
       - name: Create release
         uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/v')
         with:
           files: |
             raindrop-sync-for-chrome.zip

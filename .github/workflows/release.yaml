@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    environment: chrome-web-store
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -36,16 +37,19 @@ jobs:
       - name: Create an archive
         run: zip -r raindrop-sync-for-chrome.zip dist
 
-      # NOTE: `CRX_PRIVATE_KEY` secret may differ from environments for security reason; e.g. Dependabot PR
-      - name: Pack extension
-        env:
-          CRX_PRIVATE_KEY: ${{ secrets.CRX_PRIVATE_KEY }}
-        run: node ./scripts/pack-crx.cjs
-
-      - name: Release extension
+      - name: Create release
         uses: softprops/action-gh-release@v2
         with:
           files: |
             raindrop-sync-for-chrome.zip
-            raindrop-sync-for-chrome.crx
           generate_release_notes: true
+
+      - name: Publish to Chrome Web Store (Testers)
+        uses: MobileFirstLLC/cws-publish@v2
+        with:
+          action: testers
+          extension_id: ${{ vars.CWS_EXTENSION_ID }}
+          client_id: ${{ secrets.CWS_CLIENT_ID }}
+          client_secret: ${{ secrets.CWS_CLIENT_SECRET }}
+          refresh_token: ${{ secrets.CWS_REFRESH_TOKEN }}
+          zip_file: ./raindrop-sync-for-chrome.zip

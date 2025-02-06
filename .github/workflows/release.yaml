@@ -39,6 +39,13 @@ jobs:
       - name: Create an archive
         run: zip -r raindrop-sync-for-chrome.zip dist
 
+      - name: Preserve build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: raindrop-sync-for-chrome
+          path: ./raindrop-sync-for-chrome.zip
+          retention-days: 14
+
       # Release will be created if the tag is in the format v*
       - name: Create release
         uses: softprops/action-gh-release@v2

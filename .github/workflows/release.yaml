@@ -56,7 +56,7 @@ jobs:
           generate_release_notes: true
 
       - name: Publish to Chrome Web Store (Testers)
-        uses: MobileFirstLLC/cws-publish@v2.1.1
+        uses: MobileFirstLLC/cws-publish@2.1.1
         with:
           action: testers # TODO(lasuillard): Determine based on release type (push /tag)
           extension_id: ${{ vars.CWS_EXTENSION_ID }}

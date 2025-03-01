@@ -22,7 +22,7 @@
 	"dependencies": {
 		"@lasuillard/raindrop-client": "^0.6.1",
 		"autoprefixer": "^10.4.16",
-		"axios": "^1.7.4",
+		"axios": "^1.8.1",
 		"axios-cache-interceptor": "^1.6.0",
 		"flowbite": "^3.1.1",
 		"flowbite-svelte": "^0.47.4",

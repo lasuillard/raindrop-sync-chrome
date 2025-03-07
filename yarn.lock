@@ -348,7 +348,7 @@
   dependencies:
     "@floating-ui/utils" "^0.2.9"
 
-"@floating-ui/dom@^1.5.3", "@floating-ui/dom@^1.6.11":
+"@floating-ui/dom@^1.5.3", "@floating-ui/dom@^1.6.13":
   version "1.6.13"
   resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.6.13.tgz#a8a938532aea27a95121ec16e667a7cbe8c59e34"
   integrity sha512-umqzocjDgNRGTuO7Q8CU32dkHkECqI8ZdMZ5Swb6QAM0t5rnlrN3lGo1hdpscRd3WS8T6DKYK4ephgIH9iRh3w==
@@ -2458,17 +2458,17 @@ flowbite-svelte-icons@^2.0.2:
     tailwind-merge "^2.5.4"
     tailwindcss "^3.4.14"
 
-flowbite-svelte@^0.47.4:
-  version "0.47.4"
-  resolved "https://registry.yarnpkg.com/flowbite-svelte/-/flowbite-svelte-0.47.4.tgz#87e54d7818fc97e7e826a95a16092199500eac49"
-  integrity sha512-8oiY/oeWA7fgkDF91MZKEBo5VmjL8El3wuqTDWAFO1j7p45BHIL6G1VGnnidgCEYlbADDQN9BIGCvyPq4J3g+w==
+flowbite-svelte@^0.48.4:
+  version "0.48.4"
+  resolved "https://registry.yarnpkg.com/flowbite-svelte/-/flowbite-svelte-0.48.4.tgz#638f072188b5124c00384d9f9648bd47ed5f1325"
+  integrity sha512-ivlBxNi2u9+D/nFeHs+vLJU6nYjKq/ooAwdXPP3qIlEnUyIl/hVsH87JtVWwVEgF31NwwQcZeKFkWd8K5DWiGw==
   dependencies:
-    "@floating-ui/dom" "^1.6.11"
+    "@floating-ui/dom" "^1.6.13"
     apexcharts "^3.54.1"
-    flowbite "^2.5.2"
-    tailwind-merge "^2.5.4"
+    flowbite "^3.1.2"
+    tailwind-merge "^3.0.1"
 
-flowbite@^2.0.0, flowbite@^2.5.2:
+flowbite@^2.0.0:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/flowbite/-/flowbite-2.5.2.tgz#4a14b87ad3f2abd8bcd7b0fb52a6b06fd7a74685"
   integrity sha512-kwFD3n8/YW4EG8GlY3Od9IoKND97kitO+/ejISHSqpn3vw2i5K/+ZI8Jm2V+KC4fGdnfi0XZ+TzYqQb4Q1LshA==
@@ -2477,10 +2477,10 @@ flowbite@^2.0.0, flowbite@^2.5.2:
     flowbite-datepicker "^1.3.0"
     mini-svg-data-uri "^1.4.3"
 
-flowbite@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/flowbite/-/flowbite-3.1.1.tgz#464338a50500e152dddcbc99a053f97e66a592ad"
-  integrity sha512-ZYj519lS7Ls+ek6jOi12JRJytDtwekJdnwSjDXhiS8G+k2j3X8HfFOGtbdrYey6h2+z/seEDSqsSjDca/wClxw==
+flowbite@^3.1.1, flowbite@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/flowbite/-/flowbite-3.1.2.tgz#a3223462b608119e8388af6579d05642e553a5db"
+  integrity sha512-MkwSgbbybCYgMC+go6Da5idEKUFfMqc/AmSjm/2ZbdmvoKf5frLPq/eIhXc9P+rC8t9boZtUXzHDgt5whZ6A/Q==
   dependencies:
     "@popperjs/core" "^2.9.3"
     flowbite-datepicker "^1.3.1"
@@ -4479,6 +4479,11 @@ tailwind-merge@^2.5.4, tailwind-merge@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-2.6.0.tgz#ac5fb7e227910c038d458f396b7400d93a3142d5"
   integrity sha512-P+Vu1qXfzediirmHOC3xKGAYeZtPcV9g76X+xg2FD4tYgR71ewMA35Y3sCz3zhiN/dwefRpJX0yBcgwi1fXNQA==
+
+tailwind-merge@^3.0.1:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-3.0.2.tgz#567eff76de12211e24dd909da0f5ed6f4f422b0c"
+  integrity sha512-l7z+OYZ7mu3DTqrL88RiKrKIqO3NcpEO8V/Od04bNpvk0kiIFndGEoqfuzvj4yuhRkHKjRkII2z+KS2HfPcSxw==
 
 tailwindcss@^3.3.6, tailwindcss@^3.4.14:
   version "3.4.17"

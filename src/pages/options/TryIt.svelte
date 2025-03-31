@@ -33,7 +33,7 @@
 			data-testid="query/result"
 			disabled
 			unWrappedClass="mt-2"
-			bind:value={queryResultJSON}
+			value={queryResultJSON}
 			rows="20"
 		/>
 	</div>

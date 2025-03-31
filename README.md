@@ -11,19 +11,19 @@ Chrome browser extension for syncing bookmarks with Raindrop.
 
 Core features supported:
 
--   [x] One-way sync from Raindrop.io to Chrome Bookmarks
+- [x] One-way sync from Raindrop.io to Chrome Bookmarks
 
--   [x] Background sync on startup and periodically
+- [x] Background sync on startup and periodically
 
 Planned features:
 
--   [ ] Granular synchronization: map query results and collections to specific bookmark folders
+- [ ] Granular synchronization: map query results and collections to specific bookmark folders
 
--   [ ] Two-way sync between Raindrop.io and Chrome Bookmarks
+- [ ] Two-way sync between Raindrop.io and Chrome Bookmarks
 
--   [ ] Publish the extension to the Chrome Web Store
+- [ ] Publish the extension to the Chrome Web Store
 
--   [ ] Support for additional browsers
+- [ ] Support for additional browsers
 
 ## 🚀 Getting Started
 

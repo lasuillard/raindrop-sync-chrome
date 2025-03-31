@@ -1,75 +1,38 @@
-import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
+import prettier from 'eslint-config-prettier/flat';
+import jsdoc from 'eslint-plugin-jsdoc';
+import svelte from 'eslint-plugin-svelte';
 import globals from 'globals';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import parser from 'svelte-eslint-parser';
+import ts from 'typescript-eslint';
+import svelteConfig from './svelte.config.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-	baseDirectory: __dirname,
-	recommendedConfig: js.configs.recommended,
-	allConfig: js.configs.all
-});
-
-export default [
+export default ts.config(
 	{
 		ignores: [
-			'**/.DS_Store',
-			'**/node_modules',
-			'dist',
-			'.svelte-kit',
-			'package',
-			'**/.env',
-			'**/.env.*',
-			'!**/.env.example',
-			'**/pnpm-lock.yaml',
-			'**/package-lock.json',
-			'**/yarn.lock'
+			'coverage/*',
+			'playwright-report/*',
+			'test-results/*',
+			'dist/*',
+			'.svelte-kit/*',
+			'vite.config.{js,ts}.timestamp-*'
 		]
 	},
-	...compat.extends(
-		'eslint:recommended',
-		'plugin:@typescript-eslint/recommended',
-		'plugin:svelte/recommended',
-		'prettier',
-		'plugin:jsdoc/recommended-typescript'
-	),
+	js.configs.recommended,
+	...ts.configs.recommended,
+	prettier,
+	...svelte.configs.recommended,
+	jsdoc.configs['flat/recommended-typescript'],
+	{ languageOptions: { globals: { ...globals.browser, ...globals.node, chrome: 'readonly' } } },
 	{
-		plugins: {
-			'@typescript-eslint': typescriptEslint
-		},
-
+		files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js'],
 		languageOptions: {
-			globals: {
-				...globals.browser,
-				...globals.node,
-				chrome: 'readonly'
-			},
-
-			parser: tsParser,
-			ecmaVersion: 2020,
-			sourceType: 'module',
-
 			parserOptions: {
-				extraFileExtensions: ['.svelte']
+				projectService: true,
+				extraFileExtensions: ['.svelte'],
+				parser: ts.parser,
+				svelteConfig
 			}
 		}
 	},
-	{
-		files: ['**/*.svelte'],
-
-		languageOptions: {
-			parser: parser,
-			ecmaVersion: 5,
-			sourceType: 'script',
-
-			parserOptions: {
-				parser: '@typescript-eslint/parser'
-			}
-		}
-	}
-];
+	{ rules: { '@typescript-eslint/no-explicit-any': 'off' } }
+);

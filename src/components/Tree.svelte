@@ -20,14 +20,14 @@
 		&lt;Directory&gt; {nodeTitle}
 		{#if treeNode.children.length > 0}
 			<List tag="ul" class="mt-2 space-y-1 pl-5">
-				{#each treeNode.children as child}
+				{#each treeNode.children as child (child.data?._id)}
 					<svelte:self treeNode={child} />
 				{/each}
 			</List>
 		{/if}
 		{#if raindrops}
 			<List tag="ul" class="mt-2 space-y-1 pl-5">
-				{#each raindrops as raindrop}
+				{#each raindrops as raindrop (raindrop._id)}
 					<Li>{raindrop.title}</Li>
 				{/each}
 			</List>

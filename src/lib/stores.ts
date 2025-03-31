@@ -2,9 +2,7 @@ import { writable, type Readable, type Updater } from 'svelte/store';
 
 // https://github.com/joshnuss/svelte-local-storage-store
 export interface Storage {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	get(keys: string | string[]): Promise<{ [key: string]: any }>;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	set(items: { [key: string]: any }): Promise<void>;
 	clear(): Promise<void>;
 }

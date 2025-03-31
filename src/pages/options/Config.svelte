@@ -32,11 +32,7 @@
 		}
 	};
 
-	let bookmarkFolders: {
-		id: string;
-		title: string;
-		depth: number;
-	}[] = [];
+	let bookmarkFolders: { id: string; title: string; depth: number }[] = [];
 
 	onMount(async () => {
 		const bookmarksTree = (await chrome.bookmarks.getTree()) || [];
@@ -122,7 +118,7 @@
 					Existing bookmarks in sync target folder will be lost each time sync run!
 				</P>
 				<div class="mt-2">
-					{#each bookmarkFolders as bf}
+					{#each bookmarkFolders as bf (bf.id)}
 						<div style="margin-left: {6 * 0.25 * (bf.depth - 1)}rem;" class="my-1">
 							<Radio name="sync-location" bind:group={settingsChange.syncLocation} value={bf.id}>
 								{bf.title}

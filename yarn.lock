@@ -790,6 +790,11 @@
   resolved "https://registry.yarnpkg.com/@sinonjs/text-encoding/-/text-encoding-0.7.3.tgz#282046f03e886e352b2d5f5da5eb755e01457f3f"
   integrity sha512-DE427ROAphMQzU4ENbliGYrBSYPXF+TtLg9S8vzeA+OF4ZKzoDdzfL8sxuMUGS/lgRhM6j1URSk9ghf7Xo1tyA==
 
+"@sveltejs/acorn-typescript@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@sveltejs/acorn-typescript/-/acorn-typescript-1.0.5.tgz#f518101d1b2e12ce80854f1cd850d3b9fb91d710"
+  integrity sha512-IwQk4yfwLdibDlrXVE04jTZYlLnwsTT2PIOQQGNLWfjavGifnk1JD1LcZjZaBTRcxZu2FfPfNLOE04DSu9lqtQ==
+
 "@sveltejs/vite-plugin-svelte-inspector@^4.0.1":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@sveltejs/vite-plugin-svelte-inspector/-/vite-plugin-svelte-inspector-4.0.1.tgz#2f99a4a593bb910d1492f6c00a042b521c07147e"
@@ -861,15 +866,10 @@
     "@types/filesystem" "*"
     "@types/har-format" "*"
 
-"@types/estree@1.0.7":
+"@types/estree@1.0.7", "@types/estree@^1.0.0", "@types/estree@^1.0.5", "@types/estree@^1.0.6":
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.7.tgz#4158d3105276773d5b7695cd4834b1722e4f37a8"
   integrity sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==
-
-"@types/estree@^1.0.0", "@types/estree@^1.0.5", "@types/estree@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.6.tgz#628effeeae2064a1b4e79f78e81d87b7e5fc7b50"
-  integrity sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==
 
 "@types/filesystem@*":
   version "0.0.36"
@@ -1117,11 +1117,6 @@ acorn-jsx@^5.3.2:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"
   integrity sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==
-
-acorn-typescript@^1.4.13:
-  version "1.4.13"
-  resolved "https://registry.yarnpkg.com/acorn-typescript/-/acorn-typescript-1.4.13.tgz#5f851c8bdda0aa716ffdd5f6ac084df8acc6f5ea"
-  integrity sha512-xsc9Xv0xlVfwp2o7sQ+GCQ1PgbkdcpWdTzrwXxO3xDMTAywVS3oXVOcOHuRjAPkS4P9b+yc/qNF15460v+jp4Q==
 
 acorn-walk@^8.2.0:
   version "8.3.4"
@@ -2265,10 +2260,10 @@ esquery@^1.5.0, esquery@^1.6.0:
   dependencies:
     estraverse "^5.1.0"
 
-esrap@^1.4.3:
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/esrap/-/esrap-1.4.3.tgz#456ed3c97cf0e6b58b952d351c7c78fe27116576"
-  integrity sha512-Xddc1RsoFJ4z9nR7W7BFaEPIp4UXoeQ0+077UdWLxbafMQFyU79sQJMk7kxNgRwQ9/aVgaKacCHC2pUACGwmYw==
+esrap@^1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/esrap/-/esrap-1.4.6.tgz#d203ce1ee397aa2a6a716a3a2dc8619f83208c6a"
+  integrity sha512-F/D2mADJ9SHY3IwksD4DAXjTt7qt7GWUf3/8RhCNWmC/67tyb55dpimHmy7EplakFaflV0R/PC+fdSPqrRHAQw==
   dependencies:
     "@jridgewell/sourcemap-codec" "^1.4.15"
 
@@ -4382,21 +4377,21 @@ svelte-eslint-parser@^1.1.1:
     postcss-scss "^4.0.9"
     postcss-selector-parser "^7.0.0"
 
-svelte@^5.20.5:
-  version "5.20.5"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-5.20.5.tgz#bbd7d3f7e6852e4d83a1a428211a3a04f0f121b0"
-  integrity sha512-dpu2lTPVsAAgZFKpF7A9741sBCdXGogfxFU4aQeVgun7GVNCSVheTzj0FsT7g9OsLhBaMX4lKLwVIvmzQGytmQ==
+svelte@^5.28.2:
+  version "5.28.2"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-5.28.2.tgz#b0c4a6ad14e1562cc2255baac479fa16d75b9c0d"
+  integrity sha512-FbWBxgWOpQfhKvoGJv/TFwzqb4EhJbwCD17dB0tEpQiw1XyUEKZJtgm4nA4xq3LLsMo7hu5UY/BOFmroAxKTMg==
   dependencies:
     "@ampproject/remapping" "^2.3.0"
     "@jridgewell/sourcemap-codec" "^1.5.0"
+    "@sveltejs/acorn-typescript" "^1.0.5"
     "@types/estree" "^1.0.5"
     acorn "^8.12.1"
-    acorn-typescript "^1.4.13"
     aria-query "^5.3.1"
     axobject-query "^4.1.0"
     clsx "^2.1.1"
     esm-env "^1.2.1"
-    esrap "^1.4.3"
+    esrap "^1.4.6"
     is-reference "^3.0.3"
     locate-character "^3.0.0"
     magic-string "^0.30.11"

@@ -1299,10 +1299,10 @@ available-typed-arrays@^1.0.7:
   dependencies:
     possible-typed-array-names "^1.0.0"
 
-axios-cache-interceptor@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/axios-cache-interceptor/-/axios-cache-interceptor-1.7.0.tgz#0bed53e3be108f175bf39df9385c594c5ac8e9ad"
-  integrity sha512-SP/QpCApakyGncF7ttyGsKt0CK5XG+tsdGAGTumHTzO1acnn9v7bd1XK1LiIcyXp46mlKS8j5iwvhNyFFWUKZQ==
+axios-cache-interceptor@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/axios-cache-interceptor/-/axios-cache-interceptor-1.8.0.tgz#2a061585569d57f340a66915faeab7e5ca4d0307"
+  integrity sha512-cTNnPGJyQkxnWp0EWvE3NRvgURU5cWw/Qx3dIhXyHSM4Ip0c7EEe0I3an0Jwa549m1CAOg57ibj27YRNLmQCcg==
   dependencies:
     cache-parser "1.2.5"
     fast-defer "1.1.8"

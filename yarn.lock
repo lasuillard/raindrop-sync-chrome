@@ -4377,10 +4377,10 @@ svelte-eslint-parser@^1.1.1:
     postcss-scss "^4.0.9"
     postcss-selector-parser "^7.0.0"
 
-svelte@^5.28.2:
-  version "5.28.2"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-5.28.2.tgz#b0c4a6ad14e1562cc2255baac479fa16d75b9c0d"
-  integrity sha512-FbWBxgWOpQfhKvoGJv/TFwzqb4EhJbwCD17dB0tEpQiw1XyUEKZJtgm4nA4xq3LLsMo7hu5UY/BOFmroAxKTMg==
+svelte@^5.33.11:
+  version "5.33.11"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-5.33.11.tgz#5ba350bf7dd7fff7847e38c1eb937a0741bf1eff"
+  integrity sha512-BVnvd6T3OShNvsRwYPXdseSO5rnQ4SljmhLVCCpBX1nEQI+e2TopOlazo4z+1+aUukyHZxlIVg3hpZ5TMugrMQ==
   dependencies:
     "@ampproject/remapping" "^2.3.0"
     "@jridgewell/sourcemap-codec" "^1.5.0"

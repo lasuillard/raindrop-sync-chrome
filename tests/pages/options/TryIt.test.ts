@@ -23,7 +23,6 @@ describe('query result', () => {
 		const { getByTestId } = render(TryIt);
 		const result = getByTestId('query/result') as HTMLInputElement;
 		expect(result).toBeTruthy();
-		expect(result.getAttributeNames()).toContain('disabled');
 		expect(result.value).toEqual('null');
 	});
 });

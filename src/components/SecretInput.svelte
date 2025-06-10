@@ -2,24 +2,24 @@
 	import { FloatingLabelInput } from 'flowbite-svelte';
 	import { EyeSlashSolid, EyeSolid } from 'flowbite-svelte-icons';
 
-	export let value: unknown;
-	let showSecret = false;
+	let { children, value = $bindable() } = $props();
+	let showSecret = $state(false);
 </script>
 
 <div class="flex">
 	<FloatingLabelInput
-		classDiv="w-full mr-2"
+		class="mr-2 w-full"
 		type={showSecret ? 'text' : 'password'}
 		required
 		bind:value
 	>
-		<slot />
+		{@render children?.()}
 	</FloatingLabelInput>
 
 	<button
-		class="focus:outline-none"
+		class="focus:outline-hidden"
 		type="button"
-		on:click={() => {
+		onclick={() => {
 			showSecret = !showSecret;
 		}}
 	>

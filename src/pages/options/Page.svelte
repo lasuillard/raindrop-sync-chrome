@@ -18,37 +18,45 @@
 <main class="mx-1 mt-4 self-center">
 	<Tabs style="underline">
 		<TabItem open>
-			<div slot="title" class="flex items-center gap-2">
-				<BookmarkOutline size="sm" class="focus:outline-none" />
-				Bookmarks
-			</div>
+			{#snippet titleSlot()}
+				<div class="flex items-center gap-2">
+					<BookmarkOutline size="sm" class="focus:outline-hidden" />
+					Bookmarks
+				</div>
+			{/snippet}
 			<Bookmarks />
 		</TabItem>
 		<TabItem>
-			<div slot="title" class="flex items-center gap-2">
-				<SearchOutline size="sm" class="focus:outline-none" />
-				Try It
-			</div>
+			{#snippet titleSlot()}
+				<div class="flex items-center gap-2">
+					<SearchOutline size="sm" class="focus:outline-hidden" />
+					Try It
+				</div>
+			{/snippet}
 			<TryIt />
 		</TabItem>
 		<TabItem>
-			<div slot="title" class="flex items-center gap-2">
-				<UserSettingsOutline size="sm" class="focus:outline-none" />
-				Settings
-			</div>
+			{#snippet titleSlot()}
+				<div class="flex items-center gap-2">
+					<UserSettingsOutline size="sm" class="focus:outline-hidden" />
+					Settings
+				</div>
+			{/snippet}
 			<Config />
 		</TabItem>
 		<TabItem>
-			<div slot="title" class="flex items-center gap-2">
-				<QuestionCircleOutline size="sm" class="focus:outline-none" />
-				About
-			</div>
+			{#snippet titleSlot()}
+				<div class="flex items-center gap-2">
+					<QuestionCircleOutline size="sm" class="focus:outline-hidden" />
+					About
+				</div>
+			{/snippet}
 			<About />
 		</TabItem>
 	</Tabs>
 
 	<!-- Global message box -->
-	<div class="fixed right-6 top-6 space-y-2">
+	<div class="fixed top-6 right-6 space-y-2">
 		{#each Object.entries($messageBox) as [id, message] (id)}
 			<Message {message} />
 		{/each}
@@ -56,6 +64,8 @@
 </main>
 
 <style lang="postcss">
+	@reference '../../app.css';
+
 	:root {
 		@apply mx-4 my-2 bg-slate-50;
 	}

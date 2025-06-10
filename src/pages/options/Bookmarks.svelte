@@ -24,8 +24,8 @@
 <div>
 	<P data-testid="description">Bookmarks synchronization settings.</P>
 	<div class="mt-2 space-x-2">
-		<Button outline on:click={fetchItems}>Fetch</Button>
-		<Button outline on:click={createBookmarks}>Synchronize</Button>
+		<Button outline onclick={fetchItems}>Fetch</Button>
+		<Button outline onclick={createBookmarks}>Synchronize</Button>
 	</div>
 	<div class="mt-2 p-2">
 		{#if treeNode}

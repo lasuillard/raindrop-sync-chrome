@@ -99,7 +99,7 @@
 				To register your application, fill <b>Client ID</b> and <b>Client Secret</b> then click
 				<b>Register</b>. Or, directly fill your test token in <b>Access Token</b> directly.
 			</P>
-			<Button outline on:click={launchWebAuthFlow}>Register</Button>
+			<Button outline onclick={launchWebAuthFlow}>Register</Button>
 		</div>
 		<div class="mt-6 grid grid-flow-row grid-cols-1 gap-x-4 gap-y-6">
 			<Heading tag="h4">Sync</Heading>
@@ -129,7 +129,7 @@
 			</div>
 		</div>
 		<div class="mt-8 grid grid-cols-1 gap-x-4">
-			<Button outline on:click={save}>Save</Button>
+			<Button outline onclick={save}>Save</Button>
 		</div>
 		<!-- TODO: Debug actions: check token validity, force refresh token, etc. -->
 	</div>

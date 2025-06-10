@@ -4,7 +4,7 @@
 	"runServices": ["workspace", "novnc"],
 	"service": "workspace",
 	"features": {
-		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {}
+		"ghcr.io/devcontainers/features/python:1": {}
 	},
 	"overrideCommand": true,
 	"onCreateCommand": "./.devcontainer/onCreateCommand.sh",

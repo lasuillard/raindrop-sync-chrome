@@ -35,7 +35,7 @@ update:  ## Update deps and tools
 .PHONY: update
 
 browser:  ## Launch browser with extensions loaded
-	dotenv google-chrome \
+	dotenvx run -- google-chrome \
 		--no-first-run \
 		--disable-gpu \
 		--load-extension="${PWD}/dist" \
@@ -44,7 +44,7 @@ browser:  ## Launch browser with extensions loaded
 .PHONY: browser
 
 run:  ## Run browser with development server
-	dotenv yarn run concurrently \
+	dotenvx run -- yarn run concurrently \
 		--kill-others \
 		--kill-signal SIGKILL \
 		--raw \

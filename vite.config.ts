@@ -1,6 +1,7 @@
 import { codecovVitePlugin } from '@codecov/vite-plugin';
 import { crx } from '@crxjs/vite-plugin';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
+import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { defineConfig } from 'vitest/config';
@@ -8,6 +9,7 @@ import manifest from './src/manifest';
 
 export const viteConfig = {
 	plugins: [
+		tailwindcss(),
 		svelte(),
 		crx({ manifest }),
 		codecovVitePlugin({

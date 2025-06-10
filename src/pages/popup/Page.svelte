@@ -15,6 +15,8 @@
 </main>
 
 <style lang="postcss">
+	@reference '../../app.css';
+
 	:root {
 		@apply mx-2 my-1 bg-slate-50;
 	}

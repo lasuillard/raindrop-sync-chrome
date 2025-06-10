@@ -1,3 +1,39 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin 'flowbite/plugin';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+	--color-primary-50: #fff5f2;
+	--color-primary-100: #fff1ee;
+	--color-primary-200: #ffe4de;
+	--color-primary-300: #ffd5cc;
+	--color-primary-400: #ffbcad;
+	--color-primary-500: #fe795d;
+	--color-primary-600: #ef562f;
+	--color-primary-700: #eb4f27;
+	--color-primary-800: #cc4522;
+	--color-primary-900: #a5371b;
+}
+
+@source "../node_modules/flowbite-svelte/dist";
+@source "../node_modules/flowbite-svelte-icons/dist";
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
+}

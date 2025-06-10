@@ -26,15 +26,9 @@
 					placeholder="#python #dev:tools"
 					bind:value={query}
 				/>
-				<Button data-testid="query/send-button" on:click={sendQuery}>Send</Button>
+				<Button data-testid="query/send-button" onclick={sendQuery}>Send</Button>
 			</ButtonGroup>
 		</div>
-		<Textarea
-			data-testid="query/result"
-			disabled
-			unWrappedClass="mt-2"
-			value={queryResultJSON}
-			rows="20"
-		/>
+		<Textarea data-testid="query/result" class="mt-2" value={queryResultJSON} rows={20} />
 	</div>
 </div>

@@ -7,7 +7,7 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { defineConfig } from 'vitest/config';
 import manifest from './src/manifest';
 
-export const viteConfig = {
+export default defineConfig({
 	plugins: [
 		tailwindcss(),
 		svelte(),
@@ -60,18 +60,23 @@ export const viteConfig = {
 		coverage: {
 			all: true,
 			include: ['src/**'],
-			exclude: ['src/**/__mocks__/*', 'src/**/*.d.ts', 'src/**/*.{test,spec}.ts'],
+			exclude: [
+				'src/**/__mocks__/*',
+				'src/**/*.d.ts',
+				'src/**/*.{test,spec}.ts',
+				// E2E tests handle these
+				'src/manifest.ts',
+				'src/service-worker.ts',
+				'src/pages/**'
+			],
 			reporter: ['text', 'clover', 'html']
 		},
-		setupFiles: ['dotenv/config', 'tests/setup.ts'],
+		setupFiles: ['tests/setup.ts'],
 		api: {
 			// Publish for * if inside container for forwarding
 			host: process.env.CONTAINER ? '0.0.0.0' : '127.0.0.1',
 			port: 51204
-		}
+		},
+		css: false
 	}
-};
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
-export default defineConfig(viteConfig);
+});

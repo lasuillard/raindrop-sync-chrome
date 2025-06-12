@@ -5,6 +5,8 @@ html/
 vitest.config.js.timestamp-*
 vitest.config.ts.timestamp-*
 junit.xml
+test-results/
+playwright-report/
 
 # User hook scripts for VSC devcontainer lifecycle
 .devcontainer/initializeCommand/

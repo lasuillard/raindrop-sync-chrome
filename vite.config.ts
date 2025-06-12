@@ -21,6 +21,7 @@ export const viteConfig = {
 		})
 	],
 	resolve: {
+		conditions: process.env.VITEST ? ['browser'] : [],
 		alias: [
 			{ find: '~', replacement: path.resolve(__dirname, '/src') },
 			{ find: '^', replacement: path.resolve(__dirname, '/') }
@@ -48,6 +49,26 @@ export const viteConfig = {
 	// https://github.com/crxjs/chrome-extension-tools/issues/971
 	legacy: {
 		skipWebSocketTokenCheck: true
+	},
+	test: {
+		include: ['tests/**/*.{test,spec}.{js,ts}'],
+		exclude: ['**/__mocks__/*'],
+		reporters: ['junit', 'default'],
+		outputFile: {
+			junit: './junit.xml'
+		},
+		coverage: {
+			all: true,
+			include: ['src/**'],
+			exclude: ['src/**/__mocks__/*', 'src/**/*.d.ts', 'src/**/*.{test,spec}.ts'],
+			reporter: ['text', 'clover', 'html']
+		},
+		setupFiles: ['dotenv/config', 'tests/setup.ts'],
+		api: {
+			// Publish for * if inside container for forwarding
+			host: process.env.CONTAINER ? '0.0.0.0' : '127.0.0.1',
+			port: 51204
+		}
 	}
 };
 

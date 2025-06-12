@@ -16,8 +16,8 @@
 		"check:watch": "yarn run check -- --watch",
 		"test": "vitest --coverage --run --exclude tests/e2e",
 		"test:watch": "vitest --silent --coverage --watch --ui --exclude tests/e2e",
-		"e2e": "yarn run build && E2E=1 vitest --run e2e",
-		"e2e:watch": "concurrently --raw --kill-others --kill-signal SIGKILL \"yarn run build:watch\" \"wait-on --delay 30000 --timeout 30000 dist/manifest.json && E2E=1 vitest --silent --watch --ui e2e\""
+		"e2e": "playwright test",
+		"e2e:watch": "playwright test --ui"
 	},
 	"dependencies": {
 		"@lasuillard/raindrop-client": "^0.6.1",
@@ -35,6 +35,7 @@
 		"@eslint/eslintrc": "^3.3.0",
 		"@eslint/js": "^9.28.0",
 		"@floating-ui/dom": "^1.7.0",
+		"@playwright/test": "^1.53.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.1",
 		"@tailwindcss/postcss": "^4.1.8",
 		"@tailwindcss/vite": "^4.1.8",
@@ -57,7 +58,6 @@
 		"prettier": "^3.5.3",
 		"prettier-plugin-svelte": "^3.4.0",
 		"prettier-plugin-tailwindcss": "^0.6.12",
-		"puppeteer": "^24.9.0",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
 		"sinon-chrome": "^3.0.1",

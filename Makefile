@@ -95,7 +95,7 @@ docs:  ## Generate dev documents
 # Handy Scripts
 # =============================================================================
 clean:  ## Remove temporary files
-	rm -rf coverage/ junit.xml .svelte-kit/ dist/ .tmp/ playwright-report/
+	rm -rf coverage/ junit.xml .svelte-kit/ dist/ .tmp/ playwright-report/ dummy-non-existing-folder/
 	find . -path '*/__snapshots__*' -delete
 	find . -path "*.log*" -delete
 .PHONY: clean

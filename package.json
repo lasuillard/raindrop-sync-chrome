@@ -14,8 +14,8 @@
 		"build:watch": "vite build --watch",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "yarn run check -- --watch",
-		"test": "vitest --coverage --run --exclude tests/e2e",
-		"test:watch": "vitest --silent --coverage --watch --ui --exclude tests/e2e",
+		"test": "vitest --coverage --run",
+		"test:watch": "vitest --silent --coverage --watch --ui",
 		"e2e": "playwright test",
 		"e2e:watch": "playwright test --ui"
 	},

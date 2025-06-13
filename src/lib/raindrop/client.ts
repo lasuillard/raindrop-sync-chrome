@@ -1,5 +1,5 @@
 import { client, generated } from '@lasuillard/raindrop-client';
-import axios, { AxiosError, type AxiosInstance } from 'axios';
+import axios, { AxiosError, type AxiosInstance, type AxiosRequestConfig } from 'axios';
 // import { setupCache } from 'axios-cache-interceptor';
 import { get } from 'svelte/store';
 import * as settings from '~/lib/settings';
@@ -19,6 +19,16 @@ export function getClient(
 
 	return new client.Raindrop(configuration, axiosClient);
 }
+
+interface RetryQueueItem {
+	resolve: (value?: any) => void;
+	reject: (error?: any) => void;
+	config: AxiosRequestConfig;
+}
+
+const retryQueue: RetryQueueItem[] = [];
+
+let isRefreshing = false;
 
 /**
  * Create new Axios client with all interceptors & caches are set.
@@ -43,26 +53,51 @@ export function getAxiosClient(): AxiosInstance {
 		}
 	);
 
+	// https://medium.com/@sina.alizadeh120/repeating-failed-requests-after-token-refresh-in-axios-interceptors-for-react-js-apps-50feb54ddcbc
 	instance.interceptors.response.use(
 		function (response) {
 			return response;
 		},
 		async function (error: AxiosError) {
 			console.error('Response error from server:', error.response?.status);
+
+			// @ts-expect-error Ignore TS error for now
+			const originalRequest: AxiosRequestConfig = error.config;
 			if (error.response?.status === 401) {
 				if (!get(settings.refreshToken)) {
 					console.error('No refresh token available, cannot refresh access token');
 					return Promise.reject(error);
 				}
 
-				// TODO(lasuillard): Refresh works OK, but it(refresh)'s being called multiple times
-				//                   Consider implementing a lock mechanism to prevent multiple refresh calls
-				//                   e.g. https://github.com/kirill-konshin/mutex-promise
-				tryRefreshAccessToken(instance);
+				// TODO: It does enqueue requests AFTER error response from server; it would be better to block requests
+				//       until access token is refreshed at the request interceptor level.
+				//       But the impact is minor in current implementation, so leaving it as is for now.
+				if (isRefreshing) {
+					console.debug('Access token is being refreshed, adding request to retry queue');
+					return new Promise<void>((resolve, reject) => {
+						retryQueue.push({ resolve, reject, config: originalRequest });
+					});
+				}
+
+				console.debug('Refreshing access token');
+				isRefreshing = true;
+				await tryRefreshAccessToken(instance);
+
+				console.debug(`Access token refreshed, retrying ${retryQueue.length} requests in queue`);
+				while (retryQueue.length > 0) {
+					const queueItem = retryQueue.shift();
+					if (!queueItem) {
+						continue;
+					}
+					const { config, resolve, reject } = queueItem;
+					instance(config).then(resolve).catch(reject);
+				}
+
+				console.debug('Refreshing is done. All queued requests retried');
+				isRefreshing = false;
 
 				console.debug('Retrying request with new access token');
-				// @ts-expect-error Ignore TS error for now
-				return instance(error.config);
+				return instance(originalRequest);
 			}
 			return Promise.reject(error);
 		}
@@ -78,22 +113,28 @@ export function getAxiosClient(): AxiosInstance {
  * Try to get new access token using refresh token.
  * If successful, updates access token in settings. Otherwise, clears tokens.
  * @param instance Axios instance to use for the request.
+ * @returns New access token if successful.
  */
-async function tryRefreshAccessToken(instance: AxiosInstance): Promise<void> {
+async function tryRefreshAccessToken(instance: AxiosInstance): Promise<string> {
 	const client = getClient(undefined, instance);
 	try {
+		console.debug('Requesting new access token using refresh token');
 		const response = await client.auth.refreshToken({
 			client_id: get(settings.clientID),
 			client_secret: get(settings.clientSecret),
 			refresh_token: get(settings.refreshToken)
 		});
 		const newAccessToken = response.data.access_token;
-		console.log('Retrieved new access token using refresh token');
-		settings.accessToken.set(newAccessToken);
+
+		console.debug('Updating access token in settings');
+		await settings.accessToken.set(newAccessToken);
+
+		return newAccessToken;
 	} catch (err) {
-		// If refresh fails, clear tokens
-		settings.accessToken.set('');
-		settings.refreshToken.set('');
+		console.debug('Failed to refresh access token, clearing tokens in settings');
+		await settings.accessToken.set('');
+		await settings.refreshToken.set('');
+
 		throw new Error(`Failed to refresh access token: ${err}`);
 	}
 }

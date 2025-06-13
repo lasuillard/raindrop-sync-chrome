@@ -36,31 +36,33 @@ export function getAxiosClient(): AxiosInstance {
 			if (accessToken) {
 				config.headers.Authorization = `Bearer ${accessToken}`;
 			}
-
 			return config;
 		},
 		function (error: AxiosError) {
-			// Handle request errors
-			// ...
 			return Promise.reject(error);
 		}
 	);
 
 	instance.interceptors.response.use(
 		function (response) {
-			// Do something with response data
-			// ...
 			return response;
 		},
-		function (error: AxiosError) {
+		async function (error: AxiosError) {
 			console.error('Response error from server:', error.response?.status);
 			if (error.response?.status === 401) {
-				// Empty the access token as it is invalidate, preventing further request with expired token
-				// NOTE: Use subscriber to refresh token rather than doing so here
-				// TODO: Refresh token
-				// https://www.npmjs.com/package/axios-retry
-				settings.accessToken.set('');
-				console.debug('Server replied with status 401, access token may malformed or expired');
+				if (!get(settings.refreshToken)) {
+					console.error('No refresh token available, cannot refresh access token');
+					return Promise.reject(error);
+				}
+
+				// TODO(lasuillard): Refresh works OK, but it(refresh)'s being called multiple times
+				//                   Consider implementing a lock mechanism to prevent multiple refresh calls
+				//                   e.g. https://github.com/kirill-konshin/mutex-promise
+				tryRefreshAccessToken(instance);
+
+				console.debug('Retrying request with new access token');
+				// @ts-expect-error Ignore TS error for now
+				return instance(error.config);
 			}
 			return Promise.reject(error);
 		}
@@ -70,4 +72,28 @@ export function getAxiosClient(): AxiosInstance {
 	// setupCache(instance);
 
 	return instance;
+}
+
+/**
+ * Try to get new access token using refresh token.
+ * If successful, updates access token in settings. Otherwise, clears tokens.
+ * @param instance Axios instance to use for the request.
+ */
+async function tryRefreshAccessToken(instance: AxiosInstance): Promise<void> {
+	const client = getClient(undefined, instance);
+	try {
+		const response = await client.auth.refreshToken({
+			client_id: get(settings.clientID),
+			client_secret: get(settings.clientSecret),
+			refresh_token: get(settings.refreshToken)
+		});
+		const newAccessToken = response.data.access_token;
+		console.log('Retrieved new access token using refresh token');
+		settings.accessToken.set(newAccessToken);
+	} catch (err) {
+		// If refresh fails, clear tokens
+		settings.accessToken.set('');
+		settings.refreshToken.set('');
+		throw new Error(`Failed to refresh access token: ${err}`);
+	}
 }

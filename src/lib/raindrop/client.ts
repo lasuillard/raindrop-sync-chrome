@@ -87,17 +87,15 @@ export function getAxiosClient(): AxiosInstance {
 				isRefreshing = true;
 				try {
 					await tryRefreshAccessToken(client);
-					console.debug('Access token refreshed, retrying requests in queue');
 					retryAllRequests(instance);
 				} catch (refreshError) {
 					rejectAllRequests();
 					throw refreshError;
+				} finally {
+					isRefreshing = false;
 				}
 
-				console.debug('Refreshing is done. All queued requests retried');
-				isRefreshing = false;
-
-				console.debug('Retrying request with new access token');
+				// Retry the original request...
 				return instance(originalRequest);
 			}
 			return Promise.reject(error);

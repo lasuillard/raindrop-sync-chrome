@@ -25,7 +25,7 @@ help: Makefile  ## Show help
 # =============================================================================
 install:  ## Install deps and tools
 	yarn install
-	yarn run puppeteer browsers install chrome
+	yarn run playwright install --with-deps
 	pre-commit install --install-hooks
 .PHONY: install
 
@@ -78,9 +78,12 @@ test: generate  ## Run tests
 	yarn run test
 .PHONY: test
 
-e2e-test: generate  ## Run e2e tests
+build: generate
 	yarn run build
-	yarn run e2e
+.PHONY: build
+
+e2e-test: build  ## Run e2e tests
+	yarn run e2e --update-snapshots
 .PHONY: e2e-test
 
 docs:  ## Generate dev documents
@@ -92,7 +95,7 @@ docs:  ## Generate dev documents
 # Handy Scripts
 # =============================================================================
 clean:  ## Remove temporary files
-	rm -rf coverage/ junit.xml .svelte-kit/ dist/ .tmp/
+	rm -rf coverage/ junit.xml .svelte-kit/ dist/ .tmp/ playwright-report/ dummy-non-existing-folder/
 	find . -path '*/__snapshots__*' -delete
 	find . -path "*.log*" -delete
 .PHONY: clean

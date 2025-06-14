@@ -92,24 +92,36 @@ jobs:
       - name: Install deps
         run: yarn install --frozen-lockfile
 
-      - name: Extra cache for Puppeteer deps
+      # https://github.com/microsoft/playwright/issues/7249
+      - name: Store Playwright version as env
+        run: |
+          PLAYWRIGHT_VERSION="$(yarn run --silent playwright --version | cut -d' ' -f2)"
+          echo "Playwright version is ${PLAYWRIGHT_VERSION}"
+          echo "PLAYWRIGHT_VERSION=${PLAYWRIGHT_VERSION}" >> ${GITHUB_ENV}
+
+      - name: Cache Playwright browsers
+        id: cache-playwright-browsers
         uses: actions/cache@v4
         with:
-          path: ~/.cache/puppeteer
-          key: ${{ runner.os }}-puppeteer-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-puppeteer-
+          path: ~/.cache/ms-playwright
+          key: playwright-browsers-${{ env.PLAYWRIGHT_VERSION }}
+
+      - name: Install Playwright browsers
+        if: ${{ steps.cache-playwright-browsers.outputs.cache-hit != 'true' }}
+        run: yarn run playwright install --with-deps
+
+      - name: Build the application
+        run: yarn run build
 
       - name: Run end-to-end tests
-        run: |
-          yarn run build
-          yarn run e2e
+        run: yarn run e2e
 
-      - name: Upload test results to codecov
-        uses: codecov/codecov-action@v5
+      - name: Upload Playwright reports
+        uses: actions/upload-artifact@v4
+        if: always()
         with:
-          use_oidc: true
-          fail_ci_if_error: false
-          report_type: test_results
-          files: junit.xml
-          flags: e2e
+          name: playwright-artifacts
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

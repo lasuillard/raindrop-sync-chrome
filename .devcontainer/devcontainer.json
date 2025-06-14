@@ -25,7 +25,8 @@
 				"svelte.svelte-vscode",
 				"bradlc.vscode-tailwindcss",
 				"vitest.explorer",
-				"vivaxy.vscode-conventional-commits"
+				"vivaxy.vscode-conventional-commits",
+				"ms-playwright.playwright"
 			]
 		}
 	},

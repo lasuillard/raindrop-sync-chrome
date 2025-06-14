@@ -23,8 +23,8 @@
 				clientID: get(clientID),
 				clientSecret: get(clientSecret)
 			});
-			accessToken.set(result.accessToken);
-			refreshToken.set(result.refreshToken);
+			await accessToken.set(result.accessToken);
+			await refreshToken.set(result.refreshToken);
 			putMessage({ type: 'success', message: 'Successfully authorized app.' });
 		} catch (err) {
 			console.error('Failed to authorize app:', err);

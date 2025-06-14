@@ -59,6 +59,6 @@ export async function syncBookmarks(args: SyncBookmarksArgs = {}) {
 
 	// TODO: Abstract browser bookmark interface to support other browsers in future
 	await createBookmarks(syncFolder.id, treeNode);
-	clientLastSync.set(new Date());
+	await clientLastSync.set(new Date());
 	console.info('Synchronization completed');
 }

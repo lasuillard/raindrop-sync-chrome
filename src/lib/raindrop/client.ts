@@ -1,5 +1,5 @@
 import { client, generated } from '@lasuillard/raindrop-client';
-import axios, { AxiosError, type AxiosInstance } from 'axios';
+import axios, { AxiosError, type AxiosInstance, type AxiosRequestConfig } from 'axios';
 // import { setupCache } from 'axios-cache-interceptor';
 import { get } from 'svelte/store';
 import * as settings from '~/lib/settings';
@@ -20,6 +20,19 @@ export function getClient(
 	return new client.Raindrop(configuration, axiosClient);
 }
 
+/// Interface for retry queue items
+interface RetryQueueItem {
+	resolve: (value?: any) => void;
+	reject: (error?: any) => void;
+	config: AxiosRequestConfig;
+}
+
+// Queue to hold requests that need to be retried after access token refresh
+const retryQueue: RetryQueueItem[] = [];
+
+// Flag to indicate if access token is being refreshed
+let isRefreshing = false;
+
 /**
  * Create new Axios client with all interceptors & caches are set.
  * @returns New Axios instance.
@@ -36,31 +49,56 @@ export function getAxiosClient(): AxiosInstance {
 			if (accessToken) {
 				config.headers.Authorization = `Bearer ${accessToken}`;
 			}
-
 			return config;
 		},
 		function (error: AxiosError) {
-			// Handle request errors
-			// ...
 			return Promise.reject(error);
 		}
 	);
 
+	// https://medium.com/@sina.alizadeh120/repeating-failed-requests-after-token-refresh-in-axios-interceptors-for-react-js-apps-50feb54ddcbc
 	instance.interceptors.response.use(
 		function (response) {
-			// Do something with response data
-			// ...
 			return response;
 		},
-		function (error: AxiosError) {
+		async function (error: AxiosError) {
 			console.error('Response error from server:', error.response?.status);
+
+			// @ts-expect-error Ignore TS error for now
+			const originalRequest: AxiosRequestConfig = error.config;
 			if (error.response?.status === 401) {
-				// Empty the access token as it is invalidate, preventing further request with expired token
-				// NOTE: Use subscriber to refresh token rather than doing so here
-				// TODO: Refresh token
-				// https://www.npmjs.com/package/axios-retry
-				settings.accessToken.set('');
-				console.debug('Server replied with status 401, access token may malformed or expired');
+				if (!get(settings.refreshToken)) {
+					console.error('No refresh token available, cannot refresh access token');
+					return Promise.reject(error);
+				}
+
+				// TODO: It does enqueue requests AFTER error response from server; it would be better to block requests
+				//       until access token is refreshed at the request interceptor level.
+				//       But the impact is minor in current implementation, so leaving it as is for now.
+				if (isRefreshing) {
+					console.debug('Access token is being refreshed, adding request to retry queue');
+					return new Promise<void>((resolve, reject) => {
+						retryQueue.push({ resolve, reject, config: originalRequest });
+					});
+				}
+
+				console.debug('Refreshing access token');
+				const client = getClient(undefined, instance);
+				isRefreshing = true;
+				try {
+					await tryRefreshAccessToken(client);
+					// ? Not awaited it for reason -- don't care; fire-and-forget
+					retryAllRequests(instance);
+				} catch (refreshError) {
+					// ? Not awaited it for reason -- don't care; fire-and-forget
+					rejectAllRequests();
+					throw refreshError;
+				} finally {
+					isRefreshing = false;
+				}
+
+				// Retry the original request...
+				return instance(originalRequest);
 			}
 			return Promise.reject(error);
 		}
@@ -70,4 +108,77 @@ export function getAxiosClient(): AxiosInstance {
 	// setupCache(instance);
 
 	return instance;
+}
+
+// TODO: Consider refactoring token management with FSM
+/**
+ * Try to get new access token using refresh token.
+ * If successful, updates access token in settings. Otherwise, clears tokens.
+ * @param client Raindrop client to use for the request.
+ * @returns New access token if successful.
+ */
+async function tryRefreshAccessToken(client: client.Raindrop): Promise<string> {
+	try {
+		console.debug('Requesting new access token using refresh token');
+		const response = await client.auth.refreshToken({
+			client_id: get(settings.clientID),
+			client_secret: get(settings.clientSecret),
+			refresh_token: get(settings.refreshToken)
+		});
+		const newAccessToken = response.data.access_token;
+
+		console.debug('Updating access token in settings');
+		await settings.accessToken.set(newAccessToken);
+
+		return newAccessToken;
+	} catch (err) {
+		console.debug('Failed to refresh access token, clearing tokens in settings');
+		await settings.accessToken.set('');
+		await settings.refreshToken.set('');
+
+		throw new Error(`Failed to refresh access token: ${err}`);
+	}
+}
+
+/**
+ * Retry all requests in the retry queue.
+ * @param instance Axios instance to use for the requests.
+ */
+async function retryAllRequests(instance: AxiosInstance): Promise<void> {
+	if (retryQueue.length === 0) {
+		console.debug('No requests to retry');
+		return;
+	}
+
+	console.debug(`Retrying ${retryQueue.length} requests in queue`);
+	while (retryQueue.length > 0) {
+		const queueItem = retryQueue.shift();
+		if (!queueItem) {
+			continue;
+		}
+		const { config, resolve, reject } = queueItem;
+		instance(config).then(resolve).catch(reject);
+	}
+	console.debug('All queued requests retried');
+}
+
+/**
+ * Reject all queued requests in the retry queue.
+ */
+async function rejectAllRequests(): Promise<void> {
+	if (retryQueue.length === 0) {
+		console.debug('No requests to reject');
+		return;
+	}
+
+	console.debug(`Rejecting ${retryQueue.length} requests in queue`);
+	while (retryQueue.length > 0) {
+		const queueItem = retryQueue.shift();
+		if (!queueItem) {
+			continue;
+		}
+		const { reject } = queueItem;
+		reject(new Error('Request failed after token refresh'));
+	}
+	console.debug('All queued requests rejected');
 }

@@ -87,8 +87,10 @@ export function getAxiosClient(): AxiosInstance {
 				isRefreshing = true;
 				try {
 					await tryRefreshAccessToken(client);
+					// ? Not awaited it for reason -- don't care; fire-and-forget
 					retryAllRequests(instance);
 				} catch (refreshError) {
+					// ? Not awaited it for reason -- don't care; fire-and-forget
 					rejectAllRequests();
 					throw refreshError;
 				} finally {

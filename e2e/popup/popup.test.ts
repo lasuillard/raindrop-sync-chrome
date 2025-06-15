@@ -5,8 +5,7 @@ test('page title should be extension name', async ({ page, extensionId }) => {
 	expect(await page.title()).toEqual('Raindrop Sync for Chrome');
 });
 
-test('popup should have some content', async ({ page, extensionId }) => {
+test('visit page', async ({ page, extensionId }) => {
 	await page.goto(`chrome-extension://${extensionId}/src/popup.html`);
-	await page.waitForSelector('body');
-	expect(await page.content()).toContain('Raindrop Sync for Chrome');
+	await expect(page).toHaveScreenshot();
 });

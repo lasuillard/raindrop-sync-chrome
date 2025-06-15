@@ -9,4 +9,4 @@ test('popup should have some content', async ({ page, extensionId }) => {
 	await page.goto(`chrome-extension://${extensionId}/src/popup.html`);
 	await page.waitForSelector('body');
 	expect(await page.content()).toContain('Raindrop Sync for Chrome');
-}, 60_000);
+});

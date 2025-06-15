@@ -28,8 +28,10 @@
 		"src/**/*.ts",
 		"src/**/*.js",
 		"src/**/*.svelte",
-		"{tests,e2e}/**/*.ts",
-		"{tests,e2e}/**/*.d.ts"
+		"tests/**/*.ts",
+		"tests/**/*.d.ts",
+		"e2e/**/*.ts",
+		"e2e/**/*.d.ts"
 	],
 	"exclude": ["node_modules/**/*"]
 }

@@ -9,4 +9,4 @@ test('options should have some some content', async ({ page, extensionId }) => {
 	await page.goto(`chrome-extension://${extensionId}/src/options.html`);
 	await page.waitForSelector('body');
 	expect(await page.content()).toContain('Raindrop Sync for Chrome');
-}, 60_000);
+});

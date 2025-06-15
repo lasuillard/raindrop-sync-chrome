@@ -2,7 +2,8 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 
 export default {
 	use: {
-		screenshot: 'only-on-failure'
+		screenshot: 'only-on-failure',
+		video: 'retain-on-failure'
 	},
 	testDir: 'e2e',
 	testMatch: /(.+\.)?(test|spec)\.[jt]s/,

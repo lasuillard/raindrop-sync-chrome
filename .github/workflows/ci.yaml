@@ -79,9 +79,16 @@ jobs:
     permissions:
       contents: read
       id-token: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ vars.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -116,7 +123,7 @@ jobs:
       - name: Run end-to-end tests
         run: yarn run e2e
 
-      - name: Upload Playwright reports
+      - name: Upload Playwright report to GitHub
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -125,3 +132,23 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 7
+
+      - name: Upload Playwright report to S3
+        id: upload-playwright-report-s3
+        if: always()
+        env:
+          PLAYWRIGHT_REPORT_S3_PREFIX: playwright-report-${{ github.run_id }}
+        run: |
+          aws s3 cp --recursive \
+            playwright-report/ \
+            "s3://${{ vars.PLAYWRIGHT_REPORTS_BUCKET }}/${{ env.PLAYWRIGHT_REPORT_S3_PREFIX }}/"
+
+          echo "report-index-url=https://${{ vars.PLAYWRIGHT_REPORTS_BUCKET }}.s3.${{ vars.AWS_REGION }}.amazonaws.com/${{ env.PLAYWRIGHT_REPORT_S3_PREFIX }}/index.html" >> $GITHUB_OUTPUT
+
+      - name: Comment on PR
+        uses: thollander/actions-comment-pull-request@v3
+        if: always() && steps.upload-playwright-report-s3.outcome == 'success'
+        with:
+          comment-tag: playwright-report
+          message: |
+            📊 Playwright test report is now available at [here](${{ steps.upload-playwright-report-s3.outputs.report-index-url }})

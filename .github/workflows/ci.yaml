@@ -154,3 +154,4 @@ jobs:
         with:
           comment-tag: playwright-report
           file-path: ./playwright-report.md
+          mode: recreate

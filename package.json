@@ -23,7 +23,7 @@
 		"@lasuillard/raindrop-client": "^0.6.1",
 		"axios": "^1.9.0",
 		"flowbite": "^3.1.1",
-		"flowbite-svelte": "^1.6.2",
+		"flowbite-svelte": "^1.8.3",
 		"flowbite-svelte-icons": "^2.2.0",
 		"svelte": "^5.33.11",
 		"tailwindcss": "^4.1.8",

@@ -2451,17 +2451,17 @@ flowbite-svelte-icons@^2.2.0:
     clsx "^2.1.1"
     tailwind-merge "^3.3.0"
 
-flowbite-svelte@^1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/flowbite-svelte/-/flowbite-svelte-1.6.2.tgz#c8769ddd60c91958588f1cb19d07aa0d15da2d15"
-  integrity sha512-BFrFi58lNyOwWzvUUFaVDU7xLxkWLKN4rdSXPbLMQFue3sDriI0Pgo7DggvQ+xKu0fjiNOb6xtJ5Y9BPHjfk9Q==
+flowbite-svelte@^1.8.3:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/flowbite-svelte/-/flowbite-svelte-1.8.3.tgz#ce3c04fddf396bca9d3c951ddfbd6cbe801d58e3"
+  integrity sha512-1qBJE8owK5iuhm3NdRNBkQI4yBjqqh3J9R9GOcPQ5Z8Td+Dpk5+aK7hWXsZEJ0EC5I1ZJlFW8mwK5v3b+QY/AQ==
   dependencies:
     "@floating-ui/dom" "^1.7.1"
     "@floating-ui/utils" "^0.2.9"
     apexcharts "^4.7.0"
     clsx "^2.1.1"
     flowbite "^3.1.2"
-    tailwind-merge "^3.3.0"
+    tailwind-merge "^3.3.1"
     tailwind-variants "^1.0.0"
 
 flowbite@^2.0.0:
@@ -4224,10 +4224,10 @@ tailwind-merge@^2.6.0:
   resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-2.6.0.tgz#ac5fb7e227910c038d458f396b7400d93a3142d5"
   integrity sha512-P+Vu1qXfzediirmHOC3xKGAYeZtPcV9g76X+xg2FD4tYgR71ewMA35Y3sCz3zhiN/dwefRpJX0yBcgwi1fXNQA==
 
-tailwind-merge@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-3.3.0.tgz#d9bb4f298801ef6232ced4f97e830fc79bc3d3e7"
-  integrity sha512-fyW/pEfcQSiigd5SNn0nApUOxx0zB/dm6UDU/rEwc2c3sX2smWUNbapHv+QRqLGVp9GWX3THIa7MUGPo+YkDzQ==
+tailwind-merge@^3.3.0, tailwind-merge@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-3.3.1.tgz#a7e7db7c714f6020319e626ecfb7e7dac8393a4b"
+  integrity sha512-gBXpgUm/3rp1lMZZrM/w7D8GKqshif0zAymAhbCyIt8KMe+0v9DQ7cdYLR4FHH/cKpdTXb+A/tKKU3eolfsI+g==
 
 tailwind-variants@^1.0.0:
   version "1.0.0"

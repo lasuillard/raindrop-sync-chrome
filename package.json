@@ -20,7 +20,7 @@
 		"e2e:watch": "playwright test --ui"
 	},
 	"dependencies": {
-		"@lasuillard/raindrop-client": "^0.6.1",
+		"@lasuillard/raindrop-client": "^0.7.1",
 		"axios": "^1.11.0",
 		"flowbite": "^3.1.1",
 		"flowbite-svelte": "^1.8.3",
